@@ -1,0 +1,4 @@
+*.o
+*.gc*
+my_rpg
+.vscode
