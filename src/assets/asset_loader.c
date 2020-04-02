@@ -6,8 +6,9 @@
 */
 
 #include <unistd.h>
-#include "asset_store.h"
+#include "asset_loader.h"
 #include "main.h"
+#include "lib.h"
 
 void destroy_assets(asset_store_t *store)
 {

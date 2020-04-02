@@ -14,6 +14,12 @@
 
 typedef enum { T_TEXTURE, T_FONT, T_SOUND } asset_type_t;
 
+
+typedef struct event_state {
+    sfEventType type;
+    char *data;
+} event_st;
+
 typedef struct asset_node {
     asset_type_t type;
     char *name;
