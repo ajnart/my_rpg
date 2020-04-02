@@ -17,9 +17,15 @@
 #include <SFML/System.h>
 #include <SFML/Window.h>
 
-#include "asset_store.h"
-#include "lib.h"
+#include "../src/assets/asset_loader.h"
+#include "../src/settings/settings.h"
 
 extern asset_store_t *g_assets;
+extern settings_t *settings;
+
+#define MALLOC(var, size)   \
+malloc(size);               \
+if (!var)                   \
+    return NULL;
 
 #endif //__MAIN_H
