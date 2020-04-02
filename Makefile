@@ -20,7 +20,7 @@ BUILD_DIR		= build
 
 SOURCE	= $(shell find $(SOURCE_DIR) -name "*.c")
 
-CFLAGS	+=	-Llib -Iinclude -lmy -W -Wall -g3
+CFLAGS	+=	-Llib -Iinclude -lmy -W -g3
 LD_FLAGS	= -lcsfml-window -lcsfml-graphics -lcsfml-audio -lcsfml-system -lm
 
 ifneq (,$(findstring tests,$(MAKECMDGOALS)))
