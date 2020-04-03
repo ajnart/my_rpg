@@ -22,6 +22,7 @@ void perform_mainloop(sfRenderWindow *window, void (**loop)(), void (**loop_old)
 
 void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 {
+    play_music(win, "assets/music.ogg", settings);
     if (state->type == sfEvtMouseButtonPressed
         && state->data && my_strcmp(state->data, "start"))
         *loop = &loop_ingame;

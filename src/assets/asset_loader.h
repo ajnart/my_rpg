@@ -28,6 +28,7 @@ typedef struct asset_node {
         sfTexture *texture;
         sfFont *font;
         sfSoundBuffer *sound;
+        sfMusic *music;
     } asset_store;
     struct asset_node *next;
 } asset_store_t;

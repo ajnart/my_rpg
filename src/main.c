@@ -11,6 +11,7 @@
 #include "rpg.h"
 
 asset_store_t *g_assets;
+settings_t *settings;
 
 sfRenderWindow *create_window(char *title, int framerate, settings_t *settings)
 {
@@ -26,7 +27,8 @@ sfRenderWindow *create_window(char *title, int framerate, settings_t *settings)
 
 int my_rpg(int ac, char **av, char **env)
 {
-    settings_t *settings = load_settings();
+    g_assets = load_assets();
+    settings = load_settings();
     if (!settings)
         return 84;
     sfRenderWindow *window = create_window("MY RPG !", 60, settings);
