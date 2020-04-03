@@ -30,13 +30,12 @@ int my_rpg(int ac, char **av, char **env)
     if (!settings)
         return 84;
     sfRenderWindow *window = create_window("MY RPG !", 60, settings);
-    void (*loop)(sfRenderWindow *,
-        struct event_state *, void (**)()) = &loop_menu;
+    void (*loop)(sfRenderWindow *, event_st *, void (**)()) = &loop_menu;
     void (*loop_old)() = NULL;
-    struct event_state *state = malloc(sizeof(struct event_state));
+    event_st *state = malloc(sizeof(event_st));
 
     while (sfRenderWindow_isOpen(window))
-        perform_mainloop(window, &loop, &loop_old);
+        perform_mainloop(window, &loop, &loop_old, state);
     destroy_assets(g_assets);
     sfRenderWindow_destroy(window);
     return (0);

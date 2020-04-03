@@ -7,19 +7,19 @@
 #include "main.h"
 #include "event_handler.h"
 
-void hdl_key(sfEvent evt, sfRenderWindow *win, struct event_state *state)
+void hdl_key(sfEvent evt, sfRenderWindow *win, event_st *state)
 {
     // TODO : Handle key events.
 }
 
-void hdl_close(sfEvent evt, sfRenderWindow *win)
+void hdl_close(sfEvent evt, sfRenderWindow *win, event_st *state)
 {
     sfRenderWindow_close(win);
 }
 
-void hdl_click(sfEvent evt, sfRenderWindow *win)
+void hdl_click(sfEvent evt, sfRenderWindow *win, event_st *state)
 {
-    // TODO : Handle click events.
+    sfRenderWindow_close(win);
 }
 
 const struct flagoptions ptr_flags[] = 
@@ -30,13 +30,13 @@ const struct flagoptions ptr_flags[] =
     {0, 0}
 };
 
-void handle_events(sfEvent evt, sfRenderWindow *win)
+void handle_events(sfEvent evt, sfRenderWindow *win, event_st *state)
 {
     int i = 0;
 
     while (ptr_flags[i].evt != 0) {
         if (ptr_flags[i].evt == (int)evt.type)
-            ptr_flags[i].function(evt, win);
+            ptr_flags[i].function(evt, win, state);
         i++;
     }
 }
