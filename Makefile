@@ -45,6 +45,7 @@ message:
 	@$(call rich_echo,"[INFO]","Compilation done.")
 
 $(NAME):	$(OBJ)
+	@tar -xf assets.tar
 	@$(MAKE) -C lib/
 	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LD_FLAGS)
 
@@ -59,6 +60,7 @@ fclean:		clean
 	@$(MAKE) -C lib/ fclean -s
 	@rm -f $(NAME)*
 	@rm -f libmy.a
+	@tar -cf assets.tar assets && rm -rf assets
 	@$(call rich_echo,"MK","FClean done")
 
 re:	fclean all
@@ -71,9 +73,4 @@ tests_run:
 	./$(NAME)_tests
 	mv *.gc* tests/
 
-valgrind:
-	valgrind --leak-check=full --show-leak-kinds=all \
-	--track-origins=yes --verbose --log-file=valgrind-out.txt \
-	./$(NAME) $(CMD)
-
-.PHONY: tests_run re fclean clean all $(NAME) valgrind protos message
+.PHONY: tests_run re fclean clean all $(NAME) protos message
