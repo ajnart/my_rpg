@@ -60,7 +60,7 @@ fclean:		clean
 	@$(MAKE) -C lib/ fclean -s
 	@rm -f $(NAME)*
 	@rm -f libmy.a
-	@tar -cf assets.tar assets && rm -rf assets
+	@tar -cf assets.tar assets
 	@$(call rich_echo,"MK","FClean done")
 
 re:	fclean all
