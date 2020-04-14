@@ -26,5 +26,6 @@ settings_t *load_settings(void)
     ret->volume = my_getnbr(settings[2]);
     if (!ret || fd < 0 || !settings || !ret->WH || !ret->WW || !ret->volume)
         return NULL;
+    ret->RATIO = ret->WW/ret->WH;
     return ret;
 }
