@@ -12,7 +12,7 @@
 // * Referenced bellow are the functions used for the rpg. gotten via ctags. * \\
 
 void play_music(sfRenderWindow *window, char *song, settings_t *settings);
-void perform_mainloop(sfRenderWindow *window, void (**loop)(), void (**loop_old)(), event_st *state);
+void perform_loops(sfRenderWindow *window, void (**loop)(), void (**loop_old)(), event_st *state);
 void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)());
 void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)());
 void handle_events(sfEvent evt, sfRenderWindow *win, event_st *state);
