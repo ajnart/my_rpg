@@ -10,9 +10,6 @@
 #include "main.h"
 #include "rpg.h"
 
-asset_store_t *g_assets;
-settings_t *settings;
-
 sfRenderWindow *create_window(char *title, int framerate, settings_t *settings)
 {
     sfVideoMode video_mode;
@@ -37,7 +34,7 @@ int my_rpg(int ac, char **av, char **env)
     event_st *state = malloc(sizeof(event_st));
 
     while (sfRenderWindow_isOpen(window))
-        perform_mainloop(window, &loop, &loop_old, state);
+        perform_loops(window, &loop, &loop_old, state);
     destroy_assets(g_assets);
     sfRenderWindow_destroy(window);
     return (0);

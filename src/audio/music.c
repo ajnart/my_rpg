@@ -5,11 +5,19 @@
 ** music.c
 */
 
+#include <unistd.h>
 #include "main.h"
+#include "lib.h"
 
 void play_music(sfRenderWindow *window, char *song, settings_t *settings)
 {
     static sfMusic *music;
+    
+    if (my_strcmp(song, "cleanup")) {
+        sfMusic_destroy(music);
+        write(2, "(cleanup) Destroying music...\n", 31);
+        return;
+    }
 
     if (music == NULL) {
         music = sfMusic_createFromFile(song);
