@@ -12,7 +12,8 @@
 
 settings_t *settings;
 
-void perform_loops(sfRenderWindow *window, void (**loop)(), void (**loop_old)(), event_st *state)
+void perform_loops(sfRenderWindow *window, void (**loop)(),
+    void (**loop_old)(), event_st *state)
 {
     sfEvent event;
     sfRenderWindow_clear(window, (sfColor){40, 40, 40, 255});

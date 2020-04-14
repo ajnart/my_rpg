@@ -13,12 +13,11 @@ void print_message(char *str, sfRenderWindow *win, sfFont *font,
 {
     static sfBool init = sfFalse;
     static sfText *text;
-    sfFont *font_test = sfFont_createFromFile("./assets/font.ttf"); 
     if (!init) {
         text = sfText_create();
         init = sfTrue;
     }
-    sfText_setFont(text, (const sfFont*)font_test);
+    sfText_setFont(text, (const sfFont*)font);
     sfText_setString(text, str);
     sfText_setCharacterSize(text, info.z);
     sfText_setPosition(text, (sfVector2f){info.x, info.y});
