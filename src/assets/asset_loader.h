@@ -12,7 +12,7 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 
-typedef enum { T_TEXTURE, T_FONT, T_SOUND } asset_type_t;
+typedef enum { T_TEXTURE, T_FONT, T_SOUND, T_MUSIC } asset_type_t;
 
 
 typedef struct event_state {

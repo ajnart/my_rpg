@@ -10,18 +10,28 @@
 #include "main.h"
 #include "lib.h"
 
+asset_store_t *g_assets;
+
 void destroy_assets(asset_store_t *store)
 {
     asset_store_t *focused = store;
     asset_store_t *next = store->next;
 
     while (focused) {
-        if (focused->type == T_TEXTURE)
+        switch (focused->type)
+        {
+        case T_TEXTURE:
             sfTexture_destroy(focused->asset_store.texture);
-        else if (focused->type == T_FONT)
+            break;
+        case T_FONT:
             sfFont_destroy(focused->asset_store.font);
-        else if (focused->type == T_SOUND)
+            break;
+        case T_SOUND:
             sfSoundBuffer_destroy(focused->asset_store.sound);
+            break;
+        default:
+            break;
+        }
         free(focused->name);
         free(focused);
         focused = next;
@@ -91,5 +101,6 @@ asset_store_t *find_asset_byname(char const *name)
             return (curr);
         curr = curr->next;
     }
+    write(2, "Error: Asset not found. Prolly segfaulting rn..\n", 48);
     return (NULL);
 }
