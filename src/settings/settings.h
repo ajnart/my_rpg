@@ -14,6 +14,7 @@ typedef struct settings_struct
     int WW;
     int volume;
     int RATIO;
+    char *name;
 } settings_t;
 
 settings_t *load_settings(void);
