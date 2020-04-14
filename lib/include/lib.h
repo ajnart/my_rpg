@@ -50,6 +50,7 @@ int my_putnbr_base(int nbr, char const *base);
 int shownbr_base_unsigned(unsigned long nbr, int length, char const *base);
 int my_putnbr_base_unsigned(unsigned long nbr, char const *base);
 /* src/my_strncmp.c */
+int my_strcmp(char *s1, char *s2);
 int my_strncmp(char *s1, char *s2, int n);
 /* src/my_strstr.c */
 char *my_strstr(char *str, char const *to_find);
