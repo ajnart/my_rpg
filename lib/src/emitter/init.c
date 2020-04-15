@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2019
+** MUL_my_rpg_2019
+** File description:
+** init.c
+*/
+
 #include "emitter.h"
 
 int my_cstrcmp(char const *s1, char const *s2)

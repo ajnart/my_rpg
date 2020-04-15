@@ -26,7 +26,6 @@ char *my_strcpy(char *dest, char *src)
     return (my_strncpy(dest, src, my_strlen(src)));
 }
 
-
 char *my_strndup(char *str, int n)
 {
     char *dest = malloc(n + 1);

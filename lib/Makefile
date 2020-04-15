@@ -1,8 +1,9 @@
-# EPITECH PROJECT, 2019
-# LIBMY
-# File description:
-# Makefile for libmy
-
+##
+## EPITECH PROJECT, 2019
+## MUL_my_rpg_2019
+## File description:
+## Makefile
+##
 
 OUTPUT      := libmy.a
 

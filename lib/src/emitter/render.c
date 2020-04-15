@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2019
+** MUL_my_rpg_2019
+** File description:
+** render.c
+*/
+
 #include "emitter.h"
 
 void draw_emitter_circle(sfRenderWindow *win, particle_node *temp,

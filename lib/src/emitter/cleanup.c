@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2019
+** MUL_my_rpg_2019
+** File description:
+** cleanup.c
+*/
+
 #include "emitter.h"
 
 void emitter_free(particle_node *temp)

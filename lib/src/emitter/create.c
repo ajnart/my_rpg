@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2019
+** MUL_my_rpg_2019
+** File description:
+** create.c
+*/
+
 #include "emitter.h"
 
 int get_form(emitter_t *emitter);
