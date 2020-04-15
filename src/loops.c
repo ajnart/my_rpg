@@ -58,4 +58,8 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
     settings->status = "Loop ingame";
     print_message(settings->status, win, "font.ttf",
         (sfVector2f){settings->WW * 0.5, settings->WH * 0.1}, sfYellow);
+    if (state->type == sfEvtMouseButtonPressed && state->data) {
+            if (my_strcmp(state->data, "back"))
+            *loop = &loop_menu;
+    }
 }
