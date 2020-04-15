@@ -19,7 +19,7 @@ void set_button_hover(sfRenderWindow *win)
     if (btn_id) {
         btn = get_button(g_buttons, btn_id);
         color = btn->normal;
-        color.a -= 60; // ! Important / Ici je change l'aplha de mon button.
+        color.r = ~(color.r);
         sfRectangleShape_setFillColor(btn->render, color);
     }
 }

@@ -10,7 +10,10 @@
 
 void hdl_key(sfEvent evt, sfRenderWindow *win, event_st *state)
 {
-    sfRenderWindow_close(win);
+    if (evt.key.code == sfKeyM && evt.key.control) {
+        settings->emitter = settings->emitter == 0 ? 1 : 0;
+        my_printf("%s particles.\n", settings->emitter == 1 ? "resumed" : "stopped"); // ! Debug
+    }
 }
 
 void hdl_close(sfEvent evt, sfRenderWindow *win, event_st *state)

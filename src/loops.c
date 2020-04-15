@@ -7,29 +7,30 @@
 
 #include "rpg.h"
 #include "lib.h"
+#include "emitter.h"
 #include "events/buttons.h"
 #include "render/render.h"
 
 settings_t *settings;
 button_store_t *g_buttons;
 
-void draw_particles(sfRenderWindow *win, int number, button_store_t *button);
-
-void perform_loops(sfRenderWindow *window, void (**loop)(),
-    void (**loop_old)(), event_st *state)
+void perform_loops(sfRenderWindow *win, void (**loop)(),
+    void (**loop_old)(), event_st *state, emitter_t *emitter)
 {
+    sfRenderWindow_clear(win, (sfColor){40, 40, 40, 255});
     static sfEvent event;
-    set_btn_color(window);
-    sfRenderWindow_clear(window, (sfColor){40, 40, 40, 255});
-    while (sfRenderWindow_pollEvent(window, &event))
-        handle_events(event, window, state);
+    set_btn_color(win);
+    while (sfRenderWindow_pollEvent(win, &event))
+        handle_events(event, win, state);
     if (*loop != *loop_old) {
-        scene_btn_loader(*loop, window);
+        scene_btn_loader(*loop, win);
     }
     *loop_old = *loop;
-    (*loop)(window, state, loop);
-    draw_buttons(window, g_buttons);
-    sfRenderWindow_display(window);
+    (*loop)(win, state, loop);
+    draw_buttons(win, g_buttons);
+    if (settings->emitter == 1)
+        display_particles(win, emitter, sfMouse_getPositionRenderWindow(win));
+    sfRenderWindow_display(win);
 }
 
 void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
@@ -45,10 +46,8 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
             system("xdg-open https://www.youtube.com/watch?v=2ZIpFytCSVc &");
             *loop = &loop_ingame;
         }
-        if (my_strcmp(state->data, "quit")) {
-            draw_particles(win, 200, get_button(g_buttons, "quit"));
+        if (my_strcmp(state->data, "quit"))
             sfRenderWindow_close(win);
-        }
         my_printf("Button clicked: %s❗\n ", state->data);
         state->data = NULL;
     }
@@ -59,5 +58,4 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
     settings->status = "Loop ingame";
     print_message(settings->status, win, "font.ttf",
         (sfVector2f){settings->WW * 0.5, settings->WH * 0.1}, sfYellow);
-    
 }
