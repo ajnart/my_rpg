@@ -5,3 +5,4 @@ my_rpg
 *.a
 assets/
 valgrind*
+log*
