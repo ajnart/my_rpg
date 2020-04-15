@@ -38,13 +38,14 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
     // my_printf("Current frame : %d\n", frame); // ! Bebug : Frame counter
     // frame ++;
     play_music(win, "assets/music.ogg", settings);
-    print_message("Eat my fucking ass", win, "font.ttf",
+    print_message(settings->status, win, "font.ttf",
         (sfVector2f){settings->WW * 0.5, settings->WH * 0.1});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
         if (my_strcmp(state->data, "bruh"))
             system("xdg-open https://www.youtube.com/watch?v=2ZIpFytCSVc &");
         if (my_strcmp(state->data, "quit")) {
-            draw_particles(win, 50, get_button(g_buttons, "quit"));
+            settings->status = "Switching windows...";
+            draw_particles(win, 200, get_button(g_buttons, "quit"));
         }
         my_printf("Button clicked: %s❗\n ", state->data);
         state->data = NULL;
