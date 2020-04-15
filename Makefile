@@ -69,7 +69,7 @@ protos: $(NAME)
 	@cproto $(SOURCE) -Iinclude
 
 tests_run:
-	$(CC) -o $(NAME)_tests $(SOURCE) tests/*.c $(CFLAGS)
+	$(CC) -o $(NAME)_tests $(SOURCE) tests/*.c $(CFLAGS) $(LD_FLAGS)
 	./$(NAME)_tests
 	mv *.gc* tests/
 
