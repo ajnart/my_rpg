@@ -19,7 +19,9 @@ void scene_btn_loader(void (*loop)(), sfRenderWindow *win)
         destroy_buttons(&g_buttons);
     if (loop == &loop_menu) {
         add_button(&g_buttons, "quit", create_full_rect(
-            (sfFloatRect){WW/4, WH/8, WW/2, WH/6}, NULL, sfRed), "Quit game");
+            (sfFloatRect){WW/4, WH * 0.7, WW/2, WH/6}, NULL, sfRed), "Ragequit");
+        add_button(&g_buttons, "bruh", create_full_rect(
+            (sfFloatRect){WW/4, WH * 0.5, WW/2, WH/6}, NULL, sfBlack), "Bruh button");
     }
 }
 

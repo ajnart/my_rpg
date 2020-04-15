@@ -13,10 +13,12 @@
 settings_t *settings;
 button_store_t *g_buttons;
 
+void draw_particles(sfRenderWindow *win, int number, button_store_t *button);
+
 void perform_loops(sfRenderWindow *window, void (**loop)(),
     void (**loop_old)(), event_st *state)
 {
-    sfEvent event;
+    static sfEvent event;
     set_btn_color(window);
     sfRenderWindow_clear(window, (sfColor){40, 40, 40, 255});
     while (sfRenderWindow_pollEvent(window, &event))
@@ -37,11 +39,16 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
     // frame ++;
     play_music(win, "assets/music.ogg", settings);
     print_message("Eat my fucking ass", win, "font.ttf",
-        (sfVector2f){settings->WH/2, settings->WW/2});
-    if (state->type == sfEvtMouseButtonPressed
-        && state->data && my_strcmp(state->data, "quit"))
-        sfRenderWindow_close(win);
-    my_printf("Button clicked : %s ❗\n ", state->data);
+        (sfVector2f){settings->WW * 0.5, settings->WH * 0.1});
+    if (state->type == sfEvtMouseButtonPressed && state->data) {
+        if (my_strcmp(state->data, "bruh"))
+            system("xdg-open https://www.youtube.com/watch?v=2ZIpFytCSVc &");
+        if (my_strcmp(state->data, "quit")) {
+            draw_particles(win, 50, get_button(g_buttons, "quit"));
+        }
+        my_printf("Button clicked: %s❗\n ", state->data);
+        state->data = NULL;
+    }
 }
 
 void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
