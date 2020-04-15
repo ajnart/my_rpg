@@ -14,6 +14,7 @@ typedef struct settings_struct
     int WW;
     int volume;
     int RATIO;
+    int emitter;
     char *name;
     char *status;
 } settings_t;

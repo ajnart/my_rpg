@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2019
-** WORLD
+** MUL_my_rpg_2019
 ** File description:
-** Sekaaaai de ichiban no himesamaaaaa
+** main.h
 */
 
 #ifndef __MAIN_H

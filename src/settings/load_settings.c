@@ -24,9 +24,11 @@ settings_t *load_settings(void)
     ret->WH = my_getnbr(settings[0]);
     ret->WW = my_getnbr(settings[1]);
     ret->volume = my_getnbr(settings[2]);
-    ret->name = settings[3];
+    ret->emitter = my_getnbr(settings[3]);
+    ret->name = settings[4];
     ret->status = "Main menu";
-    if (!ret || fd < 0 || !settings || !ret->WH || !ret->WW || !ret->volume)
+    if (!ret || fd < 0 || !settings || !ret->WH || !ret->WW ||
+    !ret->volume || !ret->emitter)
         return NULL;
     ret->RATIO = ret->WW/ret->WH;
     return ret;
