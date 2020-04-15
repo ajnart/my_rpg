@@ -37,6 +37,6 @@ void set_btn_color(sfRenderWindow *win);
 
 char *get_button_selected(const button_store_t *store, sfVector2f pos);
 
-void scene_btn_loader(void (*loop)());
+void scene_btn_loader(void (*loop)(), sfRenderWindow *win);
 
 #endif //__BUTTON_H

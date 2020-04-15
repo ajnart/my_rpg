@@ -7,7 +7,6 @@
 
 #include "rpg.h"
 #include "lib.h"
-#include "graphlib.h"
 #include "events/buttons.h"
 #include "render/render.h"
 
@@ -23,7 +22,7 @@ void perform_loops(sfRenderWindow *window, void (**loop)(),
     while (sfRenderWindow_pollEvent(window, &event))
         handle_events(event, window, state);
     if (*loop != *loop_old) {
-        scene_btn_loader(*loop);
+        scene_btn_loader(*loop, window);
     }
     *loop_old = *loop;
     (*loop)(window, state, loop);
@@ -37,12 +36,12 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
     // my_printf("Current frame : %d\n", frame); // ! Bebug : Frame counter
     // frame ++;
     play_music(win, "assets/music.ogg", settings);
-    print_message("Eat my fucking ass", win,
-    find_asset_byname("font.ttf")->asset_store.font,
-    (sfVector3f){settings->WH/2, settings->WW/2 , settings->RATIO * 20});
+    print_message("Eat my fucking ass", win, "font.ttf",
+        (sfVector2f){settings->WH/2, settings->WW/2});
     if (state->type == sfEvtMouseButtonPressed
         && state->data && my_strcmp(state->data, "quit"))
         sfRenderWindow_close(win);
+    my_printf("Button clicked : %s ❗\n ", state->data);
 }
 
 void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())

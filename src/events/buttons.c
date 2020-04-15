@@ -10,17 +10,16 @@
 #include "../loops.h"
 #include "../render/render.h"
 
-void scene_btn_loader(void (*loop)())
+void scene_btn_loader(void (*loop)(), sfRenderWindow *win)
 {
+    const int WW = sfRenderWindow_getSize(win).x;
+    const int WH = sfRenderWindow_getSize(win).y;
+
     if (g_buttons)
         destroy_buttons(&g_buttons);
     if (loop == &loop_menu) {
         add_button(&g_buttons, "quit", create_full_rect(
-            (sfFloatRect){.left = settings->WW/4, .top = settings->WH/8,
-            .width = settings->WW/2, .height = settings->WH/6}, NULL, sfRed), "Quit game");
-        add_button(&g_buttons, "options", create_full_rect(
-            (sfFloatRect){.left = settings->WW/2, .top = settings->WH/2,
-            .width = settings->WW/2, .height = settings->WH/6}, NULL, sfBlue), "Options");
+            (sfFloatRect){WW/4, WH/8, WW/2, WH/6}, NULL, sfRed), "Quit game");
     }
 }
 
@@ -29,12 +28,8 @@ void add_button(button_store_t **store, char *id,
 {
     button_store_t *newbtn = malloc(sizeof(button_store_t));
     sfFloatRect bounds;
-    static sfBool init = sfFalse;
-    static sfText *text;
-    if (!init) {
-        text = sfText_create();
-        init = sfTrue;
-    }
+    sfText *text = sfText_create();
+
     newbtn->next = *store;
     newbtn->render = render;
     newbtn->normal = sfRectangleShape_getFillColor(render);
@@ -43,7 +38,7 @@ void add_button(button_store_t **store, char *id,
     sfText_setFont(text, find_asset_byname("font.ttf")->asset_store.font);
     sfText_setColor(text,
         sfColor_toInteger(newbtn->normal) > 0xFFAAAAAA?sfBlack:sfWhite);
-    sfText_setCharacterSize(text, 32 * settings->WW / 800 );
+    sfText_setCharacterSize(text, 0.04 * settings->WW);
     bounds = sfText_getLocalBounds(text);
     sfText_setOrigin(text, (sfVector2f) {bounds.width/2, bounds.height/10*12});
     newbtn->text = text;
@@ -56,10 +51,8 @@ char *get_button_selected(const button_store_t *store, sfVector2f pos)
     sfFloatRect select;
     while (lookup) {
         select = sfRectangleShape_getGlobalBounds(lookup->render);
-        if (sfFloatRect_contains(&select, pos.x, pos.y)) {
-            // my_printf("Got a button...\n"); // ! Debug
+        if (sfFloatRect_contains(&select, pos.x, pos.y))
             return (lookup->btn_id);
-        }
         lookup = lookup->next;
     }
     return (NULL);
