@@ -5,12 +5,12 @@
 ** print_message.c
 */
 
-#include "../../include/graphlib.h"
-#include "../../include/lib.h"
+#include "lib.h"
+#include "../assets/asset_loader.h"
 
-void print_message(char *str, sfRenderWindow *win, sfFont *font,
-    sfVector3f info)
+void print_message(char *str, sfRenderWindow *win, char *s_ft, sfVector2f info)
 {
+    sfFont *font = find_asset_byname(s_ft)->asset_store.font;
     static sfBool init = sfFalse;
     static sfText *text;
     if (!init) {
@@ -19,7 +19,7 @@ void print_message(char *str, sfRenderWindow *win, sfFont *font,
     }
     sfText_setFont(text, (const sfFont*)font);
     sfText_setString(text, str);
-    sfText_setCharacterSize(text, info.z);
+    sfText_setCharacterSize(text, 0.04 * sfRenderWindow_getSize(win).x);
     sfText_setPosition(text, (sfVector2f){info.x, info.y});
     sfRenderWindow_drawText(win, text, NULL);
     if (my_strncmp(str, "cleanup", 7)) {
