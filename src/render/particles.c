@@ -10,24 +10,25 @@
 #include "../events/buttons.h"
 #include "main.h"
 
+void print_message(char *str, sfRenderWindow *win, char *s_ft, sfVector2f info);
+
 void draw_particles(sfRenderWindow *win, int number, button_store_t *button)
 {
     // sfVector2f position = sfRectangleShape_getPosition(button->render);
     // color.r = abs(color.r - 60);
-    // color.g = abs(color.g - 60);
     // color.b = abs(color.b - 60);
-    sfFloatRect bounds = sfRectangleShape_getGlobalBounds(button->render);
+    // sfFloatRect bounds = sfRectangleShape_getGlobalBounds(button->render);
+    sfCircleShape *shape = sfCircleShape_create();
     for (int i = 0; i < number; i++) {
-        sfCircleShape *shape = sfCircleShape_create();
-        sfCircleShape_setPosition(shape, (sfVector2f){bounds.top + rand()%200, bounds.left - rand()%200});
-        sfCircleShape_setFillColor(shape, sfBlue);
-        sfCircleShape_setRadius(shape, 5);
+        sfCircleShape_setPosition(shape, (sfVector2f){rand()%settings->WW, rand()%settings->WH});
+        sfCircleShape_setFillColor(shape, (sfColor){rand()%255,rand()%255,rand()%255, 255});
+        sfCircleShape_setRadius(shape, (rand()%50) + 20);
         sfRenderWindow_drawCircleShape(win, shape, NULL);
         sfRenderWindow_display(win);
-        sfCircleShape_destroy(shape);
     }
+    sfCircleShape_destroy(shape);
 }
-
+// Todo : Make it so that the effect is inside the buttons and color depends on the button's color.
 
 // void draw_particles(sfRenderWindow *win, sfVector2u position, int number)
 // {
