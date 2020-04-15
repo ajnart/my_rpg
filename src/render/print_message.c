@@ -8,7 +8,8 @@
 #include "lib.h"
 #include "../assets/asset_loader.h"
 
-void print_message(char *str, sfRenderWindow *win, char *s_ft, sfVector2f info)
+void print_message(char *str, sfRenderWindow *win, char *s_ft,
+    sfVector2f info, sfColor color)
 {
     sfFont *font = find_asset_byname(s_ft)->asset_store.font;
     sfFloatRect bounds;
@@ -22,6 +23,7 @@ void print_message(char *str, sfRenderWindow *win, char *s_ft, sfVector2f info)
     sfText_setOrigin(text, (sfVector2f) {bounds.width/2, bounds.height * 1.2});
     sfText_setFont(text, (const sfFont*)font);
     sfText_setString(text, str);
+    sfText_setColor(text, color);
     sfText_setCharacterSize(text, 0.04 * sfRenderWindow_getSize(win).x);
     sfText_setPosition(text, (sfVector2f){info.x, info.y});
     sfRenderWindow_drawText(win, text, NULL);

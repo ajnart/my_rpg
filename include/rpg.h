@@ -16,5 +16,6 @@ void perform_loops(sfRenderWindow *window, void (**loop)(), void (**loop_old)(),
 void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)());
 void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)());
 void handle_events(sfEvent evt, sfRenderWindow *win, event_st *state);
-void print_message(char *str, sfRenderWindow *win, char *s_ft, sfVector2f info);
+void print_message(char *str, sfRenderWindow *win, char *s_ft,
+    sfVector2f info, sfColor color);
 #endif
