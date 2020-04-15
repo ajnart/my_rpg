@@ -32,6 +32,8 @@ int my_rpg(int ac, char **av, char **env)
     void (*loop)(sfRenderWindow *, event_st *, void (**)()) = &loop_menu;
     void (*loop_old)() = NULL;
     event_st *state = malloc(sizeof(event_st));
+    state->data = "none";
+    state->type = sfEvtJoystickButtonReleased;
 
     while (sfRenderWindow_isOpen(window))
         perform_loops(window, &loop, &loop_old, state);

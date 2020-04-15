@@ -39,13 +39,15 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
     // frame ++;
     play_music(win, "assets/music.ogg", settings);
     print_message(settings->status, win, "font.ttf",
-        (sfVector2f){settings->WW * 0.5, settings->WH * 0.1});
+        (sfVector2f){settings->WW * 0.5, settings->WH * 0.1}, sfWhite);
     if (state->type == sfEvtMouseButtonPressed && state->data) {
-        if (my_strcmp(state->data, "bruh"))
+        if (my_strcmp(state->data, "bruh")) {
             system("xdg-open https://www.youtube.com/watch?v=2ZIpFytCSVc &");
+            *loop = &loop_ingame;
+        }
         if (my_strcmp(state->data, "quit")) {
-            settings->status = "Switching windows...";
             draw_particles(win, 200, get_button(g_buttons, "quit"));
+            sfRenderWindow_close(win);
         }
         my_printf("Button clicked: %s❗\n ", state->data);
         state->data = NULL;
@@ -54,5 +56,8 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 
 void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
 {
-    my_printf("Looping intgame.\n");
+    settings->status = "Loop ingame";
+    print_message(settings->status, win, "font.ttf",
+        (sfVector2f){settings->WW * 0.5, settings->WH * 0.1}, sfYellow);
+    
 }

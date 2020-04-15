@@ -10,8 +10,6 @@
 #include "../events/buttons.h"
 #include "main.h"
 
-void print_message(char *str, sfRenderWindow *win, char *s_ft, sfVector2f info);
-
 void draw_particles(sfRenderWindow *win, int number, button_store_t *button)
 {
     // sfVector2f position = sfRectangleShape_getPosition(button->render);
