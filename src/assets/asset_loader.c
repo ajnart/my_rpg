@@ -12,34 +12,6 @@
 
 asset_store_t *g_assets;
 
-void destroy_assets(asset_store_t *store)
-{
-    asset_store_t *focused = store;
-    asset_store_t *next = store->next;
-
-    while (focused) {
-        switch (focused->type)
-        {
-        case T_TEXTURE:
-            sfTexture_destroy(focused->asset_store.texture);
-            break;
-        case T_FONT:
-            sfFont_destroy(focused->asset_store.font);
-            break;
-        case T_SOUND:
-            sfSoundBuffer_destroy(focused->asset_store.sound);
-            break;
-        default:
-            break;
-        }
-        free(focused->name);
-        free(focused);
-        focused = next;
-        if (next)
-            next = next->next;
-    }
-}
-
 char *get_asset_fullpath(char *filename)
 {
     char *result = my_strdup("assets/");

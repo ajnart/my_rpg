@@ -10,6 +10,8 @@
 #include "../loops.h"
 #include "../render/render.h"
 
+void destroy_buttons(button_store_t **store);
+
 void scene_btn_loader(void (*loop)(), sfRenderWindow *win)
 {
     const int WW = sfRenderWindow_getSize(win).x;
@@ -70,19 +72,4 @@ button_store_t *get_button(const button_store_t *store, char *name)
         lookup = lookup->next;
     }
     return (NULL);
-}
-
-void destroy_buttons(button_store_t **store)
-{
-    button_store_t *focus = *store;
-    button_store_t *next = *store;
-
-    while (focus) {
-        next = focus->next;
-        if (focus->render)
-            sfRectangleShape_destroy(focus->render);
-        free(focus);
-        focus = next;
-    }
-    *store = NULL;
 }
