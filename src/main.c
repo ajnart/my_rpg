@@ -63,48 +63,7 @@ int my_rpg(int ac, char **av, char **env)
 
 int main(int ac, char **av, char **env)
 {
-    return(my_rpg(ac, av, env));
+    return (my_rpg(ac, av, env));
 }
 
 #endif
-
-
-// int main(int argc, char const *argv[])
-// {
-//     sfVideoMode mode = {800, 600, 32};
-//     sfRenderWindow *window;
-//     sfEvent event;
-//     emitter_t *emitter = emitter_create(600);
-//     emitter->max_size = 15;
-//     particles_set_color(emitter, 255, -1, -1);
-//     particles_set_form(emitter, "square");
-//     emitter->range = 255;
-//     emitter->color.a = 200;
-//     window = sfRenderWindow_create(mode, "SFML window", sfResize | sfClose, NULL);
-//     int ended = 0;
-//     if (!window)
-//         return 84;
-//     while (sfRenderWindow_isOpen(window))
-//     {
-
-//         sfRenderWindow_clear(window, sfBlack);
-//         if (ended == 0)
-//         {
-//             display_particles(window, emitter, sfMouse_getPositionRenderWindow(window));
-//         }
-        
-//         /* Process events */
-//         while (sfRenderWindow_pollEvent(window, &event))
-//         {
-//             /* Close window : exit */
-//             if (event.type == sfEvtClosed)
-//                 sfRenderWindow_close(window);
-//             if (event.type == sfEvtKeyPressed) {
-//                 emitter_interrup(emitter);
-//                 ended = ended == 0 ?  1 : 0;
-//             }
-//         };
-//         sfRenderWindow_display(window);
-//     }
-//     return 0;
-// }

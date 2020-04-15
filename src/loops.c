@@ -35,15 +35,11 @@ void perform_loops(sfRenderWindow *win, void (**loop)(),
 
 void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 {
-    // static int frame = 0;
-    // my_printf("Current frame : %d\n", frame); // ! Bebug : Frame counter
-    // frame ++;
     play_music(win, "assets/music.ogg", settings);
     print_message(settings->status, win, "font.ttf",
-        (sfVector2f){settings->WW * 0.5, settings->WH * 0.1}, sfWhite);
+        (sfVector2f){settings->WW * 0.5, settings->WH * 0.1});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
         if (my_strcmp(state->data, "bruh")) {
-            system("xdg-open https://www.youtube.com/watch?v=2ZIpFytCSVc &");
             *loop = &loop_ingame;
         }
         if (my_strcmp(state->data, "quit"))
@@ -57,7 +53,7 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
 {
     settings->status = "Loop ingame";
     print_message(settings->status, win, "font.ttf",
-        (sfVector2f){settings->WW * 0.5, settings->WH * 0.1}, sfYellow);
+        (sfVector2f){settings->WW * 0.5, settings->WH * 0.1});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
             if (my_strcmp(state->data, "back"))
             *loop = &loop_menu;

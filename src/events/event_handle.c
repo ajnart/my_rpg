@@ -12,7 +12,6 @@ void hdl_key(sfEvent evt, sfRenderWindow *win, event_st *state)
 {
     if (evt.key.code == sfKeyM && evt.key.control) {
         settings->emitter = settings->emitter == 0 ? 1 : 0;
-        my_printf("%s particles.\n", settings->emitter == 1 ? "resumed" : "stopped"); // ! Debug
     }
 }
 
@@ -41,7 +40,6 @@ void handle_events(sfEvent evt, sfRenderWindow *win, event_st *state)
 {
     int i = 0;
 
-    // my_printf("Event type : %d\n", evt.type); // ! Button
     while (ptr_flags[i].function != NULL) {
         if (ptr_flags[i].evt == (int)evt.type)
             ptr_flags[i].function(evt, win, state);

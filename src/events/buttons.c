@@ -20,14 +20,14 @@ void scene_btn_loader(void (*loop)(), sfRenderWindow *win)
     if (g_buttons)
         destroy_buttons(&g_buttons);
     if (loop == &loop_menu) {
-        add_button(&g_buttons, "quit", create_full_rect(
-            (sfFloatRect){WW/4, WH * 0.7, WW/2, WH/6}, texture, sfRed), "Ragequit");
-        add_button(&g_buttons, "bruh", create_full_rect(
-            (sfFloatRect){WW/4, WH * 0.5, WW/2, WH/6}, texture, sfBlue), "Bruh button");
+        add_button(&g_buttons, "quit", create_full_rect((sfFloatRect)
+            {WW/4, WH * 0.7, WW/2, WH/6}, texture, sfRed), "Ragequit");
+        add_button(&g_buttons, "bruh", create_full_rect((sfFloatRect)
+            {WW/4, WH * 0.5, WW/2, WH/6}, texture, sfBlue), "Bruh button");
     }
     if (loop == &loop_ingame) {
-        add_button(&g_buttons, "back", create_full_rect(
-            (sfFloatRect){0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to main menu");
+        add_button(&g_buttons, "back", create_full_rect((sfFloatRect)
+            {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to main menu");
     }
 }
 
@@ -46,7 +46,7 @@ void add_button(button_store_t **store, char *id,
     sfText_setFont(text, find_asset_byname("font.ttf")->asset_store.font);
     sfText_setColor(text,
         sfColor_toInteger(newbtn->normal) > 0xFFAAAAAA?sfBlack:sfWhite);
-    sfText_setCharacterSize(text, (sfRectangleShape_getSize(render).x + 
+    sfText_setCharacterSize(text, (sfRectangleShape_getSize(render).x +
         sfRectangleShape_getSize(render).y) / 20);
     bounds = sfText_getLocalBounds(text);
     sfText_setOrigin(text, (sfVector2f) {bounds.width/2, bounds.height/10*12});
