@@ -74,3 +74,4 @@ tests_run:
 	mv *.gc* tests/
 
 .PHONY: tests_run re fclean clean all $(NAME) protos message
+.NOTPARALLEL:
