@@ -42,10 +42,11 @@ message:
 	@echo -e "\e[38;5;33m"
 	@figlet $(NAME); exit 0
 	@echo -e "\e[0m"
-	@$(call rich_echo,"[INFO]","Compilation done.")
+	@echo -e "\e[1m[INFO]\t\e[92mCompilation successful ✔"
 
 $(NAME):	$(OBJ)
 	@tar -xf assets.tar
+	@$(call rich_echo,"AC","Assets compiled")
 	@$(MAKE) -C lib/
 	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LD_FLAGS)
 
