@@ -48,7 +48,7 @@ void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
 {
     settings->status = "Settings";
     print_message(settings->status, win, "font.ttf",
-        (sfVector2f){settings->WW * 0.5, settings->WH * 0.1});
+        (sfVector2f){settings->WW * 0.2, settings->WH * 0.1});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
             if (my_strcmp(state->data, "back"))
             *loop = &loop_menu;
