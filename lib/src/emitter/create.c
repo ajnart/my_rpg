@@ -9,15 +9,6 @@
 
 int get_form(emitter_t *emitter);
 
-float create_dir(void)
-{
-    float percent = (float)(rand() % 101 - 0.1 * 100) / 100. + 0.1;
-    float sign = rand() % 2 ? 1 : -1;
-
-    percent = percent * sign;
-    return ((float)percent);
-}
-
 sfColor copy_color_particle(sfColor color, color_t random)
 {
     sfColor res;

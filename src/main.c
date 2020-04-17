@@ -21,6 +21,7 @@ emitter_t *emitter_setup(int max_div, int number_div, int range_div)
     ret->max_size = (settings->WW + settings->WH) / max_div;
     particles_set_color(ret, -1, -1, 255);
     particles_set_form(ret, "square");
+    ret->life_time = 1000000;
     ret->range = (settings->WW + settings->WH) / range_div;
     ret->color.a = 200;
     return ret;

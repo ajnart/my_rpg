@@ -24,8 +24,14 @@ void scene_btn_loader(void (*loop)(), sfRenderWindow *win)
             {WW/4, WH * 0.7, WW/2, WH/6}, texture, sfRed), "Ragequit");
         add_button(&g_buttons, "bruh", create_full_rect((sfFloatRect)
             {WW/4, WH * 0.5, WW/2, WH/6}, texture, sfBlue), "Bruh button");
+        add_button(&g_buttons, "settings", create_full_rect((sfFloatRect)
+            {WW/4, WH * 0.3, WW/2, WH/6}, texture, sfWhite), "Settings");
     }
     if (loop == &loop_ingame) {
+        add_button(&g_buttons, "back", create_full_rect((sfFloatRect)
+            {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to main menu");
+    }
+    if (loop == &loop_settings) {
         add_button(&g_buttons, "back", create_full_rect((sfFloatRect)
             {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to main menu");
     }

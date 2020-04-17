@@ -14,5 +14,6 @@
 
 void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)());
 void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)());
+void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)());
 
 #endif
