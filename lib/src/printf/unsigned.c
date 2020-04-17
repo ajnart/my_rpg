@@ -58,14 +58,3 @@ char *my_strcat(char *str1, char *str2)
     str[num] = '\0';
     return (str);
 }
-
-int my_strlen(char *str)
-{
-    int i = 0;
-
-    while (str[i] != '\0')
-    {
-        i++;
-    }
-    return (i);
-}
