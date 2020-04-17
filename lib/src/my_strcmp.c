@@ -25,24 +25,6 @@ int my_strncmp(char *s1, char *s2, int n)
     return (match == n);
 }
 
-char *my_strstr(char *str, char *sub)
-{
-    int index = 0;
-    int checki = 0;
-
-    while (str[index]) {
-        if (str[index + checki] == sub[checki]) {
-            checki++;
-        } else if (!sub[checki]) {
-            return (str + index);
-        } else {
-            checki = 0;
-            ++index;
-        }
-    }
-    return (0);
-}
-
 int str_contains(char *str, char c)
 {
     int i = 0;
