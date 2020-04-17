@@ -68,6 +68,9 @@ int my_strcmp(char const *s1, char const *s2);
 int my_strncmp(char const *s1, char const *s2, int n);
 char *my_strstr(char *str, char const *sub);
 int str_contains(char const *str, char c);
+char *my_revstr(char *str);
+char *my_strncat(char *dest, char const *src, int nb);
+char *convert_to_string(int number);
 
 typedef void (*print_compute_t)(va_list arg);
 

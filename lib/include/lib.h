@@ -58,6 +58,8 @@ char *my_strstr(char *str, char const *to_find);
 char **my_str_to_wordtab(char *str, char g);
 /* src/str_str.c */
 int my_str_isalpha(char *str);
+char *my_revstr(char *str);
+char *convert_to_string(int number);
 
 typedef void (*print_compute_t)(va_list arg);
 
