@@ -14,11 +14,6 @@ void scene_btn_loader(void (*loop)(), sfRenderWindow *win)
 {
     const int WW = sfRenderWindow_getSize(win).x;
     const int WH = sfRenderWindow_getSize(win).y;
-    sfTexture *texture = find_asset_byname("texture.jpg")->asset_store.texture;
-    sfTexture_setSmooth(texture, sfTrue);
-    sfContext *context = sfContext_create();
-    sfContextSettings settings = sfContext_getSettings(context);
-    sfTexture_setRepeated(texture, sfTrue);
     if (g_buttons)
         destroy_buttons(&g_buttons);
     if (loop == &loop_menu) {
