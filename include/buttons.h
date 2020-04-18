@@ -25,8 +25,6 @@ button_store_t *g_buttons;
 void add_button(button_store_t **store, char *id,
     sfRectangleShape *render, char *text);
 
-char *get_button_selected(const button_store_t *store, sfVector2f loc);
-
 void destroy_buttons(button_store_t **store);
 
 void draw_buttons(sfRenderWindow *win, button_store_t *store);
@@ -38,7 +36,5 @@ void set_btn_color(sfRenderWindow *win);
 char *get_button_selected(const button_store_t *store, sfVector2f pos);
 
 void scene_btn_loader(void (*loop)(), sfRenderWindow *win);
-
-void buttons_settings(sfRenderWindow *win);
 
 #endif //__BUTTON_H
