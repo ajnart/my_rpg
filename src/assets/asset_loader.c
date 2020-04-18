@@ -40,14 +40,14 @@ void load_asset_fromfile(struct dirent *toload, asset_store_t **store)
         new->type = T_FONT;
         new->asset_store.font = sfFont_createFromFile(filename);
     } else if (my_strcmp(ext, ".ogg")) {
-        new->type = T_SOUND;
-        new->asset_store.sound = sfSoundBuffer_createFromFile(filename);
+        new->type = T_MUSIC;
+        new->asset_store.music = sfMusic_createFromFile(filename);
     }
     new->next = *store;
     *store = new;
     free(filename);
 }
-
+// TODO : Can load sounds into a soundbuffer.
 asset_store_t *load_assets(void)
 {
     DIR *scandir = opendir("assets/");

@@ -14,26 +14,17 @@ void destroy_assets(asset_store_t *store)
     asset_store_t *focused = store;
     asset_store_t *next = store->next;
 
-    while (focused) {
-        switch (focused->type)
-        {
-        case T_TEXTURE:
-            sfTexture_destroy(focused->asset_store.texture);
-            break;
-        case T_FONT:
-            sfFont_destroy(focused->asset_store.font);
-            break;
-        case T_SOUND:
-            sfSoundBuffer_destroy(focused->asset_store.sound);
-            break;
-        default:
-            break;
-        }
+    while (focused->type) {
+        switch (focused->type) {
+        case T_TEXTURE: sfTexture_destroy(focused->asset_store.texture); break;
+        case T_FONT: sfFont_destroy(focused->asset_store.font); break;
+        case T_MUSIC: sfMusic_destroy(focused->asset_store.music); break;
+        case T_SOUND: sfSoundBuffer_destroy(focused->asset_store.sound); break;
+        default: break; }
         free(focused->name);
         free(focused);
         focused = next;
-        if (next)
-            next = next->next;
+        if (next) next = next->next;
     }
 }
 
@@ -56,7 +47,6 @@ void cleanup(sfRenderWindow *win, asset_store_t *assets, settings_t *set)
 {
     print_message("cleanup", win, "font.ttf",
         (sfVector2f){0, 0});
-    play_music(win, "cleanup");
     sfRenderWindow_close(win);
     destroy_assets(g_assets);
     destroy_buttons(&g_buttons);
