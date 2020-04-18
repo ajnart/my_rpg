@@ -7,7 +7,7 @@
 
 #include "main.h"
 #include "rpg.h"
-#include "../events/buttons.h"
+#include "buttons.h"
 
 void destroy_assets(asset_store_t *store)
 {
