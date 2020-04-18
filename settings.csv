@@ -1,1 +1,4 @@
-450,600,10,1,Thomas
+Resolution W, Resolution H, Volume, Emitter (On/Off), Name
+450,600,10,20,Thomas
+Key Up, Key Left, Key Down, Key Right, Key Pause
+Z,Q,S,D,P
