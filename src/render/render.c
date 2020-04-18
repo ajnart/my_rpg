@@ -5,8 +5,8 @@
 ** render.c
 */
 
-#include "render.h"
-#include "../events/buttons.h"
+#include "buttons.h"
+#include "lib.h"
 
 void set_button_hover(sfRenderWindow *win)
 {
@@ -68,4 +68,27 @@ sfRectangleShape *create_full_rect(sfFloatRect pos, sfTexture *tx, sfColor fill)
         sfRectangleShape_setTexture(dest, tx, sfTrue);
     sfRectangleShape_setFillColor(dest, fill);
     return (dest);
+}
+
+void print_message(char *str, sfRenderWindow *win, char *s_ft,
+    sfVector2f info)
+{
+    sfFont *font = find_asset_byname(s_ft)->asset_store.font;
+    sfFloatRect bounds;
+    static sfBool init = sfFalse;
+    static sfText *text;
+    if (!init) {
+        text = sfText_create();
+        init = sfTrue;
+    }
+    bounds = sfText_getLocalBounds(text);
+    sfText_setOrigin(text, (sfVector2f) {bounds.width/2, bounds.height * 1.2});
+    sfText_setFont(text, (const sfFont*)font);
+    sfText_setString(text, str);
+    sfText_setColor(text, sfWhite);
+    sfText_setCharacterSize(text, 0.04 * sfRenderWindow_getSize(win).x);
+    sfText_setPosition(text, (sfVector2f){info.x, info.y});
+    sfRenderWindow_drawText(win, text, NULL);
+    if (my_strncmp(str, "cleanup", 7))
+        sfText_destroy(text);
 }
