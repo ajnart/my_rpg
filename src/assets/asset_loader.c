@@ -33,7 +33,7 @@ void load_asset_fromfile(struct dirent *toload, asset_store_t **store)
         return;
     }
     new->name = my_strdup(toload->d_name);
-    if (my_strcmp(ext, ".png")) {
+    if (my_strcmp(ext, ".png") || my_strcmp(ext, ".jpg")) {
         new->type = T_TEXTURE;
         new->asset_store.texture = sfTexture_createFromFile(filename, NULL);
     } else if (my_strcmp(ext, ".ttf")) {
