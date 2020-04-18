@@ -11,18 +11,10 @@
 
 void play_music(sfRenderWindow *window, char *song)
 {
-    static sfMusic *music;
-
-    if (my_strcmp(song, "cleanup")) {
-        sfMusic_destroy(music);
-        write(2, "(cleanup) Destroying music...\n", 31);
-        return;
-    }
-
-    if (music == NULL) {
-        music = sfMusic_createFromFile(song);
-        sfMusic_play(music);
-        sfMusic_setVolume(music, settings->volume);
+    if (sfMusic_getStatus(find_asset_byname(song)->asset_store.music) == sfStopped) {
+        sfMusic_play(find_asset_byname(song)->asset_store.music);
+        sfMusic_setVolume(find_asset_byname(song)->asset_store.music,
+            settings->volume);
     }
     return;
 }
