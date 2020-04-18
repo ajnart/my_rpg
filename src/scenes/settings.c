@@ -9,6 +9,7 @@
 #include "main.h"
 #include "buttons.h"
 #include "lib.h"
+#include "scenes.h"
 
 void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
 {
@@ -21,10 +22,8 @@ void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
     }
 }
 
-void buttons_settings(sfRenderWindow *win)
+void buttons_settings(sfRenderWindow *win, int WW, int WH)
 {
-    const int WW = sfRenderWindow_getSize(win).x;
-    const int WH = sfRenderWindow_getSize(win).y;
     add_button(&g_buttons, "back", create_full_rect((sfFloatRect)
             {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to main menu");
     print_message("Options", win, "font.ttf", (sfVector2f){WH/2, WW/2});

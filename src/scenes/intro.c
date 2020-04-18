@@ -7,7 +7,7 @@
 
 #include "main.h"
 
-int play_intro(sfRenderWindow *window)
+void play_intro(sfRenderWindow *window)
 {
     int i = 0;
     sfTexture *t = sfTexture_createFromFile("./assets/intro/mega.png", NULL);
@@ -33,5 +33,5 @@ int play_intro(sfRenderWindow *window)
     sfSprite_destroy(sprite);
     sfTexture_destroy(t);
     sfRenderWindow_setFramerateLimit(window, 60);
-    return 0;
+    return;
 }
