@@ -13,7 +13,7 @@
 
 void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 {
-    play_music(win, "assets/music.ogg");
+    play_music(win, "music.ogg");
     print_message(settings->status, win, "font.ttf",
         (sfVector2f){settings->WW * 0.5, settings->WH * 0.1});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
