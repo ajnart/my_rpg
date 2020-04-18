@@ -5,14 +5,10 @@
 ** main.c
 */
 
-#include "../src/settings/settings.h"
-#include "lib.h"
 #include "main.h"
-#include "rpg.h"
 #include "emitter.h"
-
-void cleanup(sfRenderWindow *win, asset_store_t *assets, settings_t *set);
-int play_intro(sfRenderWindow *window);
+#include "rpg.h"
+#include "scenes.h"
 
 emitter_t *emitter_setup(int max_div, int number_div, int range_div)
 {

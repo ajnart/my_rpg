@@ -8,8 +8,7 @@
 #include "buttons.h"
 #include "lib.h"
 #include "rpg.h"
-
-void destroy_buttons(button_store_t **store);
+#include "scenes.h"
 
 void scene_btn_loader(void (*loop)(), sfRenderWindow *win)
 {
@@ -23,19 +22,13 @@ void scene_btn_loader(void (*loop)(), sfRenderWindow *win)
     if (g_buttons)
         destroy_buttons(&g_buttons);
     if (loop == &loop_menu) {
-        add_button(&g_buttons, "quit", create_full_rect((sfFloatRect)
-            {WW/4, WH * 0.7, WW/2, WH/6}, texture, sfRed), "Ragequit");
-        add_button(&g_buttons, "bruh", create_full_rect((sfFloatRect)
-            {WW/4, WH * 0.5, WW/2, WH/6}, texture, sfColor_fromRGB(80, 80, 80)), "Bruh button");
-        add_button(&g_buttons, "settings", create_full_rect((sfFloatRect)
-            {WW/4, WH * 0.3, WW/2, WH/6}, texture, sfWhite), "Settings");
+        buttons_menu(win, WW, WH);
     }
     if (loop == &loop_ingame) {
-        add_button(&g_buttons, "back", create_full_rect((sfFloatRect)
-            {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to main menu");
+        buttons_ingame(win, WW, WH);
     }
     if (loop == &loop_settings) {
-        buttons_settings(win);
+        buttons_settings(win, WW, WH);
     }
 }
 

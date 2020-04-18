@@ -9,7 +9,7 @@
 #include "main.h"
 #include "lib.h"
 
-void play_music(sfRenderWindow *window, char *song, settings_t *settings)
+void play_music(sfRenderWindow *window, char *song)
 {
     static sfMusic *music;
 
