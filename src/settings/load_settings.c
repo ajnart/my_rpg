@@ -5,13 +5,10 @@
 ** load_settings.c
 */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <fcntl.h>
+#include "buttons.h"
 #include "lib.h"
-#include "settings.h"
+#include "rpg.h"
 
 settings_t *load_settings(void)
 {

@@ -7,8 +7,7 @@
 
 #include "buttons.h"
 #include "lib.h"
-#include "../loops.h"
-#include "../render/render.h"
+#include "rpg.h"
 
 void destroy_buttons(button_store_t **store);
 
@@ -16,14 +15,18 @@ void scene_btn_loader(void (*loop)(), sfRenderWindow *win)
 {
     const int WW = sfRenderWindow_getSize(win).x;
     const int WH = sfRenderWindow_getSize(win).y;
-    sfTexture *texture = sfTexture_createFromFile("assets/texture.jpg", NULL);
+    sfTexture *texture = find_asset_byname("texture.jpg")->asset_store.texture;
+    sfTexture_setSmooth(texture, sfTrue);
+    sfContext *context = sfContext_create();
+    sfContextSettings settings = sfContext_getSettings(context);
+    sfTexture_setRepeated(texture, sfTrue);
     if (g_buttons)
         destroy_buttons(&g_buttons);
     if (loop == &loop_menu) {
         add_button(&g_buttons, "quit", create_full_rect((sfFloatRect)
             {WW/4, WH * 0.7, WW/2, WH/6}, texture, sfRed), "Ragequit");
         add_button(&g_buttons, "bruh", create_full_rect((sfFloatRect)
-            {WW/4, WH * 0.5, WW/2, WH/6}, texture, sfBlue), "Bruh button");
+            {WW/4, WH * 0.5, WW/2, WH/6}, texture, sfColor_fromRGB(80, 80, 80)), "Bruh button");
         add_button(&g_buttons, "settings", create_full_rect((sfFloatRect)
             {WW/4, WH * 0.3, WW/2, WH/6}, texture, sfWhite), "Settings");
     }
@@ -32,8 +35,7 @@ void scene_btn_loader(void (*loop)(), sfRenderWindow *win)
             {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to main menu");
     }
     if (loop == &loop_settings) {
-        add_button(&g_buttons, "back", create_full_rect((sfFloatRect)
-            {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to main menu");
+        buttons_settings(win);
     }
 }
 
