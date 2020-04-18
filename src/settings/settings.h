@@ -8,6 +8,16 @@
 #ifndef __SETTINGS__
 #define __SETTINGS__
 
+typedef struct keys_struct
+{
+    char *up;
+    char *down;
+    char *left;
+    char *right;
+    char *pause;
+    char *inv;
+} sfKeys_t;
+
 typedef struct settings_struct
 {
     int WH;
@@ -17,6 +27,7 @@ typedef struct settings_struct
     int emitter;
     char *name;
     char *status;
+    sfKeys_t *keys;
 } settings_t;
 
 settings_t *load_settings(void);
