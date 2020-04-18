@@ -56,6 +56,7 @@ void cleanup(sfRenderWindow *win, asset_store_t *assets, settings_t *set)
 {
     print_message("cleanup", win, "font.ttf",
         (sfVector2f){0, 0});
+    play_music(win, "cleanup");
     sfRenderWindow_close(win);
     destroy_assets(g_assets);
     destroy_buttons(&g_buttons);
