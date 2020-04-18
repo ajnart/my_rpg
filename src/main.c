@@ -12,7 +12,7 @@
 #include "emitter.h"
 
 void cleanup(sfRenderWindow *win, asset_store_t *assets, settings_t *set);
-void play_intro();
+int play_intro(sfRenderWindow *window);
 
 emitter_t *emitter_setup(int max_div, int number_div, int range_div)
 {
@@ -47,8 +47,8 @@ int my_rpg(int ac, char **av, char **env)
     emitter_t *emitter = emitter_setup(100, 4, 10);
     if (!settings || !g_assets || !emitter)
         return 84;
-    play_intro();
     sfRenderWindow *window = create_window("MY RPG !", 60, settings);
+    play_intro(window);
     void (*loop)(sfRenderWindow *, event_st *, void (**)()) = &loop_menu;
     void (*loop_old)() = NULL;
     event_st *state = malloc(sizeof(event_st));
