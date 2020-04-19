@@ -10,12 +10,15 @@
 #include "emitter.h"
 #include "buttons.h"
 
+void explosion(sfRenderWindow *win , sfVector2i pos);
+
 void perform_loops(sfRenderWindow *win, void (**loop)(),
     void (**loop_old)(), event_st *state, emitter_t *emitter)
 {
     sfRenderWindow_clear(win, (sfColor){40, 40, 40, 255});
     static sfEvent event;
     set_btn_color(win);
+
     while (sfRenderWindow_pollEvent(win, &event))
         handle_events(event, win, state);
     if (*loop != *loop_old) {

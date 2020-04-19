@@ -17,6 +17,8 @@ void buttons_ingame(sfRenderWindow *win, int WW, int WH)
             {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to main menu");
 }
 
+void explosion(sfRenderWindow *win , sfVector2i pos);
+
 void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
 {
     settings->status = "Game";
@@ -24,6 +26,10 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
         (sfVector2f){settings->WW * 0.5, settings->WH * 0.1});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
             if (my_strcmp(state->data, "back"))
-            *loop = &loop_menu;
+                *loop = &loop_menu;
+            if (my_strcmp(state->data, "paused")) {
+                explosion(win, sfMouse_getPositionRenderWindow(win));
+                *loop = &loop_settings;
+            }
     }
 }

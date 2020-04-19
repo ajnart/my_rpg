@@ -7,6 +7,7 @@
 #include "event_handler.h"
 #include "lib.h"
 #include "buttons.h"
+#include "scenes.h"
 
 void hdl_key(sfEvent evt, sfRenderWindow *win, event_st *state)
 {
@@ -21,6 +22,8 @@ void hdl_key(sfEvent evt, sfRenderWindow *win, event_st *state)
         printf("Down pressed bro.\n");
     if ((char)evt.text.unicode+65 == settings->keys->right[0])
         printf("Right pressed bro.\n");
+    if ((char)evt.text.unicode+65 == settings->keys->pause[0])
+        state->data = "paused";
 }
 
 void hdl_close(sfEvent evt, sfRenderWindow *win, event_st *state)
@@ -44,13 +47,14 @@ const struct flagoptions ptr_flags[] =
     {-1, NULL},
 };
 
-void handle_events(sfEvent evt, sfRenderWindow *win, event_st *state)
+void handle_events(sfEvent evt, sfRenderWindow *win,
+    event_st *state, void (**loop)())
 {
     int i = 0;
 
     while (ptr_flags[i].function != NULL) {
         if (ptr_flags[i].evt == (int)evt.type)
-            ptr_flags[i].function(evt, win, state);
+            ptr_flags[i].function(evt, win, state, *loop);
         i++;
     }
 }
