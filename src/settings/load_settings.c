@@ -27,8 +27,8 @@ sfKeys_t *load_keys()
     ret->right = settings[3];
     ret->pause = settings[4];
     ret->inv = settings[5];
-    printf("[KEYS]:\nup: %s\tleft: %s\ndown: %s\tright: %s\npause: %s\tinv :%s \
-    \n", ret->up, ret->left, ret->down, ret->right, ret->pause, ret->inv);
+    my_printf("[KEYS]:\nup: %s\tleft: %s\ndown: %s\tright: %s\npause: %s\tinv\
+    :%s\n", ret->up, ret->left, ret->down, ret->right, ret->pause, ret->inv);
     return ret;
 }
 

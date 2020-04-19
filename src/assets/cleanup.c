@@ -8,6 +8,7 @@
 #include "main.h"
 #include "rpg.h"
 #include "buttons.h"
+#include "lib.h"
 
 void destroy_assets(asset_store_t *store)
 {
@@ -50,9 +51,9 @@ void cleanup(sfRenderWindow *win, asset_store_t *assets, settings_t *set)
     sfRenderWindow_close(win);
     destroy_assets(g_assets);
     destroy_buttons(&g_buttons);
-    printf("%c[1;33m",27);
-    printf("Fin du my_rpg. Merci d'avoir joué 💗\n");
-    printf("%c[0;33m",27);
+    my_printf("%c[1;33m",27);
+    my_printf("Fin du my_rpg. Merci d'avoir joué 💗\n");
+    my_printf("%c[0;33m",27);
     free(settings);
     free(g_buttons);
 }
