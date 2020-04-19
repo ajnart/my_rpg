@@ -14,7 +14,6 @@ emitter_t *emitter_setup(int max_div, int number_div, int range_div);
 
 void explosion(sfRenderWindow *win , sfVector2f pos)
 {
-    my_printf("BOOM BOOM\n");
     sfSprite *sprite = sfSprite_create();
     print_message("Switching to settings...", win, "font.ttf",
         (sfVector2f){settings->WW*0.4, settings->WH*0.7});

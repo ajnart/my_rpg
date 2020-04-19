@@ -15,13 +15,13 @@ void hdl_key(sfEvent evt, sfRenderWindow *win, event_st *state)
         settings->emitter = settings->emitter == 0 ? 1 : 0;
     }
     if ((char)evt.text.unicode+65 == settings->keys->up[0])
-        printf("Up pressed bro.\n");
+        my_printf("Up pressed bro.\n");
     if ((char)evt.text.unicode+65 == settings->keys->left[0])
-        printf("Left pressed bro.\n");
+        my_printf("Left pressed bro.\n");
     if ((char)evt.text.unicode+65 == settings->keys->down[0])
-        printf("Down pressed bro.\n");
+        my_printf("Down pressed bro.\n");
     if ((char)evt.text.unicode+65 == settings->keys->right[0])
-        printf("Right pressed bro.\n");
+        my_printf("Right pressed bro.\n");
     if ((char)evt.text.unicode+65 == settings->keys->pause[0])
         state->data = "paused";
 }
