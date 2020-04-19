@@ -26,8 +26,9 @@ sfKeys_t *load_keys()
     ret->down  = settings[2];
     ret->right = settings[3];
     ret->pause = settings[4];
-    printf("[KEYS]:\nup: %s\tleft: %s\ndown: %s\tright: %s\n",
-        ret->up, ret->left, ret->down, ret->right);
+    ret->inv = settings[5];
+    printf("[KEYS]:\nup: %s\tleft: %s\ndown: %s\tright: %s\npause: %s\tinv :%s \
+    \n", ret->up, ret->left, ret->down, ret->right, ret->pause, ret->inv);
     return ret;
 }
 
@@ -48,8 +49,7 @@ settings_t *load_settings(void)
     ret->status = "Main menu";
     ret->keys = load_keys();
     if (!ret || fd < 0 || !settings || !ret->WH || !ret->WW ||
-    !ret->volume || !ret->emitter)
+    !ret->volume)
         return NULL;
-    ret->RATIO = ret->WW/ret->WH;
     return ret;
 }
