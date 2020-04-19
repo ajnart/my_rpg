@@ -42,7 +42,7 @@ message:
 	@echo -e "\e[38;5;33m"
 	@figlet $(NAME); exit 0
 	@echo -e "\e[0m"
-	@echo -e "\e[1m[INFO]\t\e[92mCompilation successful ✔"
+	@echo -e "\e[1m[INFO]\t\e[92mCompilation successful ✔\e[0m"
 
 $(NAME):	$(OBJ)
 	@tar -xf assets.tar
