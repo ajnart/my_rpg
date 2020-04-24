@@ -14,9 +14,14 @@
 void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
 {
     char *buffer = malloc(sizeof(char) * 16);
+    char *resolution = malloc(sizeof(char) * 100);
+    sprintf(resolution, "Resolution : %d x %d", settings->WW, settings->WH);
     settings->status = "Settings";
+    print_message(resolution, win, "font.ttf",
+        (sfVector2f){settings->WW * 0.2, settings->WH * 0.4});
     print_message(settings->status, win, "font.ttf",
         (sfVector2f){settings->WW * 0.2, settings->WH * 0.1});
+    
     sprintf(buffer, "Volume : %d", settings->volume);
     print_message(buffer, win, "font.ttf", 
         (sfVector2f){settings->WW * 0.2, settings->WH * 0.2});
@@ -31,7 +36,7 @@ void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
             settings->volume -= 10;
         if (my_strcmp(state->data, "emitter")) {
             settings->emitter = settings->emitter == 0 ? 1 : 0;
-            get_button(g_buttons, "emitter")->normal =  get_button(g_buttons,
+            get_button(g_buttons, "emitter")->normal = get_button(g_buttons,
                 "emitter")->normal.g == 255 ? sfBlack : sfGreen;
         }
         my_printf("Button clicked: %s❗\n ", state->data);
