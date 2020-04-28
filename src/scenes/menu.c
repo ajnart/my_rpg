@@ -34,7 +34,8 @@ void buttons_menu(sfRenderWindow *win, int WW, int WH)
     add_button(&g_buttons, "quit", create_full_rect((sfFloatRect)
             {WW/4, WH * 0.7, WW/2, WH/6}, texture, sfRed), "Ragequit");
         add_button(&g_buttons, "bruh", create_full_rect((sfFloatRect)
-            {WW/4, WH * 0.5, WW/2, WH/6}, texture, sfColor_fromRGB(80, 80, 80)), "Bruh button");
+            {WW/4, WH * 0.5, WW/2, WH/6}, texture, sfColor_fromRGB(80, 80, 80)),
+            "Bruh button");
         add_button(&g_buttons, "settings", create_full_rect((sfFloatRect)
             {WW/4, WH * 0.3, WW/2, WH/6}, texture, sfWhite), "Settings");
 }

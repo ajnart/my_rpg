@@ -11,7 +11,7 @@
 #include "lib.h"
 #include "rpg.h"
 
-sfKeys_t *load_keys()
+sfKeys_t *load_keys(void)
 {
     sfKeys_t *ret = malloc(sizeof(sfKeys_t));
     int fd = open("settings.csv", O_RDONLY);
@@ -54,7 +54,6 @@ settings_t *load_settings(void)
     !ret->volume) {
         close(fd);
         return NULL;
-    }
-    close(fd);
+    } close(fd);
     return ret;
 }

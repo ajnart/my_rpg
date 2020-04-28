@@ -21,11 +21,11 @@ void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
         (sfVector3f){settings->WW * 0.2, settings->WH * 0.4, 0});
     print_message(settings->status, win, "font.ttf",
         (sfVector3f){settings->WW * 0.2, settings->WH * 0.1, 0});
-    
+
     sprintf(buffer, "Volume : %d", settings->volume);
-    print_message(buffer, win, "font.ttf", 
+    print_message(buffer, win, "font.ttf",
         (sfVector3f){settings->WW * 0.2, settings->WH * 0.2, 0});
-    print_message("  Emitter:", win, "font.ttf", 
+    print_message("  Emitter:", win, "font.ttf",
         (sfVector3f){settings->WW * 0.2, settings->WH * 0.25, 0});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
         if (my_strcmp(state->data, "back"))

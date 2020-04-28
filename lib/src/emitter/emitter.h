@@ -20,7 +20,7 @@ typedef struct color_s
     int r;
     int g;
     int b;
-}color_t;
+} color_t;
 
 typedef struct particle_elem_s
 {
@@ -38,7 +38,7 @@ typedef struct particle_elem_s
 
     struct particle_elem_s *next;
     struct particle_elem_s *prev;
-}particle_node;
+} particle_node;
 
 typedef struct emitter_struct
 {
@@ -79,7 +79,7 @@ int get_form(emitter_t *emitter);
 float create_dir(void);
 sfColor copy_color_particle(sfColor color, color_t random);
 particle_node *init_emitter_node(emitter_t *emitter, sfVector2i *mouse);
-void add_node(emitter_t *emitter, sfRenderWindow *win, 
+void add_node(emitter_t *emitter, sfRenderWindow *win,
     sfVector2i mouse, int nb);
 /* lib/src/particles/display.c */
 void manage_first_clock(emitter_t *emitter);

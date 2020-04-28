@@ -30,7 +30,7 @@ void play_intro(sfRenderWindow *window)
             rect.left = 0;
         }
         rect.left += 960;
-        i ++;
+        i++;
     }
     sfMusic_destroy(music);
     sfSprite_destroy(sprite);

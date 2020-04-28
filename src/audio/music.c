@@ -11,7 +11,8 @@
 
 void play_music(sfRenderWindow *window, char *song)
 {
-    if (sfMusic_getStatus(find_asset_byname(song)->asset_store.music) == sfStopped) {
+    if (sfMusic_getStatus(find_asset_byname(song)->asset_store.music) ==
+    sfStopped) {
         sfMusic_play(find_asset_byname(song)->asset_store.music);
         sfMusic_setVolume(find_asset_byname(song)->asset_store.music,
             settings->volume);
