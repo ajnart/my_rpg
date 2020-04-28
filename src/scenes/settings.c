@@ -11,22 +11,8 @@
 #include "lib.h"
 #include "scenes.h"
 
-void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
+void if_settings(event_st *state, void (**loop)())
 {
-    char *buffer = malloc(sizeof(char) * 16);
-    char *resolution = malloc(sizeof(char) * 100);
-    my_sprintf(resolution, "Resolution : %d x %d", settings->WW, settings->WH);
-    settings->status = "Settings";
-    print_message(resolution, win, "font.ttf",
-        (sfVector3f){settings->WW * 0.2, settings->WH * 0.4, 0});
-    print_message(settings->status, win, "font.ttf",
-        (sfVector3f){settings->WW * 0.2, settings->WH * 0.1, 0});
-
-    my_sprintf(buffer, "Volume : %d", settings->volume);
-    print_message(buffer, win, "font.ttf",
-        (sfVector3f){settings->WW * 0.2, settings->WH * 0.2, 0});
-    print_message("  Emitter:", win, "font.ttf",
-        (sfVector3f){settings->WW * 0.2, settings->WH * 0.25, 0});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
         if (my_strcmp(state->data, "back"))
             *loop = &loop_menu;
@@ -39,12 +25,36 @@ void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
             get_button(g_buttons, "emitter")->normal = get_button(g_buttons,
                 "emitter")->normal.g == 255 ? sfBlack : sfGreen;
         }
-        my_printf("Button clicked: %s❗\n ", state->data);
+        if (__DEBUG__)
+            my_printf("Button clicked: %s❗\n ", state->data);
     }
+}
+
+void messages_settings(sfRenderWindow *win)
+{
+    char *buffer = malloc(sizeof(char) * 16);
+    char *resolution = malloc(sizeof(char) * 100);
+    my_sprintf(resolution, "Resolution : %d x %d", settings->WW, settings->WH);
+    settings->status = "Settings";
+    print_message(resolution, win, "font.ttf",
+        (sfVector3f){settings->WW * 0.2, settings->WH * 0.4, 0});
+    print_message(settings->status, win, "font.ttf",
+        (sfVector3f){settings->WW * 0.2, settings->WH * 0.1, 0});
+    my_sprintf(buffer, "Volume : %d", settings->volume);
+    print_message(buffer, win, "font.ttf",
+        (sfVector3f){settings->WW * 0.2, settings->WH * 0.2, 0});
+    print_message("  Emitter:", win, "font.ttf",
+        (sfVector3f){settings->WW * 0.2, settings->WH * 0.25, 0});
+    free(buffer);
+}
+
+void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
+{
+    messages_settings(win);
+    if_settings(state, loop);
     sfMusic_setVolume(find_asset_byname("music.ogg")->asset_store.music,
         settings->volume);
     state->data = NULL;
-    free(buffer);
 }
 
 void buttons_settings(sfRenderWindow *win, int WW, int WH)
