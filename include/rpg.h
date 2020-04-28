@@ -27,7 +27,7 @@ void perform_loops(sfRenderWindow *window, void (**loop)(),
 
 void handle_events(sfEvent evt, sfRenderWindow *win, event_st *state);
 void print_message(char *str, sfRenderWindow *win, char *s_ft,
-    sfVector2f info);
+    sfVector3f info);
 sfRectangleShape *create_full_rect(sfFloatRect pos,
     sfTexture *tx, sfColor fill);
 

@@ -15,7 +15,7 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 {
     play_music(win, "music.ogg");
     print_message(settings->status, win, "font.ttf",
-        (sfVector2f){settings->WW * 0.5, settings->WH * 0.1});
+        (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
         if (my_strcmp(state->data, "bruh"))
             *loop = &loop_ingame;

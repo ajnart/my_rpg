@@ -42,6 +42,9 @@ void load_asset_fromfile(struct dirent *toload, asset_store_t **store)
     } else if (my_strcmp(ext, ".ogg")) {
         new->type = T_MUSIC;
         new->asset_store.music = sfMusic_createFromFile(filename);
+    } else if (my_strcmp(ext, ".wav")) {
+        new->type = T_SOUND;
+        new->asset_store.sound = sfSoundBuffer_createFromFile(filename);
     }
     new->next = *store;
     *store = new;

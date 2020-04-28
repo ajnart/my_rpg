@@ -35,6 +35,7 @@ sfRenderWindow *create_window(char *title, int framerate, settings_t *settings)
     sfRenderWindow_setFramerateLimit(window, framerate);
     return (window);
 }
+void send_notif(sfRenderWindow *win, char *str, char *substr);
 
 int my_rpg(int ac, char **av, char **env)
 {
@@ -43,8 +44,8 @@ int my_rpg(int ac, char **av, char **env)
     emitter_t *emitter = emitter_setup(150, 4, 10);
     if (!settings || !g_assets || !emitter)
         return 84;
-    sfRenderWindow *window = create_window("MY RPG !", 60, settings);
-    play_intro(window);
+    sfRenderWindow *window = create_window("Knight Of Boulogne !", 60, settings);
+    // play_intro(window);
     void (*loop)(sfRenderWindow *, event_st *, void (**)()) = &loop_menu;
     void (*loop_old)() = NULL;
     event_st *state = malloc(sizeof(event_st));

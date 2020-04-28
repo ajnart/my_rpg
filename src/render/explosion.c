@@ -16,7 +16,7 @@ void explosion(sfRenderWindow *win , sfVector2f pos)
 {
     sfSprite *sprite = sfSprite_create();
     print_message("Switching to settings...", win, "font.ttf",
-        (sfVector2f){settings->WW*0.4, settings->WH*0.7});
+        (sfVector3f){settings->WW*0.4, settings->WH*0.7, 0});
     sfRenderWindow_display(win);
     sfTime time;
     time.microseconds = 400000;
