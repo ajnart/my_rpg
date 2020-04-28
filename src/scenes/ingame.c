@@ -26,7 +26,7 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
         (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
             if (my_strcmp(state->data, "back"))
-                send_notif(win, "Gold won!", "You have won 100 GOLD");
+                send_notifs(win, "Gold won!", "You have won 100 GOLD");
                 *loop = &loop_menu;
             if (my_strcmp(state->data, "paused")) {
                 explosion(win, sfMouse_getPositionRenderWindow(win));

@@ -39,7 +39,7 @@ void hdl_click(sfEvent evt, sfRenderWindow *win, event_st *state)
     state->data = get_button_selected(g_buttons, mp);
 }
 
-const struct flagoptions ptr_flags[] = 
+const struct flagoptions ptr_flags[] =
 {
     {sfEvtMouseButtonPressed, &hdl_click},
     {sfEvtKeyPressed, &hdl_key},

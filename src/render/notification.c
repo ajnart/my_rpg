@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-void send_notif(sfRenderWindow *win, char *str, char *substr)
+void send_notifs(sfRenderWindow *win, char *str, char *substr)
 {
     int WH = settings->WH;
     int WW = settings->WW;

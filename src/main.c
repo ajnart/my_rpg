@@ -36,7 +36,7 @@ sfRenderWindow *create_window(char *title, int framerate, settings_t *settings)
     return (window);
 }
 
-void send_notif(sfRenderWindow *win, char *str, char *substr);
+void send_notifs(sfRenderWindow *win, char *str, char *substr);
 
 int my_rpg(int ac, char **av, char **env)
 {
