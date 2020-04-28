@@ -11,7 +11,7 @@
 - Error messages have to be written on the error output, and the program should
     then exit with the 84 error code (0 if there is no error).
 
-This project is one of the freest project of your first year. Create your **own RPG**.
+This project is one of the freest project of your first year. Create your own**RPG**.
 Your main challenge for this game will be to create a complete product using everything that you and your
 team know.
 
@@ -138,5 +138,5 @@ closedir()
 ```
 
 ```
-Any unspecified functions are **de facto banned**, except for bonus features.
+Any unspecified functions are **banned**, except for bonus features and criterion testing.
 ```
