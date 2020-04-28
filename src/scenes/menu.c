@@ -23,7 +23,8 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
             *loop = &loop_settings;
         if (my_strcmp(state->data, "quit"))
             sfRenderWindow_close(win);
-        my_printf("Button clicked: %s❗\n ", state->data);
+        if (__DEBUG__)
+            my_printf("Button clicked: %s❗\n ", state->data);
         state->data = NULL;
     }
 }
