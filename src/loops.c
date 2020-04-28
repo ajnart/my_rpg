@@ -15,7 +15,7 @@ void explosion(sfRenderWindow *win , sfVector2i pos);
 void perform_loops(sfRenderWindow *win, void (**loop)(),
     void (**loop_old)(), event_st *state, emitter_t *emitter)
 {
-    sfRenderWindow_clear(win, (sfColor){40, 40, 40, 255});
+    sfRenderWindow_clear(win, (sfColor){0, 0, 0, 255});
     static sfEvent event;
     set_btn_color(win);
 

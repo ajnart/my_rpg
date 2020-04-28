@@ -16,7 +16,7 @@ void play_intro(sfRenderWindow *window)
     sfIntRect rect = {0, 0, 960, 540};
     sfSprite_setPosition(sprite, (sfVector2f){settings->WW/2, settings->WH/2});
     sfSprite_setOrigin(sprite, (sfVector2f){480, 270});
-    sfRenderWindow_setFramerateLimit(window, 90);
+    sfRenderWindow_setFramerateLimit(window, 60);
     sfSprite_setTexture(sprite, t, sfTrue);
     sfMusic_setVolume(music, settings->volume);
     sfMusic_play(music);

@@ -30,12 +30,13 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 
 void buttons_menu(sfRenderWindow *win, int WW, int WH)
 {
-    sfTexture *texture = find_asset_byname("texture.jpg")->asset_store.texture;
+    sfTexture *texture = find_asset_byname("button.png")->asset_store.texture;
     add_button(&g_buttons, "quit", create_full_rect((sfFloatRect)
             {WW/4, WH * 0.7, WW/2, WH/6}, texture, sfRed), "Ragequit");
         add_button(&g_buttons, "bruh", create_full_rect((sfFloatRect)
-            {WW/4, WH * 0.5, WW/2, WH/6}, texture, sfColor_fromRGB(80, 80, 80)),
-            "Bruh button");
+            {WW/4, WH * 0.3, WW/2, WH/6}, texture, sfColor_fromRGB(5, 50, 5)),
+            "Play");
         add_button(&g_buttons, "settings", create_full_rect((sfFloatRect)
-            {WW/4, WH * 0.3, WW/2, WH/6}, texture, sfWhite), "Settings");
+        {WW/4, WH * 0.5, WW/2, WH/6}, texture, 
+            sfColor_fromRGB(230, 230, 230)), "Settings");
 }
