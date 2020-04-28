@@ -35,4 +35,6 @@ sfRectangleShape *create_full_rect(sfFloatRect pos,
     sfTexture *tx, sfColor fill);
 
 void cleanup(sfRenderWindow *win, asset_store_t *assets, settings_t *set);
+
+void send_notifs(sfRenderWindow *win, char *str, char *substr);
 #endif
