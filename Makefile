@@ -20,11 +20,15 @@ BUILD_DIR		= build
 
 SOURCE	= $(shell find $(SOURCE_DIR) -name "*.c")
 
-CFLAGS	+=	-Llib -Iinclude -lmy -W -g3
+CFLAGS	+=	-Llib -Iinclude -lmy -W
 LD_FLAGS	= -lcsfml-window -lcsfml-graphics -lcsfml-audio -lcsfml-system -lm
 
+ifneq (,$(findstring debug,$(MAKECMDGOALS)))
+	CFLAGS += -D__DEBUG__ -g3
+endif
+
 ifneq (,$(findstring tests,$(MAKECMDGOALS)))
-	CFLAGS += -D__TESTS -fprofile-arcs -ftest-coverage -lcriterion --coverage
+	CFLAGS += -D__TESTS -lcriterion --coverage
 endif
 
 OBJ		=	$(patsubst $(SOURCE_DIR)/%.c,$(BUILD_DIR)/%.o,$(SOURCE))
@@ -32,6 +36,8 @@ OBJ		=	$(patsubst $(SOURCE_DIR)/%.c,$(BUILD_DIR)/%.o,$(SOURCE))
 NAME	=	my_rpg
 
 all:	$(NAME) message #test_run
+
+debug: all
 
 $(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.c
 	@$(call rich_echo,"CC","$@")
@@ -70,9 +76,10 @@ protos: $(NAME)
 	@cproto $(SOURCE) -Iinclude
 
 tests_run:
-	$(CC) -o $(NAME)_tests $(SOURCE) tests/*.c $(CFLAGS) $(LD_FLAGS)
-	./$(NAME)_tests
-	mv *.gc* tests/
+	@$(CC) -o $(NAME)_tests $(SOURCE) tests/*.c $(CFLAGS) $(LD_FLAGS)
+	@$(call rich_echo,"UT","Unit tests compilation done.")
+	@./$(NAME)_tests
+	@mv *.gc* tests/
 
 .PHONY: tests_run re fclean clean all $(NAME) protos message
 .NOTPARALLEL:
