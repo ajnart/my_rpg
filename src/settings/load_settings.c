@@ -6,6 +6,7 @@
 */
 
 #include <fcntl.h>
+#include <unistd.h>
 #include "buttons.h"
 #include "lib.h"
 #include "rpg.h"
