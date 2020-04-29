@@ -45,7 +45,7 @@ particle_node *init_emitter_node(emitter_t *emitter, sfVector2i *mouse)
 }
 
 void add_node(emitter_t *emitter, sfRenderWindow *win,
-                sfVector2i mouse, int nb)
+sfVector2i mouse, int nb)
 {
     particle_node *new = NULL;
     particle_node *temp = NULL;

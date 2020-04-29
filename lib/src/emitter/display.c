@@ -55,7 +55,7 @@ void draw_emitter(sfRenderWindow *win, emitter_t *emitter)
 }
 
 void display_particles(sfRenderWindow *win, emitter_t *emitter,
-                        sfVector2i mouse)
+sfVector2i mouse)
 {
     int nb = 0;
 

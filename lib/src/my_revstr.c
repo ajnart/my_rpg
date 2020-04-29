@@ -12,9 +12,7 @@ char *my_revstr(char *str)
     int x = 0;
 
     while (str[end] != '\0')
-    {
         end += 1;
-    }
     end -= 1;
     while (i < end)
     {

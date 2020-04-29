@@ -13,6 +13,10 @@ BUILD_DIR   := build
 SOURCE       = $(shell find $(SOURCE_DIR) -name '*.c')
 OBJS         = $(patsubst $(SOURCE_DIR)/%.c,$(BUILD_DIR)/%.o,$(SOURCE))
 
+ifneq (,$(findstring debug,$(MAKECMDGOALS)))
+	CFLAGS += -D__DEBUG__ -g3
+endif
+
 define rich_echo
 [ -t 1 ] && echo -e "\e[1m$(1)\e[0m\t$(2)" || echo -e "$(1)\t$(2)"
 endef
@@ -31,6 +35,8 @@ $(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.c
 	@$(call rich_echo,"CC","$@")
 	@mkdir -p $(@D)
 	@gcc $(CC_FLAGS) -c $< -o $@
+
+debug: all
 
 clean:
 	@$(call rich_echo,"RM","$(BUILD_DIR)/*.o")

@@ -17,10 +17,10 @@ int my_cstrcmp(char const *s1, char const *s2)
 }
 
 void set_particle_color(emitter_t *emitter, particle_node * temp,
-                            long int sec)
+long int sec)
 {
     temp->color.a = emitter->color.a * (1 - (float)sec /
-                    (float)temp->life_time);
+    (float)temp->life_time);
 }
 
 sfVector2f *init_pos_particles(float x, float y)

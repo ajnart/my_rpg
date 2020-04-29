@@ -8,7 +8,7 @@
 #include "emitter.h"
 
 void draw_emitter_circle(sfRenderWindow *win, particle_node *temp,
-                            long int sec, emitter_t *emitter)
+long int sec, emitter_t *emitter)
 {
     if (temp->form)
         return;
@@ -22,7 +22,7 @@ void draw_emitter_circle(sfRenderWindow *win, particle_node *temp,
 }
 
 void draw_emitter_square(sfRenderWindow *win, particle_node *temp,
-                            long int sec, emitter_t *emitter)
+long int sec, emitter_t *emitter)
 {
     sfVector2f size = {temp->size, temp->size};
     if (!temp->form)
@@ -39,12 +39,13 @@ void draw_emitter_square(sfRenderWindow *win, particle_node *temp,
 void pos_particle(particle_node *temp, long int sec)
 {
     temp->pos->x = temp->initial_pos->x + (temp->range * temp->dir->x) *
-                ((float)sec / (float)temp->life_time);
+    ((float)sec / (float)temp->life_time);
     temp->pos->y = temp->initial_pos->y + (temp->range * temp->dir->y) *
-                ((float)sec / (float)temp->life_time);
+    ((float)sec / (float)temp->life_time);
 }
 
 void size_particle(particle_node *temp, long int sec)
 {
-    temp->size = temp->initial_size * (1 - (float)sec / (float)temp->life_time);
+    temp->size = temp->initial_size * (1 - (float)sec /
+    (float)temp->life_time);
 }

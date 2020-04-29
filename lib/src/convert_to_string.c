@@ -20,15 +20,13 @@ char *convert_to_string(int number)
     while (num > 0) {
         num /= 10;
         nb_char++;
-    }
-    str = malloc(sizeof(char) * nb_char + 5);
+    } str = malloc(sizeof(char) * nb_char + 5);
     if (!str)
         return NULL;
     for (i = 0; i < nb_char; i++) {
         str[i] = number % 10 + '0';
         number /= 10;
-    }
-    for (i; i < 4; i++)
+    } for (i; i < 4; i++)
         str[i] = '0';
     str[i] = '\0';
     str = my_revstr(str);
