@@ -16,13 +16,12 @@ sfKeys_t *load_keys(void)
     sfKeys_t *ret = malloc(sizeof(sfKeys_t));
     char **settings;
     int fd = open("settings.csv", O_RDONLY);
+    int i = 0;
 
     if (fd < 0)
         return NULL;
-    get_next_line(fd);
-    get_next_line(fd);
-    get_next_line(fd);
-    get_next_line(fd);
+    for (i = 0; i < 4; i++)
+        get_next_line(fd);
     settings = my_str_to_wordtab(get_next_line(fd), ',');
     ret->up    = settings[0];
     ret->left  = settings[1];
