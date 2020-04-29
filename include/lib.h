@@ -72,7 +72,6 @@ char *my_revstr(char *str);
 char *my_strncat(char *dest, char const *src, int nb);
 char *convert_to_string(int number);
 int my_dprintf(int fd, const char *str, ...);
-void my_sprintf(char *buf, char const *ap, ...);
 
 typedef void (*print_compute_t)(va_list arg);
 

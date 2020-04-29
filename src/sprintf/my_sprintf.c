@@ -86,12 +86,3 @@ char *my_sprintf(char *str, ...)
     va_end(argptr);
     return (buffer);
 }
-
-int main(int argc, char const *argv[])
-{
-    int i = 6000;
-    char *t = "teube";
-    char *ret = my_sprintf("Il fait chaud dehors, %d degrés. %s\n", i, t);
-    printf("%s", ret);
-    return 0;
-}

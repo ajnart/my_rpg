@@ -14,21 +14,19 @@ void scene_btn_loader(void (*loop)(), sfRenderWindow *win)
 {
     const int WW = sfRenderWindow_getSize(win).x;
     const int WH = sfRenderWindow_getSize(win).y;
+
     if (g_buttons)
         destroy_buttons(&g_buttons);
-    if (loop == &loop_menu) {
+    if (loop == &loop_menu)
         buttons_menu(win, WW, WH);
-    }
-    if (loop == &loop_ingame) {
+    if (loop == &loop_ingame)
         buttons_ingame(win, WW, WH);
-    }
-    if (loop == &loop_settings) {
+    if (loop == &loop_settings)
         buttons_settings(win, WW, WH);
-    }
 }
 
 void add_button(button_store_t **store, char *id,
-    sfRectangleShape *render, char *str)
+sfRectangleShape *render, char *str)
 {
     button_store_t *newbtn = malloc(sizeof(button_store_t));
     sfFloatRect bounds;
@@ -41,9 +39,9 @@ void add_button(button_store_t **store, char *id,
     sfText_setString(text, str);
     sfText_setFont(text, find_asset_byname("font.ttf")->asset_store.font);
     sfText_setColor(text,
-        sfColor_toInteger(newbtn->normal) > 0xFFAAAAAA?sfBlack:sfWhite);
+    sfColor_toInteger(newbtn->normal) > 0xFFAAAAAA?sfBlack:sfWhite);
     sfText_setCharacterSize(text, (sfRectangleShape_getSize(render).x +
-        sfRectangleShape_getSize(render).y) / 20);
+    sfRectangleShape_getSize(render).y) / 20);
     bounds = sfText_getLocalBounds(text);
     sfText_setOrigin(text, (sfVector2f) {bounds.width/2, bounds.height/10*12});
     newbtn->text = text;

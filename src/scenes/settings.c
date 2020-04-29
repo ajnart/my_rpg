@@ -34,18 +34,17 @@ void messages_settings(sfRenderWindow *win)
 {
     char *buffer = malloc(sizeof(char) * 16);
     char *resolution = malloc(sizeof(char) * 100);
-    my_sprintf(resolution, "Resolution : %d x %d", settings->WW, settings->WH);
+    sprintf(resolution, "Resolution : %d x %d", settings->WW, settings->WH);
     settings->status = "Settings";
     print_message(resolution, win, "font.ttf",
         (sfVector3f){settings->WW * 0.2, settings->WH * 0.4, 0});
     print_message(settings->status, win, "font.ttf",
         (sfVector3f){settings->WW * 0.2, settings->WH * 0.1, 0});
-    my_sprintf(buffer, "Volume : %d", settings->volume);
+    sprintf(buffer, "Volume : %d", settings->volume);
     print_message(buffer, win, "font.ttf",
         (sfVector3f){settings->WW * 0.2, settings->WH * 0.2, 0});
     print_message("  Emitter:", win, "font.ttf",
         (sfVector3f){settings->WW * 0.2, settings->WH * 0.25, 0});
-    free(buffer);
 }
 
 void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())

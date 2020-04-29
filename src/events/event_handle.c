@@ -48,7 +48,7 @@ const struct flagoptions ptr_flags[] =
 };
 
 void handle_events(sfEvent evt, sfRenderWindow *win,
-    event_st *state, void (**loop)())
+event_st *state, void (**loop)())
 {
     int i = 0;
 
