@@ -66,13 +66,7 @@ char *my_sprintf(char *str, ...);
 
 int main(int ac, char **av, char **env)
 {
-    int i = 6000;
-    char *t = "teube";
-    printf("Il fait %d degrés dehors\n", i);
-    char *ret = my_sprintf("Il fait chaud dehors, %d degrés, j'ai une grosse %s test\n", i, t);
-    printf("Contenu du buffer : %s\n", ret);
-    return 0;
-    // return (my_rpg(ac, av, env));
+    return (my_rpg(ac, av, env));
 }
 
 #endif
