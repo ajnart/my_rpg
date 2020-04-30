@@ -26,7 +26,7 @@ sfKeys_t *load_keys(void)
     ret->down  = settings[2];
     ret->right = settings[3];
     ret->pause = settings[4];
-    ret->inv = settings[5];
+    ret->inv   = settings[5];
     if (__DEBUG__)
         my_printf("[D]:\nU: %s\tL: %s\nD: %s\tR: %s\nP: %sInv:%s\n",
         ret->up, ret->left, ret->down, ret->right, ret->pause, ret->inv);

@@ -30,7 +30,7 @@ int add_int_to_str(char *buffer, int to_add)
 int add_str_to_str(char *buffer, char *to_add)
 {
     my_strcpy(buffer, to_add);
-    return (strlen(to_add));
+    return (my_strlen(to_add));
 }
 
 int my_sprintf_flag(char flag, char *buffer, va_list argptr)
