@@ -48,7 +48,7 @@ int my_rpg(int ac, char **av, char **env)
         return 84;
     sfRenderWindow *window = create_window("Knight Of Boulogne !", 60,
     settings);
-    // play_intro(window);
+    play_intro(window);
     void (*loop)(sfRenderWindow *, event_st *, void (**)()) = &loop_menu;
     void (*loop_old)() = NULL;
     event_st *state = malloc(sizeof(event_st));
@@ -61,8 +61,6 @@ int my_rpg(int ac, char **av, char **env)
 }
 
 #ifndef __TESTS
-
-char *my_sprintf(char *str, ...);
 
 int main(int ac, char **av, char **env)
 {

@@ -7,6 +7,23 @@
 
 #include "main.h"
 
+void while_intro(sfRenderWindow *window, int i,
+    sfSprite *sprite, sfIntRect rect)
+{
+    while (i < 264) {
+        sfRenderWindow_clear(window, sfBlack);
+        sfSprite_setTextureRect(sprite, rect);
+        sfRenderWindow_drawSprite(window, sprite, NULL);
+        sfRenderWindow_display(window);
+        if (rect.left == 11520) {
+            rect.top += 540;
+            rect.left = 0;
+        }
+        rect.left += 960;
+        i++;
+    }
+}
+
 void play_intro(sfRenderWindow *window)
 {
     int i = 0;
@@ -20,18 +37,7 @@ void play_intro(sfRenderWindow *window)
     sfSprite_setTexture(sprite, t, sfTrue);
     sfMusic_setVolume(music, settings->volume);
     sfMusic_play(music);
-    while (i < 264) {
-        sfRenderWindow_clear(window, sfBlack);
-        sfSprite_setTextureRect(sprite, rect);
-        sfRenderWindow_drawSprite(window, sprite, NULL);
-        sfRenderWindow_display(window);
-        if (rect.left == 11520) {
-            rect.top += 540;
-            rect.left = 0;
-        }
-        rect.left += 960;
-        i++;
-    }
+    while_intro(window, i, sprite, rect);
     sfMusic_destroy(music);
     sfSprite_destroy(sprite);
     sfTexture_destroy(t);

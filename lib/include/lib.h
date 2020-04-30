@@ -32,6 +32,8 @@ int my_strlen(char *str);
 char compute(int fd);
 char *my_strdup_alloc(char *str, int lenght);
 char *get_next_line(int fd);
+/* src/get_next_word.c */
+char *get_next_word(int fd);
 /* src/my_getnbr.c */
 int add_nb(int act_nb, int new_nb, int *h_ovf);
 int my_getnbr(char const *str);
@@ -49,17 +51,28 @@ int shownbr_base(int nbr, int length, char const *base);
 int my_putnbr_base(int nbr, char const *base);
 int shownbr_base_unsigned(unsigned long nbr, int length, char const *base);
 int my_putnbr_base_unsigned(unsigned long nbr, char const *base);
-/* src/my_strncmp.c */
-int my_strcmp(char *s1, char *s2);
-int my_strncmp(char *s1, char *s2, int n);
-/* src/my_strstr.c */
-char *my_strstr(char *str, char const *to_find);
+/* lib/src/str_str.c */
+void str_append(char **src, char const *add);
+int my_str_isalpha(char *str);
 /* src/my_str_to_wordtab.c */
 char **my_str_to_wordtab(char *str, char g);
 /* src/str_str.c */
 int my_str_isalpha(char *str);
+
+char *my_strncpy(char *dest, char *src, int n);
+char *my_strcpy(char *dest, char *src);
+char *my_strndup(char *str, int n);
+char *my_strdup(char *str);
+/* lib/src/my_strcmp.c */
+int my_strcmp(char const *s1, char const *s2);
+int my_strncmp(char const *s1, char const *s2, int n);
+char *my_strstr(char *str, char const *sub);
+int str_contains(char const *str, char c);
 char *my_revstr(char *str);
+char *my_strncat(char *dest, char const *src, int nb);
 char *convert_to_string(int number);
+char *my_sprintf(char *str, ...);
+char *my_itoa(int value, char *buffer, int base);
 
 typedef void (*print_compute_t)(va_list arg);
 

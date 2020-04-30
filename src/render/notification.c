@@ -15,9 +15,8 @@ void send_notifs(sfRenderWindow *win, char *str, char *substr)
     static sfSound *sound;
 
     if (!sb || !sound) {
-        sound = sfSound_create();
-        sfSound_setBuffer(sound,
-        find_asset_byname("sound.wav")->asset_store.sound);
+    sound = sfSound_create();
+    sfSound_setBuffer(sound, find_asset_byname("sound.wav")->asset_store.sound);
     }
     sfSound_play(sound);
     sfRectangleShape *main = create_full_rect((sfFloatRect){0, 0,
@@ -28,10 +27,7 @@ void send_notifs(sfRenderWindow *win, char *str, char *substr)
     sfRenderWindow_drawRectangleShape(win, second, NULL);
     print_message(str, win, "droid.ttf", (sfVector3f){0, 0, 1});
     print_message(substr, win, "droid.ttf", (sfVector3f){0, WH*0.04, 1});
-    sfTime time;
-    time.microseconds = 500000;
     sfRenderWindow_display(win);
     sfRectangleShape_destroy(main);
     sfRectangleShape_destroy(second);
-    sfSleep(time);
 }
