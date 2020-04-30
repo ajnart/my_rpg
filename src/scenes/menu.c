@@ -38,6 +38,6 @@ void buttons_menu(sfRenderWindow *win, int WW, int WH)
             {WW/4, WH * 0.3, WW/2, WH/6}, texture, sfColor_fromRGB(5, 50, 5)),
             "Play");
         add_button(&g_buttons, "settings", create_full_rect((sfFloatRect)
-        {WW/4, WH * 0.5, WW/2, WH/6}, texture, 
+        {WW/4, WH * 0.5, WW/2, WH/6}, texture,
             sfColor_fromRGB(230, 230, 230)), "Settings");
 }

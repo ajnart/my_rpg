@@ -55,10 +55,10 @@ int add_str_to_str(char *buffer, char *to_add, int pos, char *str)
 int switch_sprintf(char *str, int i, char *buffer, va_list argptr)
 {
     if (str[i + 1] == 'd') {
-        return(add_int_to_str(buffer, va_arg(argptr, int), i, str)-1);
+        return (add_int_to_str(buffer, va_arg(argptr, int), i, str)-1);
     }
     else if (str[i + 1] == 's') {
-        return(add_str_to_str(buffer, va_arg(argptr, char *), i, str));
+        return (add_str_to_str(buffer, va_arg(argptr, char *), i, str));
     }
 }
 

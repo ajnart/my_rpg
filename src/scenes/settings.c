@@ -65,6 +65,6 @@ void buttons_settings(sfRenderWindow *win, int WW, int WH)
     add_button(&g_buttons, "vol_plus", create_full_rect((sfFloatRect)
             {WW * 0.40, WH * 0.17, WW*0.05, WH*0.05}, NULL, sfRed), "");
     add_button(&g_buttons, "emitter", create_full_rect((sfFloatRect)
-        {WW * 0.35, WH * 0.225, WW*0.1, WH*0.05}, NULL, 
+        {WW * 0.35, WH * 0.225, WW*0.1, WH*0.05}, NULL,
         settings->emitter == 0 ? sfBlack : sfGreen), "");
 }
