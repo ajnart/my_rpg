@@ -62,8 +62,6 @@ int my_rpg(int ac, char **av, char **env)
 
 #ifndef __TESTS
 
-char *my_sprintf(char *str, ...);
-
 int main(int ac, char **av, char **env)
 {
     return (my_rpg(ac, av, env));
