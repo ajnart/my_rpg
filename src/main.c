@@ -14,6 +14,7 @@
 emitter_t *emitter_setup(int max_div, int number_div, int range_div)
 {
     emitter_t *ret = emitter_create((settings->WW + settings->WH) / number_div);
+
     if (!ret)
         return NULL;
     ret->max_size = (settings->WW + settings->WH) / max_div;
@@ -37,21 +38,19 @@ sfRenderWindow *create_window(char *title, int framerate, settings_t *settings)
     return (window);
 }
 
-void send_notifs(sfRenderWindow *win, char *str, char *substr);
-
 int my_rpg(int ac, char **av, char **env)
 {
-    g_assets = load_assets();
     settings = load_settings();
-    emitter_t *emitter = emitter_setup(150, 4, 10);
-    if (!settings || !g_assets || !emitter)
-        return 84;
-    sfRenderWindow *window = create_window("Knight Of Boulogne !", 60,
-    settings);
-    play_intro(window);
-    void (*loop)(sfRenderWindow *, event_st *, void (**)()) = &loop_menu;
+    g_assets = load_assets();
     void (*loop_old)() = NULL;
     event_st *state = malloc(sizeof(event_st));
+    sfRenderWindow *window = create_window("Knight Of Boulogne!", 60, settings);
+    void (*loop)(sfRenderWindow *, event_st *, void (**)()) = &loop_menu;
+    emitter_t *emitter = emitter_setup(200, 4, 20);
+
+    if (!settings || !g_assets || !emitter)
+        return 84;
+    play_intro(window);
     state->data = "none";
     state->type = sfEvtJoystickButtonReleased;
     while (sfRenderWindow_isOpen(window))

@@ -17,14 +17,13 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
     print_message(settings->status, win, "font.ttf",
         (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
-        if (my_strcmp(state->data, "bruh"))
+        explosion(win, state->data);
+        if (my_strcmp(state->data, "play"))
             *loop = &loop_ingame;
         if (my_strcmp(state->data, "settings"))
             *loop = &loop_settings;
         if (my_strcmp(state->data, "quit"))
             sfRenderWindow_close(win);
-        if (__DEBUG__)
-            my_printf("Button clicked: %s❗\n ", state->data);
         state->data = NULL;
     }
 }
@@ -33,11 +32,12 @@ void buttons_menu(sfRenderWindow *win, int WW, int WH)
 {
     sfTexture *texture = find_asset_byname("button.png")->asset_store.texture;
     add_button(&g_buttons, "quit", create_full_rect((sfFloatRect)
-            {WW/4, WH * 0.7, WW/2, WH/6}, texture, sfRed), "Ragequit");
-        add_button(&g_buttons, "bruh", create_full_rect((sfFloatRect)
-            {WW/4, WH * 0.3, WW/2, WH/6}, texture, sfColor_fromRGB(5, 50, 5)),
-            "Play");
-        add_button(&g_buttons, "settings", create_full_rect((sfFloatRect)
-        {WW/4, WH * 0.5, WW/2, WH/6}, texture,
-            sfColor_fromRGB(230, 230, 230)), "Settings");
+        {WW/4, WH * 0.7, WW/2, WH/6}, texture, sfRed),
+        "Ragequit");
+    add_button(&g_buttons, "play", create_full_rect((sfFloatRect)
+        {WW/4, WH * 0.3, WW/2, WH/6}, texture, sfColor_fromRGB(5, 50, 5)),
+        "Play");
+    add_button(&g_buttons, "settings", create_full_rect((sfFloatRect)
+        {WW/4, WH * 0.5, WW/2, WH/6}, texture, sfColor_fromRGB(230, 230, 230)),
+        "Settings");
 }

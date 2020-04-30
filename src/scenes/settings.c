@@ -32,6 +32,7 @@ void messages_settings(sfRenderWindow *win)
 {
     int WW = settings->WW;
     int WH = settings->WH;
+
     print_message(my_sprintf("Resolution : %d x %d", WW, WH),
         win, "font.ttf", (sfVector3f){WW * 0.2, WH * 0.4, 0});
     print_message(settings->status,
@@ -54,7 +55,7 @@ void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
 void buttons_settings(sfRenderWindow *win, int WW, int WH)
 {
     add_button(&g_buttons, "back", create_full_rect((sfFloatRect)
-        {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to main menu");
+        {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back");
     add_button(&g_buttons, "vol_minus", create_full_rect((sfFloatRect)
         {WW * 0.35, WH * 0.17, WW*0.05, WH*0.05}, NULL, sfBlue), "");
     add_button(&g_buttons, "vol_plus", create_full_rect((sfFloatRect)

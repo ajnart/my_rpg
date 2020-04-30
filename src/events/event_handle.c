@@ -11,9 +11,8 @@
 
 void hdl_key(sfEvent evt, sfRenderWindow *win, event_st *state)
 {
-    if (evt.key.code == sfKeyM && evt.key.control) {
+    if (evt.key.code == sfKeyM && evt.key.control)
         settings->emitter = settings->emitter == 0 ? 1 : 0;
-    }
     if ((char)evt.text.unicode+65 == settings->keys->up[0])
         my_printf("Up pressed bro.\n");
     if ((char)evt.text.unicode+65 == settings->keys->left[0])
@@ -22,6 +21,8 @@ void hdl_key(sfEvent evt, sfRenderWindow *win, event_st *state)
         my_printf("Down pressed bro.\n");
     if ((char)evt.text.unicode+65 == settings->keys->right[0])
         my_printf("Right pressed bro.\n");
+    if ((char)evt.text.unicode+65 == settings->keys->inv[0])
+        my_printf("Inv pressed bro.\n");
     if ((char)evt.text.unicode+65 == settings->keys->pause[0])
         state->data = "paused";
 }
@@ -48,7 +49,7 @@ const struct flagoptions ptr_flags[] =
 };
 
 void handle_events(sfEvent evt, sfRenderWindow *win,
-event_st *state, void (**loop)())
+    event_st *state, void (**loop)())
 {
     int i = 0;
 

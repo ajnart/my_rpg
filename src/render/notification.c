@@ -6,11 +6,11 @@
 */
 
 #include "rpg.h"
+#define WW (settings->WW)
+#define WH (settings->WH)
 
 void send_notifs(sfRenderWindow *win, char *str, char *substr)
 {
-    int WH = settings->WH;
-    int WW = settings->WW;
     static sfSoundBuffer *sb;
     static sfSound *sound;
 
