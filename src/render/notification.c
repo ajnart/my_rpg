@@ -13,6 +13,7 @@ void send_notifs(sfRenderWindow *win, char *str, char *substr)
     int WW = settings->WW;
     static sfSoundBuffer *sb;
     static sfSound *sound;
+
     if (!sb || !sound) {
         sound = sfSound_create();
         sfSound_setBuffer(sound,

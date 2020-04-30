@@ -5,6 +5,7 @@
 ** parallax.c
 */
 
+#include "rpg.h"
 #include "parallax.h"
 
 void append_parallax(t_para **para, char *pic, int speed)
@@ -33,7 +34,7 @@ t_para *set_parallax(void)
 {
     t_para *para = NULL;
 
-    append_parallax(&para, "back1.png", 2);
+    append_parallax(&para, "assets/background/", 2);
     append_parallax(&para, "back2.png", 5);
     append_parallax(&para, "back3.png", 10);
     return (para);
@@ -42,7 +43,7 @@ t_para *set_parallax(void)
 void draw_parallax(sfRenderWindow *win, t_para *para)
 {
     while (para) {
-        if (para->rect.left == 1280) {
+        if (para->rect.left == settings->WW) {
             para->rect.left = 0;
             sfSprite_setTextureRect(para->sprite, para->rect);
         } else {
