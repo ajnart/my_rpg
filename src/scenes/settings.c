@@ -20,10 +20,15 @@ void if_settings(event_st *state, void (**loop)())
             settings->volume += 10;
         if (my_strcmp(state->data, "vol_minus") && settings->volume >= 10)
             settings->volume -= 10;
+        if (my_strcmp(state->data, "mute") && settings->volume >= 10) {
+            settings->volume = settings->volume == 0 ? 10 : 0;
+            get_button(g_buttons, "mute")->normal = get_button(g_buttons,
+                "mute")->normal.g == 255 ? sfColor_fromRGB(80,80,80) : sfGreen;
+        }
         if (my_strcmp(state->data, "emitter")) {
             settings->emitter = settings->emitter == 0 ? 1 : 0;
             get_button(g_buttons, "emitter")->normal = get_button(g_buttons,
-                "emitter")->normal.g == 255 ? sfBlack : sfGreen;
+                "emitter")->normal.g == 255 ? sfRed : sfGreen;
         }
         if (__DEBUG__)
             my_printf("Button clicked: %s❗\n ", state->data);
@@ -58,10 +63,13 @@ void buttons_settings(sfRenderWindow *win, int WW, int WH)
     add_button(&g_buttons, "back", create_full_rect((sfFloatRect)
             {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to main menu");
     add_button(&g_buttons, "vol_minus", create_full_rect((sfFloatRect)
-            {WW * 0.35, WH * 0.168, WW*0.05, WH*0.05}, NULL, sfBlue), "");
+            {WW * 0.35, WH * 0.17, WW*0.05, WH*0.05}, NULL, sfBlue), "");
     add_button(&g_buttons, "vol_plus", create_full_rect((sfFloatRect)
             {WW * 0.40, WH * 0.17, WW*0.05, WH*0.05}, NULL, sfRed), "");
     add_button(&g_buttons, "emitter", create_full_rect((sfFloatRect)
         {WW * 0.35, WH * 0.225, WW*0.1, WH*0.05}, NULL,
-        settings->emitter == 0 ? sfBlack : sfGreen), "");
+        settings->emitter == 0 ? sfRed : sfGreen), "");
+    add_button(&g_buttons, "mute", create_full_rect((sfFloatRect)
+        {WW * 0.45, WH * 0.17, WW*0.05, WH*0.05}, NULL,
+        settings->volume == 0 ? sfColor_fromRGB(80,80,80) : sfGreen), "");
 }
