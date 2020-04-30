@@ -15,7 +15,7 @@ void append_parallax(t_para **para, char *pic, int speed)
 
     element->sprite = sfSprite_create();
     element->texture = sfTexture_createFromFile(pic, NULL);
-    element->rect = (sfIntRect){0, 0, 1280, 720};
+    element->rect = (sfIntRect){0, 0, settings->WW, settings->WH};
     element->speed = speed;
     element->next = NULL;
     sfSprite_setTexture(element->sprite, element->texture, sfFalse);
