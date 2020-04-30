@@ -67,6 +67,7 @@ void load_asset_fromfile(struct dirent *toload, asset_store_t **store)
 asset_store_t *load_assets(void)
 {
     DIR *scandir = opendir("assets/");
+    listDir("assets");
     struct dirent *toload;
     asset_store_t *ret = NULL;
 
