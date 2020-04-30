@@ -9,8 +9,11 @@
 #include "asset_loader.h"
 #include "main.h"
 #include "lib.h"
-
-asset_store_t *g_assets;
+#define PNG 6383219704
+#define OGG 6383218384
+#define WAV 6383226913
+#define JPG 6383213236
+#define TTF 6383224257
 
 char *get_asset_fullpath(char *filename)
 {
@@ -19,6 +22,28 @@ char *get_asset_fullpath(char *filename)
     str_append(&result, "/");
     str_append(&result, filename);
     return (result);
+}
+
+void asset_type_define(asset_store_t *new, const char *ext, char *filename)
+{
+    switch (my_hash_str(ext)) {
+    case PNG : new->type = T_TEXTURE;
+        new->asset_store.texture = sfTexture_createFromFile(filename, NULL);
+        break;
+    case OGG: new->type = T_MUSIC;
+        new->asset_store.music = sfMusic_createFromFile(filename);
+        break;
+    case WAV: new->type = T_SOUND;
+        new->asset_store.sound = sfSoundBuffer_createFromFile(filename);
+        break;
+    case TTF: new->type = T_FONT;
+        new->asset_store.font = sfFont_createFromFile(filename);
+        break;
+    case JPG: new->type = T_TEXTURE;
+        new->asset_store.texture = sfTexture_createFromFile(filename, NULL);
+        break;
+    default: break;
+    }
 }
 
 void load_asset_fromfile(struct dirent *toload, asset_store_t **store)
@@ -33,24 +58,12 @@ void load_asset_fromfile(struct dirent *toload, asset_store_t **store)
         return;
     }
     new->name = my_strdup(toload->d_name);
-    if (my_strcmp(ext, ".png") || my_strcmp(ext, ".jpg")) {
-        new->type = T_TEXTURE;
-        new->asset_store.texture = sfTexture_createFromFile(filename, NULL);
-    } else if (my_strcmp(ext, ".ttf")) {
-        new->type = T_FONT;
-        new->asset_store.font = sfFont_createFromFile(filename);
-    } else if (my_strcmp(ext, ".ogg")) {
-        new->type = T_MUSIC;
-        new->asset_store.music = sfMusic_createFromFile(filename);
-    } else if (my_strcmp(ext, ".wav")) {
-        new->type = T_SOUND;
-        new->asset_store.sound = sfSoundBuffer_createFromFile(filename);
-    }
+    asset_type_define(new, ext, filename);
     new->next = *store;
     *store = new;
     free(filename);
 }
-// TODO : Can load sounds into a soundbuffer.
+
 asset_store_t *load_assets(void)
 {
     DIR *scandir = opendir("assets/");

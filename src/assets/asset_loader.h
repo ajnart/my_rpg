@@ -14,7 +14,6 @@
 
 typedef enum { T_TEXTURE, T_FONT, T_SOUND, T_MUSIC } asset_type_t;
 
-
 typedef struct event_state {
     sfEventType type;
     char *data;
@@ -32,6 +31,8 @@ typedef struct asset_node {
     } asset_store;
     struct asset_node *next;
 } asset_store_t;
+
+asset_store_t *g_assets;
 
 asset_store_t *load_assets(void);
 
