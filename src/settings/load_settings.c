@@ -14,12 +14,10 @@
 sfKeys_t *load_keys(void)
 {
     sfKeys_t *ret = malloc(sizeof(sfKeys_t));
-    char **settings;
+    char **settings = NULL;
     int fd = open("settings.csv", O_RDONLY);
     int i = 0;
 
-    if (fd < 0)
-        return NULL;
     for (i = 0; i < 4; i++)
         get_next_line(fd);
     settings = my_str_to_wordtab(get_next_line(fd), ',');
@@ -30,7 +28,7 @@ sfKeys_t *load_keys(void)
     ret->pause = settings[4];
     ret->inv = settings[5];
     if (__DEBUG__)
-        my_printf("[D]:\nU: %s\tL: %s\nD: %s\tR: %s\nP: %sInv:%s\n", 
+        my_printf("[D]:\nU: %s\tL: %s\nD: %s\tR: %s\nP: %sInv:%s\n",
         ret->up, ret->left, ret->down, ret->right, ret->pause, ret->inv);
     close(fd);
     return ret;
@@ -41,11 +39,11 @@ settings_t *load_settings(void)
     settings_t *ret = malloc(sizeof(settings_t));
     char **settings;
     int fd = open("settings.csv", O_RDONLY);
+
     if (fd < 0)
         return NULL;
     get_next_line(fd);
     settings = my_str_to_wordtab(get_next_line(fd), ',');
-
     ret->WH = my_getnbr(settings[0]);
     ret->WW = my_getnbr(settings[1]);
     ret->volume = my_getnbr(settings[2]);

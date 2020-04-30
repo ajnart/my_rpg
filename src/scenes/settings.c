@@ -38,7 +38,7 @@ void messages_settings(sfRenderWindow *win)
         win, "font.ttf", (sfVector3f){WW * 0.2, WH * 0.1, 0});
     print_message(my_sprintf("Volume : %d", settings->volume),
         win, "font.ttf", (sfVector3f){WW * 0.2, WH * 0.2, 0});
-    print_message("Emitter:", 
+    print_message("Emitter:",
         win, "font.ttf", (sfVector3f){WW * 0.2, WH * 0.25, 0});
 }
 

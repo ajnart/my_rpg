@@ -9,11 +9,12 @@
 #include "asset_loader.h"
 #include "main.h"
 #include "lib.h"
-#define PNG 6383219704
-#define OGG 6383218384
-#define WAV 6383226913
-#define JPG 6383213236
-#define TTF 6383224257
+
+#define PNG (6383219704)
+#define OGG (6383218384)
+#define WAV (6383226913)
+#define JPG (6383213236)
+#define TTF (6383224257)
 
 char *get_asset_fullpath(char *filename)
 {
@@ -67,7 +68,6 @@ void load_asset_fromfile(struct dirent *toload, asset_store_t **store)
 asset_store_t *load_assets(void)
 {
     DIR *scandir = opendir("assets/");
-    listDir("assets");
     struct dirent *toload;
     asset_store_t *ret = NULL;
 

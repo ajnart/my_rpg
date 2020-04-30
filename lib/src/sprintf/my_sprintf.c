@@ -36,9 +36,9 @@ int add_str_to_str(char *buffer, char *to_add)
 int my_sprintf_flag(char flag, char *buffer, va_list argptr)
 {
     if (flag == 's')
-        return(add_str_to_str(buffer, va_arg(argptr, char *))-2);
+        return (add_str_to_str(buffer, va_arg(argptr, char *))-2);
     if (flag == 'd')
-        return(add_int_to_str(buffer, va_arg(argptr, int))-2);
+        return (add_int_to_str(buffer, va_arg(argptr, int))-2);
     return (0);
 }
 
@@ -51,9 +51,8 @@ char *my_sprintf(char *str, ...)
     int offset = 0;
     while (str[index]) {
         if (str[index] == '%') {
-            index += 1;
-            offset += my_sprintf_flag(str[index], 
-                buffer+index-1+offset, argptr);
+        index += 1;
+        offset += my_sprintf_flag(str[index], buffer+index-1+offset, argptr);
         }
         else
             buffer[index + offset] = str[index];
@@ -61,5 +60,5 @@ char *my_sprintf(char *str, ...)
     }
     buffer[index+offset] = '\0';
     va_end(argptr);
-    return(my_strdup(buffer));
+    return (my_strdup(buffer));
 }
