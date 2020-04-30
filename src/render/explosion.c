@@ -5,20 +5,18 @@
 ** explosion.c
 */
 
-#include "main.h"
-#include "emitter.h"
-#include "lib.h"
 #include "rpg.h"
+#include "lib.h"
 
-emitter_t *emitter_setup(int max_div, int number_div, int range_div);
-
-void explosion(sfRenderWindow *win , sfVector2f pos)
+void explosion(sfRenderWindow *win, char *str)
 {
+    sfVector2i pos = sfMouse_getPositionRenderWindow(win);
     sfSprite *sprite = sfSprite_create();
-    print_message("Switching to settings...", win, "font.ttf",
-        (sfVector3f){settings->WW*0.4, settings->WH*0.7, 0});
-    sfRenderWindow_display(win);
     sfTime time;
+
+    print_message(my_sprintf("Loading... %s pressed...", str),
+        win, "font.ttf", (sfVector3f){pos.x, pos.y, 0});
+    sfRenderWindow_display(win);
     time.microseconds = 400000;
     sfSleep(time);
 }
