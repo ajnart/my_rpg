@@ -26,11 +26,10 @@ void draw_knight_idle(sfRenderWindow *win, knight_s *knight)
 void draw_knight_walking(sfRenderWindow *win, knight_s *knight)
 {
     if (get_elapsed_time(knight->render.clock) > 0.1) {
-        /*if (knight->render.rect.left >= 768)
-            knight->render.rect.left += 64;
+        if (knight->render.rect.left <= 768)
+            knight->render.rect.left += 96;
         else
-            knight->render.rect.left = 0;*/
-        knight->render.rect.left = 0;
+            knight->render.rect.left = 0;
         sfSprite_setTexture(knight->render.sprite,
             find_asset_byname("Run.png")->asset_store.texture, sfTrue);
         sfSprite_setTextureRect(knight->render.sprite, knight->render.rect);
