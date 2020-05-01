@@ -10,17 +10,18 @@
 
 void intro_particles(sfRenderWindow *win, int x, int y, emitter_t *emitter)
 {
-    display_particles(win, emitter, (sfVector2i){x, y});
+    particles_set_form(emitter, "random");
+    display_particles(win, emitter, sfMouse_getPositionRenderWindow(win));
 }
 
 void while_intro(sfRenderWindow *window, sfSprite *sprite, sfIntRect rect)
 {
     int i = 0;
     sfEvent event;
-    emitter_t *emitter = emitter_setup(300, 2, 4, (sfVector3f){-1, 255, 255});
+    emitter_t *emitter = emitter_setup(120, 30, 30, (sfVector3f){-1, 255, 255});
     for (i = 0; i < 264; i++) {
         while (sfRenderWindow_pollEvent(window, &event))
-            if ((int)event.type == sfEvtMouseButtonPressed)
+            if ((int)event.type == sfEvtMouseButtonReleased)
                 i = 264;
         sfRenderWindow_clear(window, sfBlack);
         print_message("Press left click to skip", window,
@@ -29,12 +30,10 @@ void while_intro(sfRenderWindow *window, sfSprite *sprite, sfIntRect rect)
         sfRenderWindow_drawSprite(window, sprite, NULL);
         intro_particles(window, settings->WW/2, settings->WH*0.95, emitter);
         sfRenderWindow_display(window);
-        if (rect.left == 11520) {
-            rect.top += 540;
-            rect.left = 0;
-        }
+        if (rect.left == 11520) { rect.top += 540; rect.left = 0; }
         rect.left += 960;
     }
+    emitter_cleanup(emitter);
 }
 
 void play_intro(sfRenderWindow *window)

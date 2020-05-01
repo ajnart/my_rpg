@@ -43,6 +43,7 @@ void hdl_click(sfEvent evt, sfRenderWindow *win, event_st *state)
 const struct flagoptions ptr_flags[] =
 {
     {sfEvtMouseButtonPressed, &hdl_click},
+    {sfEvtMouseButtonReleased, &hdl_click},
     {sfEvtKeyPressed, &hdl_key},
     {sfEvtClosed, &hdl_close},
     {-1, NULL},

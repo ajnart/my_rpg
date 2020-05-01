@@ -32,10 +32,10 @@ void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft)
         s = sfSound_create();
         sfSound_setBuffer(s, find_asset_byname("sound.wav")->asset_store.sound);
         sfSound_play(s);
-        update_notifs(win, 60);
+        update_notifs(win, lifeleft);
     }
     else {
-        print_message(string, win, 1, (sfVector3f){0, 0, 1});
+        print_message(string, win, 1.2, (sfVector3f){0, 0, 1});
         print_message(substring, win, 1, (sfVector3f){0, WH*0.04, 1});
     }
     if (lifeleft == 0)

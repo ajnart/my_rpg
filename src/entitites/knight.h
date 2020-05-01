@@ -15,7 +15,8 @@ typedef struct knight_render {
     sfIntRect rect;
     sfVector2f position;
     sfSprite *sprite;
-};
+    sfClock *clock;
+} knight_render;
 
 typedef struct knight_stats {
     int health;
@@ -24,9 +25,11 @@ typedef struct knight_stats {
     int strenght;
     int luck;
     int mobility;
-};
+} knight_stats;
 
 typedef struct knight_struct {
     struct knight_render render;
     struct knight_stats stats;
 } knight_s;
+
+void draw_knight(sfRenderWindow *win, knight_s *knight);

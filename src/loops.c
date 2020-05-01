@@ -15,6 +15,7 @@ void perform_loops(sfRenderWindow *win, void (**loop)(),
 {
     static sfEvent event;
 
+    state->data = "none";
     sfRenderWindow_clear(win, (sfColor){0, 0, 0, 255});
     set_btn_color(win);
     while (sfRenderWindow_pollEvent(win, &event))
@@ -27,5 +28,6 @@ void perform_loops(sfRenderWindow *win, void (**loop)(),
     draw_buttons(win, g_buttons);
     if (settings->emitter == 1)
         display_particles(win, emitter, sfMouse_getPositionRenderWindow(win));
+    update_notifs(win, 0);
     sfRenderWindow_display(win);
 }

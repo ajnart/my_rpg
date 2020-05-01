@@ -9,24 +9,35 @@
 
 void draw_knight_idle(sfRenderWindow *win, knight_s *knight)
 {
-    if (knight->render.rect.left != 960)
-        knight->render.rect.left += 64;
-    else
-        knight->render.rect.left = 0;
-    sfSprite_setTexture(knight->render.sprite,
-        find_asset_byname("Idle.png")->asset_store.texture, sfTrue);
-    sfSprite_setTextureRect(knight->render.sprite, knight->render.rect);
+    if (get_elapsed_time(knight->render.clock) > 0.1) {
+        if (knight->render.rect.left <= 887)
+            knight->render.rect.left += 64;
+        else
+            knight->render.rect.left = 0;
+        sfSprite_setTexture(knight->render.sprite,
+            find_asset_byname("Idle.png")->asset_store.texture, sfTrue);
+        sfSprite_setTextureRect(knight->render.sprite, knight->render.rect);
+        sfSprite_setScale(knight->render.sprite,
+        (sfVector2f){(double)settings->WW / 400, (double)settings->WH / 400});
+        sfClock_restart(knight->render.clock);
+    }
 }
 
 void draw_knight_walking(sfRenderWindow *win, knight_s *knight)
 {
-    if (knight->render.rect.left != 768)
-        knight->render.rect.left += 64;
-    else
+    if (get_elapsed_time(knight->render.clock) > 0.1) {
+        /*if (knight->render.rect.left >= 768)
+            knight->render.rect.left += 64;
+        else
+            knight->render.rect.left = 0;*/
         knight->render.rect.left = 0;
-    sfSprite_setTexture(knight->render.sprite,
-        find_asset_byname("Run.png")->asset_store.texture, sfTrue);
-    sfSprite_setTextureRect(knight->render.sprite, knight->render.rect);
+        sfSprite_setTexture(knight->render.sprite,
+            find_asset_byname("Run.png")->asset_store.texture, sfTrue);
+        sfSprite_setTextureRect(knight->render.sprite, knight->render.rect);
+        sfSprite_setScale(knight->render.sprite,
+        (sfVector2f){(double)settings->WW / 400, (double)settings->WH / 400});
+        sfClock_restart(knight->render.clock);
+    }
 }
 
 void draw_knight_attacking(sfRenderWindow *win, knight_s *knight)

@@ -48,6 +48,7 @@ void explosion(sfRenderWindow *win, char *str);
 //  ".jpg" = 6383213236
 //  ".ttf" = 6383224257
 void asset_type_define(asset_store_t *new, char *ext, char *filename);
+float get_elapsed_time(sfClock *clock);
 void update_notifs(sfRenderWindow *win, int request);
 void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft);
 

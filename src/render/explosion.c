@@ -8,15 +8,10 @@
 #include "rpg.h"
 #include "lib.h"
 
-void explosion(sfRenderWindow *win, char *str)
+float get_elapsed_time(sfClock *clock)
 {
-    sfVector2i pos = sfMouse_getPositionRenderWindow(win);
-    sfSprite *sprite = sfSprite_create();
-    sfTime time;
+    sfTime time = sfClock_getElapsedTime(clock);
+    float seconds = time.microseconds / 1000000.0;
 
-    print_message(my_sprintf("Loading... %s pressed...", str),
-        win, 1, (sfVector3f){pos.x, pos.y, 0});
-    sfRenderWindow_display(win);
-    time.microseconds = 400000;
-    sfSleep(time);
+    return (seconds);
 }
