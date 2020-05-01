@@ -12,7 +12,9 @@
 typedef struct knight_render {
     int state;
     int state_frame;
-    sfIntRect rect;
+    sfIntRect rect_i;
+    sfIntRect rect_w;
+    sfIntRect rect_a;
     sfVector2f position;
     sfSprite *sprite;
     sfClock *clock;

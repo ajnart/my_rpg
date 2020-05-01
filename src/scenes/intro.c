@@ -30,8 +30,10 @@ void while_intro(sfRenderWindow *window, sfSprite *sprite, sfIntRect rect)
         sfRenderWindow_drawSprite(window, sprite, NULL);
         intro_particles(window, settings->WW/2, settings->WH*0.95, emitter);
         sfRenderWindow_display(window);
-        if (rect.left == 11520) { rect.top += 540; rect.left = 0; }
-        rect.left += 960;
+        if (rect.left == 11520) {
+            rect.top += 540;
+            rect.left = 0;
+        } rect.left += 960;
     }
     emitter_cleanup(emitter);
 }

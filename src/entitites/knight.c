@@ -10,44 +10,55 @@
 void draw_knight_idle(sfRenderWindow *win, knight_s *knight)
 {
     if (get_elapsed_time(knight->render.clock) > 0.1) {
-        if (knight->render.rect.left <= 887)
-            knight->render.rect.left += 64;
+        if (knight->render.rect_i.left <= 887)
+            knight->render.rect_i.left += 64;
         else
-            knight->render.rect.left = 0;
+            knight->render.rect_i.left = 0;
         sfSprite_setTexture(knight->render.sprite,
             find_asset_byname("Idle.png")->asset_store.texture, sfTrue);
-        sfSprite_setTextureRect(knight->render.sprite, knight->render.rect);
+        sfSprite_setTextureRect(knight->render.sprite, knight->render.rect_i);
         sfSprite_setScale(knight->render.sprite,
         (sfVector2f){(double)settings->WW / 400, (double)settings->WH / 400});
         sfClock_restart(knight->render.clock);
     }
+    knight->render.rect_a.left = 0;
+    knight->render.rect_w.left = 0;
 }
 
 void draw_knight_walking(sfRenderWindow *win, knight_s *knight)
 {
     if (get_elapsed_time(knight->render.clock) > 0.1) {
-        if (knight->render.rect.left <= 768)
-            knight->render.rect.left += 96;
+        if (knight->render.rect_w.left <= 447)
+            knight->render.rect_w.left += 64;
         else
-            knight->render.rect.left = 0;
+            knight->render.rect_w.left = 0;
         sfSprite_setTexture(knight->render.sprite,
             find_asset_byname("Run.png")->asset_store.texture, sfTrue);
-        sfSprite_setTextureRect(knight->render.sprite, knight->render.rect);
+        sfSprite_setTextureRect(knight->render.sprite, knight->render.rect_w);
         sfSprite_setScale(knight->render.sprite,
         (sfVector2f){(double)settings->WW / 400, (double)settings->WH / 400});
         sfClock_restart(knight->render.clock);
     }
+    knight->render.rect_a.left = 0;
+    knight->render.rect_i.left = 0;
 }
 
 void draw_knight_attacking(sfRenderWindow *win, knight_s *knight)
 {
-    if (knight->render.rect.left != 3200)
-        knight->render.rect.left += 64;
-    else
-        knight->render.rect.left = 1728;
-    sfSprite_setTexture(knight->render.sprite,
-        find_asset_byname("Attack.png")->asset_store.texture, sfTrue);
-    sfSprite_setTextureRect(knight->render.sprite, knight->render.rect);
+    if (get_elapsed_time(knight->render.clock) > 0.1) {
+        if (knight->render.rect_a.left != 3200)
+            knight->render.rect_a.left += 64;
+        else
+            knight->render.rect_a.left = 1728;
+        sfSprite_setTexture(knight->render.sprite,
+            find_asset_byname("Attack.png")->asset_store.texture, sfTrue);
+        sfSprite_setTextureRect(knight->render.sprite, knight->render.rect_a);
+        sfSprite_setScale(knight->render.sprite,
+        (sfVector2f){(double)settings->WW / 400, (double)settings->WH / 400});
+        sfClock_restart(knight->render.clock);
+    }
+    knight->render.rect_i.left = 0;
+    knight->render.rect_w.left = 0;
 }
 
 void draw_knight(sfRenderWindow *win, knight_s *knight)

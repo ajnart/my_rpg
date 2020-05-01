@@ -15,7 +15,6 @@ void perform_loops(sfRenderWindow *win, void (**loop)(),
 {
     static sfEvent event;
 
-    state->data = "none";
     sfRenderWindow_clear(win, (sfColor){0, 0, 0, 255});
     set_btn_color(win);
     while (sfRenderWindow_pollEvent(win, &event))

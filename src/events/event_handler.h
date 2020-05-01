@@ -18,4 +18,9 @@ struct flagoptions
     void (*function)();
 };
 
+void hdl_key(sfEvent evt, sfRenderWindow *win, event_st *state);
+void hdl_close(sfEvent evt, sfRenderWindow *win, event_st *state);
+void hdl_released(sfEvent evt, sfRenderWindow *win, event_st *state);
+void hdl_click(sfEvent evt, sfRenderWindow *win, event_st *state);
+
 #endif
