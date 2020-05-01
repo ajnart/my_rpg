@@ -13,17 +13,17 @@ void hdl_key(sfEvent evt, sfRenderWindow *win, event_st *state)
 {
     if (evt.key.code == sfKeyM && evt.key.control)
         settings->emitter = settings->emitter == 0 ? 1 : 0;
-    if ((char)evt.text.unicode+65 == settings->keys->up[0])
+    if ((char)evt.text.unicode + 65 == settings->keys->up[0])
         state->data = "up";
-    if ((char)evt.text.unicode+65 == settings->keys->left[0])
-        my_printf("Left pressed bro.\n");
-    if ((char)evt.text.unicode+65 == settings->keys->down[0])
-        my_printf("Down pressed bro.\n");
-    if ((char)evt.text.unicode+65 == settings->keys->right[0])
-        my_printf("Right pressed bro.\n");
-    if ((char)evt.text.unicode+65 == settings->keys->inv[0])
-        my_printf("Inv pressed bro.\n");
-    if ((char)evt.text.unicode+65 == settings->keys->pause[0])
+    if ((char)evt.text.unicode + 65 == settings->keys->left[0])
+        state->data = "left";
+    if ((char)evt.text.unicode + 65 == settings->keys->down[0])
+        state->data = "down";
+    if ((char)evt.text.unicode + 65 == settings->keys->right[0])
+        state->data = "right";
+    if ((char)evt.text.unicode + 65 == settings->keys->inv[0])
+        state->data = "inv";
+    if ((char)evt.text.unicode + 65 == settings->keys->pause[0])
         state->data = "paused";
 }
 

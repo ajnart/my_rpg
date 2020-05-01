@@ -31,11 +31,12 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
 {
     static t_para *parallax;
     static knight_s knight;
+
     if (!parallax) {
         init_knight(&knight);
         parallax = set_parallax();
     }
-    draw_parallax(win, parallax);
+    draw_parallax(win, parallax, state);
     draw_knight(win, &knight);
     update_notifs(win, 0);
     settings->status = "Game";
@@ -47,4 +48,5 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
             state->data = NULL;
         }
     }
+    state->data = "none";
 }

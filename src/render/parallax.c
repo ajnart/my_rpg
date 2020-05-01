@@ -5,6 +5,7 @@
 ** parallax.c
 */
 
+#include "lib.h"
 #include "rpg.h"
 #include "parallax.h"
 
@@ -40,16 +41,35 @@ t_para *set_parallax(void)
     return (para);
 }
 
-void draw_parallax(sfRenderWindow *win, t_para *para)
+void direction_parallax(t_para *para, int move_right, int move_left)
 {
-    while (para) {
-        if (para->rect.left == settings->WW) {
+    if (move_right == 1) {
+        if (para->rect.left >= settings->WW) {
             para->rect.left = 0;
             sfSprite_setTextureRect(para->sprite, para->rect);
         } else {
             para->rect.left += para->speed;
             sfSprite_setTextureRect(para->sprite, para->rect);
         }
+    }
+    if (move_left == 1) {
+        if (para->rect.left <= 0) {
+            para->rect.left = 1280;
+            sfSprite_setTextureRect(para->sprite, para->rect);
+        } else {
+            para->rect.left -= para->speed;
+            sfSprite_setTextureRect(para->sprite, para->rect);
+        }
+    }
+}
+
+void draw_parallax(sfRenderWindow *win, t_para *para, event_st *state)
+{
+    int move_right = state->data && my_strcmp(state->data, "right");
+    int move_left = state->data && my_strcmp(state->data, "left");
+
+    while (para) {
+        direction_parallax(para, move_right, move_left);
         sfRenderWindow_drawSprite(win, para->sprite, NULL);
         para = para->next;
     }
