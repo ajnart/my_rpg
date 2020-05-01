@@ -25,7 +25,11 @@ void draw_knight_translate(sfRenderWindow *win, knight_s *knight, int way)
     }
 }
 
-void move_knight(knight_s *knight)
+void move_knight(knight_s *knight, int way)
 {
-    sfVector2f pos = knight->render.sprite
+    if (way == 1) {
+        if (knight->render.position.x < (double)settings->WW / 3) {
+            knight->render.position.x += 1;
+        }
+    }
 }
