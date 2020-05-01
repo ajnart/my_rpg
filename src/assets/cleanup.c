@@ -9,6 +9,7 @@
 #include "rpg.h"
 #include "buttons.h"
 #include "lib.h"
+#include <stdarg.h>
 
 void destroy_assets(asset_store_t *store)
 {
@@ -44,10 +45,33 @@ void destroy_buttons(button_store_t **store)
     *store = NULL;
 }
 
-void cleanup(sfRenderWindow *win, asset_store_t *assets, settings_t *set)
+void mult_free(int how_much, ...)
 {
-    sfRenderWindow_close(win);
-    destroy_assets(g_assets);
+    va_list ap;
+    va_start(ap, how_much);
+    char *freeing = NULL;
+    int i = 0;
+
+    while (i < how_much) {
+        freeing = va_arg(ap, char *);
+        free(freeing);
+        i++;
+    }
+}
+
+void destroy_settings(settings_t *s)
+{
+    mult_free(7, s->keys->down, s->keys->up, s->keys->inv, 
+        s->keys->pause, s->keys->right, s->keys->left, s->name);
+    free(s->keys);
+}
+
+void cleanup(sfRenderWindow *w, asset_store_t *a, settings_t *s, emitter_t *e)
+{
+    sfRenderWindow_close(w);
+    destroy_settings(s);
+    destroy_assets(a);
+    emitter_cleanup(e);
     destroy_buttons(&g_buttons);
     my_printf("%c[1;33m",27);
     my_printf("Fin du my_rpg. Merci d'avoir joué 💗\n");

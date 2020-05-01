@@ -55,7 +55,7 @@ int my_rpg(int ac, char **av, char **env)
     state->type = sfEvtJoystickButtonReleased;
     while (sfRenderWindow_isOpen(window))
         perform_loops(window, &loop, &loop_old, state, emitter);
-    cleanup(window, g_assets, settings);
+    cleanup(window, g_assets, settings, emitter);
     return (0);
 }
 
