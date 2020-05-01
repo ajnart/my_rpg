@@ -61,10 +61,8 @@ void draw_knight_attacking(sfRenderWindow *win, knight_s *knight)
     knight->render.rect_w.left = 0;
 }
 
-void draw_knight(sfRenderWindow *win, knight_s *knight)
+void case_knight(sfRenderWindow *win, knight_s *knight)
 {
-    if (!knight->render.sprite)
-        knight->render.sprite = sfSprite_create();
     switch (knight->render.state) {
     case 1:
         draw_knight_idle(win, knight);
@@ -78,9 +76,21 @@ void draw_knight(sfRenderWindow *win, knight_s *knight)
     case 4:
         draw_knight_walking(win, knight, -1);
         break;
-    default:
+    case 5:
+        draw_knight_translate(win, knight, 1);
         break;
-    }
+    case 6:
+        draw_knight_translate(win, knight, 2);
+        break;
+    default:
+        break; }
+}
+
+void draw_knight(sfRenderWindow *win, knight_s *knight)
+{
+    if (!knight->render.sprite)
+        knight->render.sprite = sfSprite_create();
+    case_knight(win, knight);
     sfSprite_setPosition(knight->render.sprite, knight->render.position);
     sfRenderWindow_drawSprite(win, knight->render.sprite, NULL);
 }

@@ -23,7 +23,7 @@ void init_knight(knight_s *knight)
 {
     knight->render.sprite = sfSprite_create();
     knight->render.position =
-        (sfVector2f){settings->WW * 0.1, settings->WH * 0.88};
+        (sfVector2f){settings->WW * 0.1, settings->WH * 0.92};
     knight->render.state = 1;
     knight->render.rect_i = (sfIntRect){0, 0, 64, 64};
     knight->render.rect_w = (sfIntRect){0, 0, 64, 64};
@@ -48,6 +48,10 @@ void set_movement(event_st *state, knight_s *knight)
         knight->render.state = 3;
     if (state->data && my_strcmp(state->data, "left"))
         knight->render.state = 4;
+    if (state->data && my_strcmp(state->data, "up"))
+        knight->render.state = 5;
+    if (state->data && my_strcmp(state->data, "down"))
+        knight->render.state = 6;
     if (sfKeyboard_isKeyPressed(sfKeySpace))
         knight->render.is_attacking = 1;
 }

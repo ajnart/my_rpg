@@ -36,3 +36,4 @@ typedef struct knight_struct {
 } knight_s;
 
 void draw_knight(sfRenderWindow *win, knight_s *knight);
+void draw_knight_translate(sfRenderWindow *win, knight_s *knight, int way);
