@@ -66,7 +66,7 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
         parallax = set_parallax();
     }
     set_movement(state, &knight);
-    draw_parallax(win, parallax, state);
+    draw_parallax(win, parallax, state, knight.render.position);
     draw_knight(win, &knight);
     update_notifs(win, 0);
     settings->status = "Game";

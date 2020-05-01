@@ -28,8 +28,14 @@ void draw_knight_translate(sfRenderWindow *win, knight_s *knight, int way)
 void move_knight(knight_s *knight, int way)
 {
     if (way == 1) {
-        if (knight->render.position.x < (double)settings->WW / 3) {
-            knight->render.position.x += 1;
+        if (knight->render.position.x < (double)settings->WW / 6 * 5) {
+            knight->render.position.x += settings->WW / 426 *
+            knight->stats.mobility;
+        }
+    }
+    if (way == -1) {
+        if (knight->render.position.x > (double)settings->WW / 6) {
+            knight->render.position.x -= 3;
         }
     }
 }

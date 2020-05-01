@@ -41,7 +41,7 @@ void draw_knight_walking(sfRenderWindow *win, knight_s *knight, int way)
     }
     knight->render.rect_a.left = 0;
     knight->render.rect_i.left = 0;
-
+    move_knight(knight, way);
 }
 
 void draw_knight_attacking(sfRenderWindow *win, knight_s *knight)
