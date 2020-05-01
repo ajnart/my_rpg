@@ -39,7 +39,6 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
     }
     draw_parallax(win, parallax);
     draw_knight(win, knight);
-    update_notifs(win, 0);
     settings->status = "Game";
     print_message(settings->status, win, 1,
         (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
