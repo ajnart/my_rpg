@@ -15,7 +15,7 @@ void append_parallax(t_para **para, char *pic, int speed)
 
     element->sprite = sfSprite_create();
     element->texture = find_asset_byname(pic)->asset_store.texture;
-    element->rect = (sfIntRect){0, 0, 1280, 720};
+    element->rect = (sfIntRect){0, 0, settings->WW, settings->WH};
     element->speed = speed;
     element->next = NULL;
     sfSprite_setTexture(element->sprite, element->texture, sfFalse);
@@ -43,7 +43,7 @@ t_para *set_parallax(void)
 void draw_parallax(sfRenderWindow *win, t_para *para)
 {
     while (para) {
-        if (para->rect.left == 1280) {
+        if (para->rect.left == settings->WW) {
             para->rect.left = 0;
             sfSprite_setTextureRect(para->sprite, para->rect);
         } else {
