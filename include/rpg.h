@@ -25,7 +25,8 @@ settings_t *settings;
 // Number : Number of particules
 // Max : Max size
 // Range : Max range
-emitter_t *emitter_setup(int max_div, int number_div, int range_div);
+emitter_t *emitter_setup(int max_div, int number_div,
+    int range_div, sfVector3f color);
 void play_music(sfRenderWindow *window, char *song);
 
 // * Main loop, calls the other loops:
@@ -33,7 +34,7 @@ void play_music(sfRenderWindow *window, char *song);
 void perform_loops(sfRenderWindow *window, void (**loop)(),
     void (**loop_old)(), event_st *state, emitter_t *emitter);
 void handle_events(sfEvent evt, sfRenderWindow *win, event_st *state);
-void print_message(char *str, sfRenderWindow *win, char *s_ft,
+void print_message(char *str, sfRenderWindow *win, int size,
     sfVector3f info);
 sfRectangleShape *create_full_rect(sfFloatRect pos,
     sfTexture *tx, sfColor fill);
@@ -47,5 +48,7 @@ void explosion(sfRenderWindow *win, char *str);
 //  ".jpg" = 6383213236
 //  ".ttf" = 6383224257
 void asset_type_define(asset_store_t *new, char *ext, char *filename);
+void update_notifs(sfRenderWindow *win, int request);
+void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft);
 
 #endif

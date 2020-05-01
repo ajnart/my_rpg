@@ -22,6 +22,11 @@ typedef struct button {
 
 button_store_t *g_buttons;
 
+// ORDER OF THE VALUES
+// float left;
+// float top;
+// float width;
+// float height;
 void add_button(button_store_t **store, char *id,
     sfRectangleShape *render, char *text);
 
