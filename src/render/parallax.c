@@ -14,7 +14,7 @@ void append_parallax(t_para **para, char *pic, int speed)
     t_para *element = malloc(sizeof(t_para));
 
     element->sprite = sfSprite_create();
-    element->texture = sfTexture_createFromFile(pic, NULL);
+    element->texture = find_asset_byname(pic)->asset_store.texture;
     element->rect = (sfIntRect){0, 0, settings->WW, settings->WH};
     element->speed = speed;
     element->next = NULL;
@@ -34,9 +34,9 @@ t_para *set_parallax(void)
 {
     t_para *para = NULL;
 
-    append_parallax(&para, "assets/background/", 2);
-    append_parallax(&para, "back2.png", 5);
-    append_parallax(&para, "back3.png", 10);
+    append_parallax(&para, "Foreground.png", 2);
+    append_parallax(&para, "Back2.png", 5);
+    append_parallax(&para, "Back1.png", 10);
     return (para);
 }
 

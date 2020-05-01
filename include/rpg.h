@@ -37,8 +37,7 @@ void print_message(char *str, sfRenderWindow *win, char *s_ft,
     sfVector3f info);
 sfRectangleShape *create_full_rect(sfFloatRect pos,
     sfTexture *tx, sfColor fill);
-void cleanup(sfRenderWindow *win, asset_store_t *assets, settings_t *set);
-void send_notifs(sfRenderWindow *win, char *str, char *substr);
+void cleanup(sfRenderWindow *w, asset_store_t *a, settings_t *s, emitter_t *e);
 void explosion(sfRenderWindow *win, char *str);
 
 // * Precalculated hases :
