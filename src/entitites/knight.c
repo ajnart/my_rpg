@@ -17,16 +17,17 @@ void draw_knight_idle(sfRenderWindow *win, knight_s *knight)
         sfSprite_setTexture(knight->render.sprite,
             find_asset_byname("Idle.png")->asset_store.texture, sfTrue);
         sfSprite_setTextureRect(knight->render.sprite, knight->render.rect_i);
-        sfSprite_setScale(knight->render.sprite,
-        (sfVector2f){(double)settings->WW / 400, (double)settings->WH / 400});
         sfClock_restart(knight->render.clock);
     }
     knight->render.rect_a.left = 0;
     knight->render.rect_w.left = 0;
 }
 
-void draw_knight_walking(sfRenderWindow *win, knight_s *knight)
+void draw_knight_walking(sfRenderWindow *win, knight_s *knight, int way)
 {
+    sfVector2f scale = {(double)settings->WW / 400 * way,
+    (double)settings->WH / 400};
+
     if (get_elapsed_time(knight->render.clock) > 0.1) {
         if (knight->render.rect_w.left <= 447)
             knight->render.rect_w.left += 64;
@@ -35,8 +36,7 @@ void draw_knight_walking(sfRenderWindow *win, knight_s *knight)
         sfSprite_setTexture(knight->render.sprite,
             find_asset_byname("Run.png")->asset_store.texture, sfTrue);
         sfSprite_setTextureRect(knight->render.sprite, knight->render.rect_w);
-        sfSprite_setScale(knight->render.sprite,
-        (sfVector2f){(double)settings->WW / 400, (double)settings->WH / 400});
+        sfSprite_setScale(knight->render.sprite, scale);
         sfClock_restart(knight->render.clock);
     }
     knight->render.rect_a.left = 0;
@@ -46,10 +46,10 @@ void draw_knight_walking(sfRenderWindow *win, knight_s *knight)
 void draw_knight_attacking(sfRenderWindow *win, knight_s *knight)
 {
     if (get_elapsed_time(knight->render.clock) > 0.1) {
-        if (knight->render.rect_a.left != 3200)
+        if (knight->render.rect_a.left != 448)
             knight->render.rect_a.left += 64;
         else
-            knight->render.rect_a.left = 1728;
+            knight->render.is_attacking = 0;
         sfSprite_setTexture(knight->render.sprite,
             find_asset_byname("Attack.png")->asset_store.texture, sfTrue);
         sfSprite_setTextureRect(knight->render.sprite, knight->render.rect_a);
@@ -65,16 +65,18 @@ void draw_knight(sfRenderWindow *win, knight_s *knight)
 {
     if (!knight->render.sprite)
         knight->render.sprite = sfSprite_create();
-    switch (knight->render.state)
-    {
+    switch (knight->render.state) {
     case 1:
         draw_knight_idle(win, knight);
         break;
     case 2:
-        draw_knight_walking(win, knight);
+        draw_knight_walking(win, knight, 1);
         break;
     case 3:
         draw_knight_attacking(win, knight);
+        break;
+    case 4:
+        draw_knight_walking(win, knight, -1);
         break;
     default:
         break;

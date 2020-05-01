@@ -37,6 +37,7 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 void buttons_menu(sfRenderWindow *win, int WW, int WH)
 {
     sfTexture *texture = find_asset_byname("button.png")->asset_store.texture;
+
     add_button(&g_buttons, "quit", create_full_rect((sfFloatRect)
         {WW/4, WH * 0.7, WW/2, WH/6}, texture, sfRed),
         "Ragequit");
@@ -48,5 +49,5 @@ void buttons_menu(sfRenderWindow *win, int WW, int WH)
         "Play");
     add_button(&g_buttons, "infos", create_full_rect((sfFloatRect)
         {WW/4, WH * 0.9, WW/2, WH/14}, texture, sfColor_fromRGB(255, 102, 255)),
-        "How tf do you play?");
+        "How to play?");
 }

@@ -28,12 +28,28 @@ void init_knight(knight_s *knight)
     knight->render.rect_i = (sfIntRect){0, 0, 64, 64};
     knight->render.rect_w = (sfIntRect){0, 0, 64, 64};
     knight->render.rect_a = (sfIntRect){0, 0, 64, 64};
+    knight->render.is_attacking = 0;
     knight->render.clock = sfClock_create();
+    sfSprite_setOrigin(knight->render.sprite, (sfVector2f){32, 32});
     sfSprite_setTexture(knight->render.sprite,
         find_asset_byname("Idle.png")->asset_store.texture, sfTrue);
     sfSprite_setTextureRect(knight->render.sprite, knight->render.rect_i);
     sfSprite_setScale(knight->render.sprite,
     (sfVector2f){(double)settings->WW / 400, (double)settings->WH / 400});
+}
+
+void set_movement(event_st *state, knight_s *knight)
+{
+    if (state->data && my_strcmp(state->data, "none"))
+        knight->render.state = 1;
+    if (state->data && my_strcmp(state->data, "right"))
+        knight->render.state = 2;
+    if (knight->render.is_attacking == 1)
+        knight->render.state = 3;
+    if (state->data && my_strcmp(state->data, "left"))
+        knight->render.state = 4;
+    if (sfKeyboard_isKeyPressed(sfKeySpace))
+        knight->render.is_attacking = 1;
 }
 
 void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
@@ -45,10 +61,7 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
         init_knight(&knight);
         parallax = set_parallax();
     }
-    if (state->data && my_strcmp(state->data, "none"))
-        knight.render.state = 1;
-    else if (state->data && my_strcmp(state->data, "right"))
-        knight.render.state = 2;
+    set_movement(state, &knight);
     draw_parallax(win, parallax, state);
     draw_knight(win, &knight);
     update_notifs(win, 0);

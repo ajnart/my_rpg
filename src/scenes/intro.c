@@ -19,6 +19,7 @@ void while_intro(sfRenderWindow *window, sfSprite *sprite, sfIntRect rect)
     int i = 0;
     sfEvent event;
     emitter_t *emitter = emitter_setup(120, 30, 30, (sfVector3f){-1, 255, 255});
+
     for (i = 0; i < 264; i++) {
         while (sfRenderWindow_pollEvent(window, &event))
             if ((int)event.type == sfEvtMouseButtonReleased)

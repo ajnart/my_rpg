@@ -12,6 +12,7 @@
 typedef struct knight_render {
     int state;
     int state_frame;
+    int is_attacking;
     sfIntRect rect_i;
     sfIntRect rect_w;
     sfIntRect rect_a;
