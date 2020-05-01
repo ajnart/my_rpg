@@ -9,8 +9,6 @@
 #define WW (settings->WW)
 #define WH (settings->WH)
 
-void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft);
-
 void update_notifs(sfRenderWindow *win, int request)
 {
     static int lifespan;
@@ -37,8 +35,8 @@ void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft)
         update_notifs(win, 60);
     }
     else {
-        print_message(string, win, "droid.ttf", (sfVector3f){0, 0, 1});
-        print_message(substring, win, "droid.ttf", (sfVector3f){0, WH*0.04, 1});
+        print_message(string, win, 1, (sfVector3f){0, 0, 1});
+        print_message(substring, win, 1, (sfVector3f){0, WH*0.04, 1});
     }
     if (lifeleft == 0)
         sfSound_destroy(s);

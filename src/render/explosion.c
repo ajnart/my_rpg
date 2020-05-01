@@ -15,7 +15,7 @@ void explosion(sfRenderWindow *win, char *str)
     sfTime time;
 
     print_message(my_sprintf("Loading... %s pressed...", str),
-        win, "font.ttf", (sfVector3f){pos.x, pos.y, 0});
+        win, 1, (sfVector3f){pos.x, pos.y, 0});
     sfRenderWindow_display(win);
     time.microseconds = 400000;
     sfSleep(time);

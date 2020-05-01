@@ -11,6 +11,7 @@
 #include "buttons.h"
 #include "scenes.h"
 #include "parallax.h"
+#include "../entitites/knight.h"
 
 void buttons_ingame(sfRenderWindow *win, int WW, int WH)
 {
@@ -18,23 +19,31 @@ void buttons_ingame(sfRenderWindow *win, int WW, int WH)
             {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Send notif");
 }
 
-void send_notifs(sfRenderWindow *win, char *str, char *substr);
+void init_knight(knight_s *knight)
+{
+    knight->render.sprite = sfSprite_create();
+    knight->render.position = (sfVector2f){400, 400};
+}
 
-void update_notifs(sfRenderWindow *win, int request);
+void draw_knight(sfRenderWindow *win, knight_s *knight);
 
 void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
 {
     static t_para *parallax;
-    if (!parallax)
+    static knight_s knight;
+    if (!parallax) {
+        init_knight(&knight);
         parallax = set_parallax();
+    }
     draw_parallax(win, parallax);
+    draw_knight(win, &knight);
     update_notifs(win, 0);
     settings->status = "Game";
-    print_message(settings->status, win, "font.ttf",
+    print_message(settings->status, win, 1,
         (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
         if (my_strcmp(state->data, "notif")) {
-            send_notifs(win, "You have won", "Zbeub");
+            send_notifs(win, "You have won", "Zbeub", 60);
             state->data = NULL;
         }
     }
