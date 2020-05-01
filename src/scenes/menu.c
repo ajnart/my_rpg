@@ -14,17 +14,23 @@
 void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 {
     play_music(win, "music.ogg");
-    print_message("Knight of boulogne !", win, 1,
+    print_message("Knight of boulogne !", win, 2,
         (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
-        explosion(win, state->data);
+        if (my_strcmp(state->data, "play"))
+            send_notifs(win, "Release to play the game !", "", 20);
+        if (my_strcmp(state->data, "settings"))
+            send_notifs(win, "Release to go to the settings..", "", 20);
+        if (my_strcmp(state->data, "quit"))
+            send_notifs(win, "gonna cry ?", "", 20);
+    }
+    if (state->type == sfEvtMouseButtonReleased && state->data) {
         if (my_strcmp(state->data, "play"))
             *loop = &loop_ingame;
         if (my_strcmp(state->data, "settings"))
             *loop = &loop_settings;
         if (my_strcmp(state->data, "quit"))
             sfRenderWindow_close(win);
-        state->data = NULL;
     }
 }
 
