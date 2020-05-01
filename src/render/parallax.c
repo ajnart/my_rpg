@@ -63,7 +63,8 @@ void direction_parallax(t_para *para, int move_right, int move_left)
     }
 }
 
-void draw_parallax(sfRenderWindow *win, t_para *para, event_st *state, sfVector2f pos)
+void draw_parallax(sfRenderWindow *win, t_para *para, event_st *state,
+sfVector2f pos)
 {
     int move_right = state->data && my_strcmp(state->data, "right")
     && pos.x >= settings->WW / 6 * 5;
