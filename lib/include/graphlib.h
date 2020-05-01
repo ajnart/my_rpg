@@ -12,7 +12,7 @@
 #include <SFML/Window.h>
 #include <SFML/Graphics.h>
 
-void print_message(char *str, sfRenderWindow *win, sfFont *font,
+void print_message(char *str, sfRenderWindow *win, int size,
     sfVector3f info);
 
 #endif

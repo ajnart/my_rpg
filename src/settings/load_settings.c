@@ -49,7 +49,7 @@ settings_t *load_settings(void)
     ret->volume = my_getnbr(settings[2]);
     ret->emitter = my_getnbr(settings[3]);
     ret->name = settings[4];
-    ret->status = "Main menu";
+    ret->status = "menu";
     ret->keys = load_keys();
     close(fd);
     return !ret || !settings || !ret->keys ? NULL: ret;

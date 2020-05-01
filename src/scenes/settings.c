@@ -34,13 +34,11 @@ void messages_settings(sfRenderWindow *win)
     int WH = settings->WH;
 
     print_message(my_sprintf("Resolution : %d x %d", WW, WH),
-        win, "font.ttf", (sfVector3f){WW * 0.2, WH * 0.4, 0});
-    print_message(settings->status,
-        win, "font.ttf", (sfVector3f){WW * 0.2, WH * 0.1, 0});
+        win, 1, (sfVector3f){WW * 0.2, WH * 0.4, 0});
     print_message(my_sprintf("Volume : %d", settings->volume),
-        win, "font.ttf", (sfVector3f){WW * 0.2, WH * 0.2, 0});
+        win, 1, (sfVector3f){WW * 0.2, WH * 0.2, 0});
     print_message("Emitter:",
-        win, "font.ttf", (sfVector3f){WW * 0.2, WH * 0.25, 0});
+        win, 1, (sfVector3f){WW * 0.2, WH * 0.25, 0});
 }
 
 void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
