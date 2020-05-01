@@ -41,7 +41,7 @@ sfRectangleShape *render, char *str)
     sfText_setColor(text,
     sfColor_toInteger(newbtn->normal) > 0xFFAAAAAA?sfBlack:sfWhite);
     sfText_setCharacterSize(text, (sfRectangleShape_getSize(render).x +
-    sfRectangleShape_getSize(render).y) / 20);
+    sfRectangleShape_getSize(render).y) / 23);
     bounds = sfText_getLocalBounds(text);
     sfText_setOrigin(text, (sfVector2f) {bounds.width/2, bounds.height/10*12});
     newbtn->text = text;
