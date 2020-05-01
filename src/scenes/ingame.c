@@ -30,13 +30,15 @@ void draw_knight(sfRenderWindow *win, knight_s *knight);
 void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
 {
     static t_para *parallax;
-    static knight_s knight;
+    static knight_s *knight;
+
     if (!parallax) {
-        init_knight(&knight);
+        knight = malloc(sizeof(knight_s));
+        init_knight(knight);
         parallax = set_parallax();
     }
     draw_parallax(win, parallax);
-    draw_knight(win, &knight);
+    draw_knight(win, knight);
     update_notifs(win, 0);
     settings->status = "Game";
     print_message(settings->status, win, 1,
