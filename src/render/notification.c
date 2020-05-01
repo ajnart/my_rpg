@@ -9,25 +9,37 @@
 #define WW (settings->WW)
 #define WH (settings->WH)
 
-void send_notifs(sfRenderWindow *win, char *str, char *substr)
-{
-    static sfSoundBuffer *sb;
-    static sfSound *sound;
+void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft);
 
-    if (!sb || !sound) {
-    sound = sfSound_create();
-    sfSound_setBuffer(sound, find_asset_byname("sound.wav")->asset_store.sound);
+void update_notifs(sfRenderWindow *win, int request)
+{
+    static int lifespan;
+
+    if (request > 0)
+        lifespan = request;
+    else if (lifespan > 0)
+        send_notifs(win, NULL, NULL, lifespan);
+    lifespan -= 1;
+}
+
+void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft)
+{
+    static sfSound *s;
+    static char *string;
+    static char *substring;
+
+    if (str && substr) {
+        string = str;
+        substring = substr;
+        s = sfSound_create();
+        sfSound_setBuffer(s, find_asset_byname("sound.wav")->asset_store.sound);
+        sfSound_play(s);
+        update_notifs(win, 60);
     }
-    sfSound_play(sound);
-    sfRectangleShape *main = create_full_rect((sfFloatRect){0, 0,
-    WW*0.2, WH*0.04}, NULL, (sfColor){0, 50, 0, 255});
-    sfRectangleShape *second = create_full_rect((sfFloatRect){0, WH*0.04,
-    WW*0.2, WH*0.05}, NULL, (sfColor){20, 20, 20, 255});
-    sfRenderWindow_drawRectangleShape(win, main, NULL);
-    sfRenderWindow_drawRectangleShape(win, second, NULL);
-    print_message(str, win, "droid.ttf", (sfVector3f){0, 0, 1});
-    print_message(substr, win, "droid.ttf", (sfVector3f){0, WH*0.04, 1});
-    sfRenderWindow_display(win);
-    sfRectangleShape_destroy(main);
-    sfRectangleShape_destroy(second);
+    else {
+        print_message(string, win, "droid.ttf", (sfVector3f){0, 0, 1});
+        print_message(substring, win, "droid.ttf", (sfVector3f){0, WH*0.04, 1});
+    }
+    if (lifeleft == 0)
+        sfSound_destroy(s);
 }
