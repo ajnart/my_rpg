@@ -14,7 +14,7 @@
 void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 {
     play_music(win, "music.ogg");
-    print_message(settings->status, win, "font.ttf",
+    print_message("Knight of boulogne !", win, 1,
         (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
         explosion(win, state->data);
@@ -34,10 +34,13 @@ void buttons_menu(sfRenderWindow *win, int WW, int WH)
     add_button(&g_buttons, "quit", create_full_rect((sfFloatRect)
         {WW/4, WH * 0.7, WW/2, WH/6}, texture, sfRed),
         "Ragequit");
-    add_button(&g_buttons, "play", create_full_rect((sfFloatRect)
-        {WW/4, WH * 0.3, WW/2, WH/6}, texture, sfColor_fromRGB(5, 50, 5)),
-        "Play");
     add_button(&g_buttons, "settings", create_full_rect((sfFloatRect)
         {WW/4, WH * 0.5, WW/2, WH/6}, texture, sfColor_fromRGB(230, 230, 230)),
         "Settings");
+    add_button(&g_buttons, "play", create_full_rect((sfFloatRect)
+        {WW/4, WH * 0.3, WW/2, WH/6}, texture, sfColor_fromRGB(5, 50, 5)),
+        "Play");
+    add_button(&g_buttons, "infos", create_full_rect((sfFloatRect)
+        {WW/4, WH * 0.9, WW/2, WH/14}, texture, sfColor_fromRGB(255, 102, 255)),
+        "How tf do you play?");
 }
