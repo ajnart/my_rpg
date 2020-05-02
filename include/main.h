@@ -17,8 +17,8 @@
 #include <SFML/System.h>
 #include <SFML/Window.h>
 
-#include "../src/assets/asset_loader.h"
 #include "../src/settings/settings.h"
+#include "asset_loader.h"
 
 extern asset_store_t *g_assets;
 extern settings_t *settings;
