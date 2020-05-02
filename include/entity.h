@@ -42,9 +42,11 @@ typedef struct knight_struct {
 
 typedef struct mob_t {
     int state;
+    int alive;
     sfIntRect rect_i;
     sfIntRect rect_a;
     sfIntRect rect_w;
+    sfIntRect rect_d;
     sfVector2f position;
     sfSprite *sprite;
     sfClock *clock;
@@ -52,9 +54,14 @@ typedef struct mob_t {
 } mob_s;
 
 void init_mob(mob_s **mob);
-void draw_mob(sfRenderWindow *win, mob_s *mob, int k_pos);
 void move_mob(mob_s *mob, int way);
 void mob_aggro(mob_s *mob, int k_pos);
+
+void draw_mob(sfRenderWindow *win, mob_s *mob, int k_pos);
+void draw_mob_idle(sfRenderWindow *win, mob_s *mob);
+void draw_mob_walking(sfRenderWindow *win, mob_s *mob, int k_pos);
+void draw_mob_attacking(sfRenderWindow *win, mob_s *mob);
+void draw_mob_dead(sfRenderWindow *win, mob_s *mob);
 
 //? Parallax
 
@@ -80,9 +87,12 @@ void draw_knight(sfRenderWindow *win, knight_s *knight, game_t *game);
 void draw_knight_translate(sfRenderWindow *win, game_t *game,
 knight_s *knight, int way);
 void move_knight(game_t *game, int way);
-void draw_knight_walking(sfRenderWindow *win, knight_s *knight, int way);
-void init_knight(knight_s *knight);
 int check_collision_move(game_t *game, int way);
+
+void init_knight(knight_s *knight);
+void draw_knight_idle(sfRenderWindow *win, knight_s *knight);
+void draw_knight_walking(sfRenderWindow *win, knight_s *knight, int way);
+void draw_knight_attacking(sfRenderWindow *win, knight_s *knight);
 
 t_para *set_parallax(void);
 void draw_parallax(sfRenderWindow *win, game_t *game, event_st *state,
