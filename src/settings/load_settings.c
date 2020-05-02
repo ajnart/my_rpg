@@ -51,6 +51,7 @@ settings_t *load_settings(void)
     ret->name = settings[4];
     ret->status = "menu";
     ret->keys = load_keys();
+    ret->game_defined = 0;
     close(fd);
     return !ret || !settings || !ret->keys ? NULL: ret;
 }

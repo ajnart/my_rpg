@@ -27,6 +27,7 @@ typedef struct settings_struct
     char *name;
     char *status;
     sfKeys_t *keys;
+    int game_defined;
 } settings_t;
 
 settings_t *load_settings(void);

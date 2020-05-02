@@ -5,7 +5,7 @@
 ** knight_translation.c
 */
 
-#include "knight.h"
+#include "entity.h"
 
 void draw_knight_translate(sfRenderWindow *win, knight_s *knight, int way)
 {

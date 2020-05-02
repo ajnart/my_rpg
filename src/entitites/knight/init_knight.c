@@ -5,7 +5,7 @@
 ** init_knight.c
 */
 
-#include "knight.h"
+#include "entity.h"
 
 void init_knight(knight_s *knight)
 {

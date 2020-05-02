@@ -5,7 +5,7 @@
 ** knight.c
 */
 
-#include "knight.h"
+#include "entity.h"
 
 void draw_knight_idle(sfRenderWindow *win, knight_s *knight)
 {

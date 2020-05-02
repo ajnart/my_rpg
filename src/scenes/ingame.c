@@ -10,8 +10,7 @@
 #include "lib.h"
 #include "buttons.h"
 #include "scenes.h"
-#include "parallax.h"
-#include "../entitites/knight/knight.h"
+#include "entity.h"
 
 void buttons_ingame(sfRenderWindow *win, int WW, int WH)
 {
@@ -37,18 +36,25 @@ void set_movement(event_st *state, knight_s *knight)
         knight->render.is_attacking = 1;
 }
 
+game_t *init_game(void)
+{
+    game_t *game = malloc(sizeof(game_t));
+
+    init_knight(&(game->knight));
+    game->para = set_parallax();
+    settings->game_defined = 1;
+    return (game);
+}
+
 void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
 {
-    static t_para *parallax;
-    static knight_s knight;
+    static game_t *game;
 
-    if (!parallax) {
-        init_knight(&knight);
-        parallax = set_parallax();
-    }
-    set_movement(state, &knight);
-    draw_parallax(win, parallax, state, knight.render.position);
-    draw_knight(win, &knight);
+    if (!settings->game_defined)
+        game = init_game();
+    set_movement(state, &(game->knight));
+    draw_parallax(win, game->para, state, game->knight.render.position);
+    draw_knight(win, &(game->knight));
     update_notifs(win, 0);
     settings->status = "Game";
     print_message(settings->status, win, 1,

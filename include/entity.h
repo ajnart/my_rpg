@@ -1,13 +1,18 @@
 /*
 ** EPITECH PROJECT, 2019
-** MUL_my_rpg_2019
+** Visual Studio Live Share (Workspace)
 ** File description:
-** knight.h
+** entities.h
 */
 
-#pragma once
 
+#ifndef ENTITY_H_
+#define ENTITY_H_
+
+#include "parallax.h"
 #include "rpg.h"
+
+//? Knight
 
 typedef struct knight_render {
     int state;
@@ -35,9 +40,18 @@ typedef struct knight_struct {
     struct knight_stats stats;
 } knight_s;
 
+//? Game
+
+typedef struct game_t {
+    knight_s knight;
+    t_para *para;
+} game_t;
+
 void draw_knight(sfRenderWindow *win, knight_s *knight);
 void draw_knight_translate(sfRenderWindow *win, knight_s *knight, int way);
 void move_knight(knight_s *knight, int way);
 void draw_knight_walking(sfRenderWindow *win, knight_s *knight,
 int way, int move);
 void init_knight(knight_s *knight);
+
+#endif /* ENTITY_H_ */
