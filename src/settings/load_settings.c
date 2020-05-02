@@ -44,6 +44,7 @@ settings_t *load_settings(void)
         return NULL;
     get_next_line(fd);
     settings = my_str_to_wordtab(get_next_line(fd), ',');
+    ret->paused = 0;
     ret->WH = my_getnbr(settings[0]);
     ret->WW = my_getnbr(settings[1]);
     ret->volume = my_getnbr(settings[2]);

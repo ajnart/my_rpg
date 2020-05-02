@@ -14,8 +14,12 @@
 void if_settings(event_st *state, void (**loop)())
 {
     if (state->type == sfEvtMouseButtonPressed && state->data) {
-        if (my_strcmp(state->data, "back"))
+        if (my_strcmp(state->data, "backm"))
             *loop = &loop_menu;
+        if (my_strcmp(state->data, "backg")) {
+            settings->paused = 0;
+            *loop = &loop_ingame;
+        }
         if (my_strcmp(state->data, "vol_plus") && settings->volume <= 90)
             settings->volume += 10;
         if (my_strcmp(state->data, "vol_minus") && settings->volume >= 10)
@@ -52,13 +56,15 @@ void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
 
 void buttons_settings(sfRenderWindow *win, int WW, int WH)
 {
-    add_button(&g_buttons, "back", create_full_rect((sfFloatRect)
-        {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back");
-    add_button(&g_buttons, "vol_minus", create_full_rect((sfFloatRect)
+    settings->paused ? add_button(&g_buttons, "backg", mkf_rect((sfFloatRect)
+        {WW*0.9, WH*0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to game") : 0;
+    add_button(&g_buttons, "backm", mkf_rect((sfFloatRect)
+        {0, WH*0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to main menu");
+    add_button(&g_buttons, "vol_minus", mkf_rect((sfFloatRect)
         {WW * 0.35, WH * 0.17, WW*0.05, WH*0.05}, NULL, sfBlue), "");
-    add_button(&g_buttons, "vol_plus", create_full_rect((sfFloatRect)
+    add_button(&g_buttons, "vol_plus", mkf_rect((sfFloatRect)
         {WW * 0.40, WH * 0.17, WW*0.05, WH*0.05}, NULL, sfRed), "");
-    add_button(&g_buttons, "emitter", create_full_rect((sfFloatRect)
+    add_button(&g_buttons, "emitter", mkf_rect((sfFloatRect)
         {WW * 0.35, WH * 0.225, WW*0.1, WH*0.05}, NULL,
         settings->emitter == 0 ? sfRed : sfGreen), "");
 }
