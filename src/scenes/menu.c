@@ -23,6 +23,7 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
             send_notifs(win, "Release to go to the settings..", "", 20);
         if (my_strcmp(state->data, "quit"))
             send_notifs(win, "gonna cry ?", "", 20);
+        state->data = "none";
     }
     if (state->type == sfEvtMouseButtonReleased && state->data) {
         if (my_strcmp(state->data, "play"))
@@ -38,16 +39,16 @@ void buttons_menu(sfRenderWindow *win, int WW, int WH)
 {
     sfTexture *texture = find_asset_byname("button.png")->asset_store.texture;
 
-    add_button(&g_buttons, "quit", create_full_rect((sfFloatRect)
+    add_button(&g_buttons, "quit", mkf_rect((sfFloatRect)
         {WW/4, WH * 0.7, WW/2, WH/6}, texture, sfRed),
         "Ragequit");
-    add_button(&g_buttons, "settings", create_full_rect((sfFloatRect)
+    add_button(&g_buttons, "settings", mkf_rect((sfFloatRect)
         {WW/4, WH * 0.5, WW/2, WH/6}, texture, sfColor_fromRGB(230, 230, 230)),
         "Settings");
-    add_button(&g_buttons, "play", create_full_rect((sfFloatRect)
+    add_button(&g_buttons, "play", mkf_rect((sfFloatRect)
         {WW/4, WH * 0.3, WW/2, WH/6}, texture, sfColor_fromRGB(5, 50, 5)),
         "Play");
-    add_button(&g_buttons, "infos", create_full_rect((sfFloatRect)
+    add_button(&g_buttons, "infos", mkf_rect((sfFloatRect)
         {WW/4, WH * 0.9, WW/2, WH/14}, texture, sfColor_fromRGB(255, 102, 255)),
         "How to play?");
 }

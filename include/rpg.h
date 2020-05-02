@@ -36,7 +36,7 @@ void perform_loops(sfRenderWindow *window, void (**loop)(),
 void handle_events(sfEvent evt, sfRenderWindow *win, event_st *state);
 void print_message(char *str, sfRenderWindow *win, int size,
     sfVector3f info);
-sfRectangleShape *create_full_rect(sfFloatRect pos,
+sfRectangleShape *mkf_rect(sfFloatRect pos,
     sfTexture *tx, sfColor fill);
 void cleanup(sfRenderWindow *w, asset_store_t *a, settings_t *s, emitter_t *e);
 void explosion(sfRenderWindow *win, char *str);
