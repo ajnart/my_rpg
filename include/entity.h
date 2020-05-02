@@ -81,6 +81,7 @@ knight_s *knight, int way);
 void move_knight(game_t *game, int way);
 void draw_knight_walking(sfRenderWindow *win, knight_s *knight, int way);
 void init_knight(knight_s *knight);
+int check_collision_move(game_t *game, int way);
 
 t_para *set_parallax(void);
 void draw_parallax(sfRenderWindow *win, game_t *game, event_st *state,
