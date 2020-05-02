@@ -68,6 +68,7 @@ fclean:		clean
 	@rm -f $(NAME)*
 	@rm -f libmy.a
 	@tar -cf assets.tar assets
+	@$(call rich_echo,"AA","Assets compressed")
 	@$(call rich_echo,"MK","FClean done")
 
 re:	fclean all
