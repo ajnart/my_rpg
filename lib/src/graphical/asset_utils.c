@@ -10,6 +10,14 @@
 #include "../../include/graphlib.h"
 #include "../../include/lib.h"
 
+float get_elapsed_time(sfClock *clock)
+{
+    sfTime time = sfClock_getElapsedTime(clock);
+    float seconds = time.microseconds / 1000000.0;
+
+    return (seconds);
+}
+
 char *get_asset_fullpath(char *filename)
 {
     char *result = my_strdup("assets/");
