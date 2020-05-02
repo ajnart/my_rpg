@@ -26,3 +26,10 @@ char *get_asset_fullpath(char *filename)
     str_append(&result, filename);
     return (result);
 }
+
+int get_abs(int nb)
+{
+    if (nb < 0)
+        return (-nb);
+    return (nb);
+}

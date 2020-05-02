@@ -41,28 +41,28 @@ t_para *set_parallax(void)
     return (para);
 }
 
-void direction_parallax(game_t *game, mob_s *mob,
+void direction_parallax(game_t *game, t_para *para,
 int move_right, int move_left)
 {
     if (move_right == 1 && check_collision_move(game, 1)) {
-        if (game->para->rect.left >= settings->WW) {
-            game->para->rect.left = 0;
-            sfSprite_setTextureRect(game->para->sprite, game->para->rect);
+        if (para->rect.left >= settings->WW) {
+            para->rect.left = 0;
+            sfSprite_setTextureRect(para->sprite, para->rect);
         } else {
-            game->para->rect.left += game->para->speed;
-            sfSprite_setTextureRect(game->para->sprite, game->para->rect);
+            para->rect.left += para->speed;
+            sfSprite_setTextureRect(para->sprite, para->rect);
         }
-        move_mob(mob, -1);
+        move_mob(game->mob, -1);
     }
     if (move_left == 1 && check_collision_move(game, -1)) {
-        if (game->para->rect.left <= 0) {
-            game->para->rect.left = 1280;
-            sfSprite_setTextureRect(game->para->sprite, game->para->rect);
+        if (para->rect.left <= 0) {
+            para->rect.left = 1280;
+            sfSprite_setTextureRect(para->sprite, para->rect);
         } else {
-            game->para->rect.left -= game->para->speed;
-            sfSprite_setTextureRect(game->para->sprite, game->para->rect);
+            para->rect.left -= para->speed;
+            sfSprite_setTextureRect(para->sprite, para->rect);
         }
-        move_mob(mob, 1);
+        move_mob(game->mob, 1);
     }
 }
 
@@ -76,7 +76,7 @@ sfVector2f pos)
     t_para *para = game->para;
 
     while (para) {
-        direction_parallax(game, game->mob, move_right, move_left);
+        direction_parallax(game, para, move_right, move_left);
         sfRenderWindow_drawSprite(win, para->sprite, NULL);
         para = para->next;
     }

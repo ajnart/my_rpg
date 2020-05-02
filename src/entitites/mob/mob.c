@@ -18,6 +18,7 @@ void draw_mob_idle(sfRenderWindow *win, mob_s *mob)
         sfClock_restart(mob->clock);
     }
     mob->rect_a.left = 0;
+    mob->rect_w.left = 2000;
 }
 
 void draw_mob_attacking(sfRenderWindow *win, mob_s *mob)
@@ -31,15 +32,38 @@ void draw_mob_attacking(sfRenderWindow *win, mob_s *mob)
         sfClock_restart(mob->clock);
     }
     mob->rect_i.left = 1440;
+    mob->rect_w.left = 2000;
 }
 
-void case_mob(sfRenderWindow *win, mob_s *mob)
+void draw_mob_walking(sfRenderWindow *win, mob_s *mob, int k_pos)
+{
+    double x = (double)settings->WW / 700;
+    double y = (double)settings->WH / 500;
+    sfVector2f scale = {mob->position.x - k_pos > 0 ? x : -x, y};
+
+    if (get_elapsed_time(mob->clock) > 0.15) {
+        if (mob->rect_w.left <= 2639)
+            mob->rect_w.left += 80;
+        else
+            mob->rect_w.left = 2000;
+        sfSprite_setTextureRect(mob->sprite, mob->rect_w);
+        sfSprite_setScale(mob->sprite, scale);
+        sfClock_restart(mob->clock);
+    }
+    mob->rect_i.left = 1440;
+    mob->rect_a.left = 0;
+}
+
+void case_mob(sfRenderWindow *win, mob_s *mob, int k_pos)
 {
     switch (mob->state) {
     case 1:
         draw_mob_idle(win, mob);
         break;
     case 2:
+        draw_mob_walking(win, mob, k_pos);
+        break;
+    case 3:
         draw_mob_attacking(win, mob);
         break;
     default:
@@ -47,11 +71,12 @@ void case_mob(sfRenderWindow *win, mob_s *mob)
     }
 }
 
-void draw_mob(sfRenderWindow *win, mob_s *mob)
+void draw_mob(sfRenderWindow *win, mob_s *mob, int k_pos)
 {
     if (!mob->sprite)
         mob->sprite = sfSprite_create();
-    case_mob(win, mob);
+    case_mob(win, mob, k_pos);
+    mob_aggro(mob, k_pos);
     sfSprite_setPosition(mob->sprite, mob->position);
     sfRenderWindow_drawSprite(win, mob->sprite, NULL);
 }

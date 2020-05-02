@@ -40,6 +40,7 @@ void cleanup(sfRenderWindow *w, asset_store_t *a, settings_t *s, emitter_t *e);
 void explosion(sfRenderWindow *win, char *str);
 
 float get_elapsed_time(sfClock *clock);
+int get_abs(int nb);
 void update_notifs(sfRenderWindow *win, int request);
 void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft);
 
