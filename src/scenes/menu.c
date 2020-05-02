@@ -23,6 +23,7 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
             send_notifs(win, "Release to go to the settings..", "", 20);
         if (my_strcmp(state->data, "quit"))
             send_notifs(win, "gonna cry ?", "", 20);
+        state->data = "none";
     }
     if (state->type == sfEvtMouseButtonReleased && state->data) {
         if (my_strcmp(state->data, "play"))
