@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include "main.h"
 #include "lib.h"
+#include "asset_loader.h"
 
 void play_music(sfRenderWindow *window, char *song)
 {

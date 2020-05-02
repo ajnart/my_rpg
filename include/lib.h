@@ -74,6 +74,7 @@ char *convert_to_string(int number);
 char *my_sprintf(char *str, ...);
 char *my_itoa(int value, char *buffer, int base);
 unsigned long my_hash_str(const char *str);
+void mult_free(int how_much, ...);
 
 typedef void (*print_compute_t)(va_list arg);
 
