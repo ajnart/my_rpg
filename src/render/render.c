@@ -56,7 +56,7 @@ void draw_buttons(sfRenderWindow *win, button_store_t *store)
     }
 }
 
-sfRectangleShape *create_full_rect(sfFloatRect pos, sfTexture *tx, sfColor fill)
+sfRectangleShape *mkf_rect(sfFloatRect pos, sfTexture *tx, sfColor fill)
 {
     sfRectangleShape *dest = sfRectangleShape_create();
 
