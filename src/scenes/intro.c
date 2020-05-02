@@ -22,7 +22,8 @@ void while_intro(sfRenderWindow *window, sfSprite *sprite, sfIntRect rect)
 
     for (i = 0; i < 264; i++) {
         while (sfRenderWindow_pollEvent(window, &event))
-            if ((int)event.type == sfEvtMouseButtonReleased)
+            if ((int)event.type == sfEvtMouseButtonReleased ||
+                (int)event.type == sfEvtClosed)
                 i = 264;
         sfRenderWindow_clear(window, sfBlack);
         print_message("Press left click to skip", window,
