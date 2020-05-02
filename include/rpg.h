@@ -20,8 +20,6 @@
 #include "emitter.h"
 // * Referenced bellow are the functions used for the rpg. gotten via ctags.
 
-settings_t *settings;
-
 // Number : Number of particules
 // Max : Max size
 // Range : Max range
@@ -41,13 +39,6 @@ sfRectangleShape *mkf_rect(sfFloatRect pos,
 void cleanup(sfRenderWindow *w, asset_store_t *a, settings_t *s, emitter_t *e);
 void explosion(sfRenderWindow *win, char *str);
 
-// * Precalculated hases :
-//  ".png" = 6383219704
-//  ".ogg" = 6383218384
-//  ".wav" = 6383226913
-//  ".jpg" = 6383213236
-//  ".ttf" = 6383224257
-void asset_type_define(asset_store_t *new, char *ext, char *filename);
 float get_elapsed_time(sfClock *clock);
 void update_notifs(sfRenderWindow *win, int request);
 void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft);
