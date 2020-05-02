@@ -9,8 +9,6 @@
 #include "buttons.h"
 #include "scenes.h"
 
-
-
 const struct flagoptions ptr_flags[] =
 {
     {sfEvtMouseButtonPressed, &hdl_click},

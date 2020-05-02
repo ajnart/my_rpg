@@ -4,7 +4,6 @@
 ** File description:
 ** init_knight.c
 */
-
 #include "entity.h"
 
 void init_knight(knight_s *knight)

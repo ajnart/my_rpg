@@ -14,9 +14,9 @@
 
 void buttons_ingame(sfRenderWindow *win, int WW, int WH)
 {
-    /*add_button(&g_buttons, "notif", create_full_rect((sfFloatRect)
-            {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Send notif");*/
 }
+/*add_button(&g_buttons, "notif", mkf_rect((sfFloatRect)
+        {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Send notif");*/
 
 void set_movement(event_st *state, knight_s *knight)
 {
@@ -61,10 +61,10 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
     settings->status = "Game";
     print_message(settings->status, win, 1,
         (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
-    if (state->type == sfEvtMouseButtonPressed && state->data) {
-        if (my_strcmp(state->data, "notif")) {
-            send_notifs(win, "You have won", "Golds", 60);
-            state->data = NULL;
+    if (state->type == 10 && state->data) {
+        if (my_strcmp(state->data, "paused")) {
+            *loop = &loop_settings;
+            settings->paused = 1;
         }
     }
 }
