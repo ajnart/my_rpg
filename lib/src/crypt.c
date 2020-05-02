@@ -10,10 +10,10 @@
 char *encrypt(char *str) 
 { 
     char ret[500];  
-    char xorKey = 'P'; 
+    char xor = '6'; 
     int len = my_strlen(str);
 
     for (int i = 0; i < len; i++) 
-        ret[i] = str[i] ^ xorKey; 
+        ret[i] = str[i] ^ xor; 
     return my_strdup(ret);
 }
