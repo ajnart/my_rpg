@@ -5,11 +5,11 @@
 ** main.c
 */
 
-#include "main.h"
 #include "emitter.h"
 #include "rpg.h"
 #include "scenes.h"
 #include "lib.h"
+#include "main.h"
 
 emitter_t *emitter_setup(int max_div, int number_div,
     int range_div, sfVector3f color)
@@ -39,6 +39,8 @@ sfRenderWindow *create_window(char *title, int framerate, settings_t *settings)
 }
 
 void play_intro(sfRenderWindow *window);
+
+settings_t *load_settings(void);
 
 int my_rpg(int ac, char **av, char **env)
 {
