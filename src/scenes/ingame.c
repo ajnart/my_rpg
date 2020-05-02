@@ -11,7 +11,7 @@
 #include "buttons.h"
 #include "scenes.h"
 #include "parallax.h"
-#include "../entitites/knight.h"
+#include "../entitites/knight/knight.h"
 
 void buttons_ingame(sfRenderWindow *win, int WW, int WH)
 {

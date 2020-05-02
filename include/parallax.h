@@ -19,6 +19,7 @@ typedef struct parallax {
 
 
 t_para *set_parallax(void);
-void draw_parallax(sfRenderWindow *win, t_para *para, event_st *state, sfVector2f pos);
+void draw_parallax(sfRenderWindow *win, t_para *para, event_st *state,
+sfVector2f pos);
 
 #endif
