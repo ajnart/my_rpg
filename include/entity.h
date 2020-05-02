@@ -76,7 +76,8 @@ typedef struct game_t {
 // ? Knight
 
 void draw_knight(sfRenderWindow *win, knight_s *knight, game_t *game);
-void draw_knight_translate(sfRenderWindow *win, knight_s *knight, int way);
+void draw_knight_translate(sfRenderWindow *win, game_t *game,
+knight_s *knight, int way);
 void move_knight(game_t *game, int way);
 void draw_knight_walking(sfRenderWindow *win, knight_s *knight, int way);
 void init_knight(knight_s *knight);

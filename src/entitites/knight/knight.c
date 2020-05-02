@@ -81,10 +81,10 @@ void case_knight(sfRenderWindow *win, knight_s *knight, game_t *game)
         move_knight(game, -1);
         break;
     case 5:
-        draw_knight_translate(win, knight, 1);
+        draw_knight_translate(win, game, knight, 1);
         break;
     case 6:
-        draw_knight_translate(win, knight, 2);
+        draw_knight_translate(win, game, knight, 2);
         break;
     default:
         break; }
