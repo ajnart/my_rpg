@@ -7,16 +7,17 @@
 
 #include "entity.h"
 
-void set_mob(mob_s *element)
+void set_mob(mob_s *element, sfVector2f pos)
 {
     element->sprite = sfSprite_create();
-    element->position =
-        (sfVector2f){settings->WW / 1.3, settings->WH * 0.92};
+    element->position = pos;
     element->state = 1;
     element->rect_i = (sfIntRect){1440, 0, 80, 80};
     element->rect_a = (sfIntRect){0, 0, 80, 80};
     element->rect_w = (sfIntRect){2000, 0, 80, 80};
     element->rect_d = (sfIntRect){800, 0, 80, 80};
+    element->damage = 1;
+    element->life = 100;
     element->alive = 1;
     element->next = NULL;
     sfSprite_setTexture(element->sprite,
@@ -28,12 +29,12 @@ void set_mob(mob_s *element)
     element->clock = sfClock_create();
 }
 
-void append_mob(mob_s **mob)
+void append_mob(mob_s **mob, sfVector2f pos)
 {
     mob_s *tmp = *mob;
     mob_s *element = malloc(sizeof(mob_s));
 
-    set_mob(element);
+    set_mob(element, pos);
     if (tmp == NULL)
         *mob = element;
     else {
@@ -46,5 +47,5 @@ void append_mob(mob_s **mob)
 void init_mob(mob_s **mob)
 {
     *mob = NULL;
-    append_mob(mob);
+    append_mob(mob, (sfVector2f){settings->WW / 3, settings->WH * 0.92});
 }
