@@ -14,8 +14,10 @@
 void if_settings(event_st *state, void (**loop)())
 {
     if (state->type == sfEvtMouseButtonPressed && state->data) {
-        if (my_strcmp(state->data, "backm"))
+        if (my_strcmp(state->data, "backm")) {
             *loop = &loop_menu;
+            settings->paused = 0;
+        }
         if (my_strcmp(state->data, "backg")) {
             settings->paused = 0;
             *loop = &loop_ingame;
@@ -32,22 +34,17 @@ void if_settings(event_st *state, void (**loop)())
     }
 }
 
-void messages_settings(sfRenderWindow *win)
+void messages_settings(sfRenderWindow *win, int WW, int WH)
 {
-    int WW = settings->WW;
-    int WH = settings->WH;
-
-    print_message(my_sprintf("Resolution : %d x %d", WW, WH),
-        win, 1, (sfVector3f){WW * 0.2, WH * 0.4, 0});
-    print_message(my_sprintf("Volume : %d", settings->volume),
-        win, 1, (sfVector3f){WW * 0.2, WH * 0.2, 0});
-    print_message("Emitter:",
-        win, 1, (sfVector3f){WW * 0.2, WH * 0.25, 0});
+    if (settings->paused == 0)
+        print_message(my_sprintf("VOLUME : %d", settings->volume),
+            win, 1.2, (sfVector3f){WW*0, WH*0.6, 1});
 }
 
 void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
 {
-    messages_settings(win);
+    settings->paused ? 0: sfRenderWindow_clear(win, sfBlack);
+    messages_settings(win, settings->WW, settings->WH);
     if_settings(state, loop);
     sfMusic_setVolume(find_asset_byname("music.ogg")->asset_store.music,
         settings->volume);
@@ -56,15 +53,17 @@ void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
 
 void buttons_settings(sfRenderWindow *win, int WW, int WH)
 {
+    sfTexture *tx = find_asset_byname("button.png")->asset_store.texture;
+
     settings->paused ? add_button(&g_buttons, "backg", mkf_rect((sfFloatRect)
-        {WW*0.9, WH*0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to game") : 0;
+        {WW*0.85, WH*0.9, WW*0.15, WH*0.1}, tx, sfRed), "Back to game") : 0;
     add_button(&g_buttons, "backm", mkf_rect((sfFloatRect)
-        {0, WH*0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Back to main menu");
+        {0, WH*0.9, WW*0.15, WH*0.1}, tx, sfRed), "Back to main menu");
     add_button(&g_buttons, "vol_minus", mkf_rect((sfFloatRect)
-        {WW * 0.35, WH * 0.17, WW*0.05, WH*0.05}, NULL, sfBlue), "");
+        {WW*0.075, WH*0.7, WW*0.075, WH*0.1}, tx, sfBlue), "Vol +");
     add_button(&g_buttons, "vol_plus", mkf_rect((sfFloatRect)
-        {WW * 0.40, WH * 0.17, WW*0.05, WH*0.05}, NULL, sfRed), "");
+        {0, WH*0.7, WW*0.075, WH*0.1}, tx, sfRed), "Vol -");
     add_button(&g_buttons, "emitter", mkf_rect((sfFloatRect)
-        {WW * 0.35, WH * 0.225, WW*0.1, WH*0.05}, NULL,
-        settings->emitter == 0 ? sfRed : sfGreen), "");
+        {0, WH*0.8, WW*0.15, WH*0.1}, tx,
+        settings->emitter == 0 ? sfRed : sfGreen), "particles on/off");
 }

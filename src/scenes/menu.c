@@ -36,9 +36,9 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 {
     sfRenderWindow_clear(win, (sfColor){0, 0, 0, 255});
     play_music(win, "music.ogg");
-    print_message("Knight of boulogne !", win, 2,
-        (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
     if_menu(win, state, loop);
+    print_message("Knight of boulogne !", win, 2.2,
+        (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
 }
 
 void buttons_menu(sfRenderWindow *win, int WW, int WH)
@@ -50,11 +50,8 @@ void buttons_menu(sfRenderWindow *win, int WW, int WH)
         "Ragequit");
     add_button(&g_buttons, "settings", mkf_rect((sfFloatRect)
         {WW/4, WH * 0.5, WW/2, WH/6}, texture, sfColor_fromRGB(230, 230, 230)),
-        "Settings");
+        "Settings / How to play");
     add_button(&g_buttons, "play", mkf_rect((sfFloatRect)
         {WW/4, WH * 0.3, WW/2, WH/6}, texture, sfColor_fromRGB(5, 50, 5)),
         "Play");
-    add_button(&g_buttons, "infos", mkf_rect((sfFloatRect)
-        {WW/4, WH * 0.9, WW/2, WH/14}, texture, sfColor_fromRGB(255, 102, 255)),
-        "How to play?");
 }
