@@ -30,3 +30,4 @@ void print_message(char *str, sfRenderWindow *win, int size,
     sfText_setPosition(text, (sfVector2f){info.x, info.y});
     sfRenderWindow_drawText(win, text, NULL);
 }
+// TODO : Free some stuff  ?

@@ -24,7 +24,7 @@ void perform_loops(sfRenderWindow *win, void (**loop)(),
     *loop_old = *loop;
     (*loop)(win, state, loop);
     draw_buttons(win, g_buttons);
-    if (settings->emitter == 1)
+    if (settings->emitter == 1 && !settings->paused)
         display_particles(win, emitter, sfMouse_getPositionRenderWindow(win));
     update_notifs(win, 0);
     sfRenderWindow_display(win);
