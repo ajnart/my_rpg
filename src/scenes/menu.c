@@ -11,6 +11,8 @@
 #include "buttons.h"
 #include "scenes.h"
 
+void add_rect_text(sfRenderWindow *win, rect_text *info);
+
 void if_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 {
     if (state->type == sfEvtMouseButtonPressed && state->data) {
@@ -34,11 +36,20 @@ void if_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 
 void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 {
+    int WW = settings->WW;
+    int WH = settings->WH;
+    sfText *text = sfText_create();
+    rect_text info;
+    sfRectangleShape *render;
+    render = mkf_rect((sfFloatRect){WW*0.15, WH*0.10, WW*0.65, WH* 0.15},
+            find_asset_byname("button.png")->asset_store.texture, sfBlue);
+    info = (rect_text){render, text, "Knight of boulogne !", sfWhite, 9};
     sfRenderWindow_clear(win, (sfColor){0, 0, 0, 255});
     play_music(win, "music.ogg");
     if_menu(win, state, loop);
-    print_message("Knight of boulogne !", win, 2.2,
-        (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
+    add_rect_text(win, &info);
+    sfText_destroy(text);
+    sfRectangleShape_destroy(render);
 }
 
 void buttons_menu(sfRenderWindow *win, int WW, int WH)
