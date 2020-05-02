@@ -13,15 +13,15 @@ void draw_knight_translate(sfRenderWindow *win, knight_s *knight, int way)
         if (knight->render.position.y > settings->WH * 0.86) {
             knight->render.position.y -= 1;
             knight->render.position.x += 1;
+            draw_knight_walking(win, knight, 1, 0);
         }
-        draw_knight_walking(win, knight, 1);
     }
     if (way == 2) {
         if (knight->render.position.y < settings->WH * 0.97) {
             knight->render.position.y += 1;
             knight->render.position.x -= 1;
+            draw_knight_walking(win, knight, -1, 0);
         }
-        draw_knight_walking(win, knight, -1);
     }
 }
 
