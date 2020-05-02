@@ -11,25 +11,6 @@
 #include "lib.h"
 #include <stdarg.h>
 
-void destroy_assets(asset_store_t *store)
-{
-    asset_store_t *focused = store;
-    asset_store_t *next = store->next;
-
-    while (focused->type) {
-        switch (focused->type) {
-        case T_TEXTURE: sfTexture_destroy(focused->asset_store.texture); break;
-        case T_FONT: sfFont_destroy(focused->asset_store.font); break;
-        case T_MUSIC: sfMusic_destroy(focused->asset_store.music); break;
-        case T_SOUND: sfSoundBuffer_destroy(focused->asset_store.sound); break;
-        default: break; }
-        free(focused->name);
-        free(focused);
-        focused = next;
-        if (next) next = next->next;
-    }
-}
-
 void destroy_buttons(button_store_t **store)
 {
     button_store_t *focus = *store;
@@ -43,20 +24,6 @@ void destroy_buttons(button_store_t **store)
         focus = next;
     }
     *store = NULL;
-}
-
-void mult_free(int how_much, ...)
-{
-    va_list ap;
-    va_start(ap, how_much);
-    char *freeing = NULL;
-    int i = 0;
-
-    while (i < how_much) {
-        freeing = va_arg(ap, char *);
-        free(freeing);
-        i++;
-    }
 }
 
 void destroy_settings(settings_t *s)

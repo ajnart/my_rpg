@@ -5,10 +5,10 @@
 ** Dynamic assets loader
 */
 
+#include <stdlib.h>
 #include <unistd.h>
-#include "asset_loader.h"
-#include "main.h"
-#include "lib.h"
+#include "../../include/asset_loader.h"
+#include "../../include/lib.h"
 
 #define PNG (6383219704)
 #define OGG (6383218384)
@@ -16,13 +16,27 @@
 #define JPG (6383213236)
 #define TTF (6383224257)
 
-char *get_asset_fullpath(char *filename)
+void destroy_assets(asset_store_t *store)
 {
-    char *result = my_strdup("assets/");
+    asset_store_t *focused = store;
+    asset_store_t *next = store->next;
 
-    str_append(&result, "/");
-    str_append(&result, filename);
-    return (result);
+    while (focused->type) {
+        switch (focused->type) {
+        case T_TEXTURE: sfTexture_destroy(focused->asset_store.texture);
+            break;
+        case T_FONT: sfFont_destroy(focused->asset_store.font);
+            break;
+        case T_MUSIC: sfMusic_destroy(focused->asset_store.music);
+            break;
+        case T_SOUND: sfSoundBuffer_destroy(focused->asset_store.sound);
+            break;
+        default: break; }
+        free(focused->name);
+        free(focused);
+        focused = next;
+        if (next) next = next->next;
+    }
 }
 
 void asset_type_define(asset_store_t *new, const char *ext, char *filename)

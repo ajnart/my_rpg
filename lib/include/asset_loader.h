@@ -8,9 +8,9 @@
 #ifndef __ASSET_STORE_H
 #define __ASSET_STORE_H
 
-#include <dirent.h>
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
+#include <dirent.h>
 
 typedef enum { T_TEXTURE, T_FONT, T_SOUND, T_MUSIC } asset_type_t;
 
@@ -39,6 +39,8 @@ asset_store_t *load_assets(void);
 void destroy_assets(asset_store_t *);
 
 asset_store_t *find_asset_byname(char const *);
+
+char *get_asset_fullpath(char *filename);
 
 #endif //__ASSET_STORE_H
 
