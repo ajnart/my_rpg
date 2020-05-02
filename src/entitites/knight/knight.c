@@ -23,8 +23,7 @@ void draw_knight_idle(sfRenderWindow *win, knight_s *knight)
     knight->render.rect_w.left = 0;
 }
 
-void draw_knight_walking(sfRenderWindow *win, knight_s *knight,
-int way, int move)
+void draw_knight_walking(sfRenderWindow *win, knight_s *knight, int way)
 {
     sfVector2f scale = {(double)settings->WW / 400 * way,
     (double)settings->WH / 400};
@@ -42,8 +41,6 @@ int way, int move)
     }
     knight->render.rect_a.left = 0;
     knight->render.rect_i.left = 0;
-    if (move == 1)
-        move_knight(knight, way);
 }
 
 void draw_knight_attacking(sfRenderWindow *win, knight_s *knight)
@@ -66,20 +63,22 @@ void draw_knight_attacking(sfRenderWindow *win, knight_s *knight)
     knight->render.rect_w.left = 0;
 }
 
-void case_knight(sfRenderWindow *win, knight_s *knight)
+void case_knight(sfRenderWindow *win, knight_s *knight, game_t *game)
 {
     switch (knight->render.state) {
     case 1:
         draw_knight_idle(win, knight);
         break;
     case 2:
-        draw_knight_walking(win, knight, 1, 1);
+        draw_knight_walking(win, knight, 1);
+        move_knight(game, 1);
         break;
     case 3:
         draw_knight_attacking(win, knight);
         break;
     case 4:
-        draw_knight_walking(win, knight, -1, 1);
+        draw_knight_walking(win, knight, -1);
+        move_knight(game, -1);
         break;
     case 5:
         draw_knight_translate(win, knight, 1);
@@ -91,11 +90,11 @@ void case_knight(sfRenderWindow *win, knight_s *knight)
         break; }
 }
 
-void draw_knight(sfRenderWindow *win, knight_s *knight)
+void draw_knight(sfRenderWindow *win, knight_s *knight, game_t *game)
 {
     if (!knight->render.sprite)
         knight->render.sprite = sfSprite_create();
-    case_knight(win, knight);
+    case_knight(win, knight, game);
     sfSprite_setPosition(knight->render.sprite, knight->render.position);
     sfRenderWindow_drawSprite(win, knight->render.sprite, NULL);
 }

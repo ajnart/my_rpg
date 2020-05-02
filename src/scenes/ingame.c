@@ -10,7 +10,7 @@
 #include "lib.h"
 #include "buttons.h"
 #include "scenes.h"
-#include "parallax.h"
+#include "entity.h"
 
 void buttons_ingame(sfRenderWindow *win, int WW, int WH)
 {
@@ -56,7 +56,7 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
     set_movement(state, &(game->knight));
     draw_parallax(win, game, state, game->knight.render.position);
     draw_mob(win, game->mob);
-    draw_knight(win, &(game->knight));
+    draw_knight(win, &(game->knight), game);
     update_notifs(win, 0);
     settings->status = "Game";
     print_message(settings->status, win, 1,

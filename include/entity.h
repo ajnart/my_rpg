@@ -39,13 +39,6 @@ typedef struct knight_struct {
     struct knight_stats stats;
 } knight_s;
 
-void draw_knight(sfRenderWindow *win, knight_s *knight);
-void draw_knight_translate(sfRenderWindow *win, knight_s *knight, int way);
-void move_knight(knight_s *knight, int way);
-void draw_knight_walking(sfRenderWindow *win, knight_s *knight,
-int way, int move);
-void init_knight(knight_s *knight);
-
 //? Mob
 
 typedef struct mob_t {
@@ -79,6 +72,14 @@ typedef struct game_t {
     mob_s *mob;
     t_para *para;
 } game_t;
+
+// ? Knight
+
+void draw_knight(sfRenderWindow *win, knight_s *knight, game_t *game);
+void draw_knight_translate(sfRenderWindow *win, knight_s *knight, int way);
+void move_knight(game_t *game, int way);
+void draw_knight_walking(sfRenderWindow *win, knight_s *knight, int way);
+void init_knight(knight_s *knight);
 
 t_para *set_parallax(void);
 void draw_parallax(sfRenderWindow *win, game_t *game, event_st *state,
