@@ -40,18 +40,34 @@ typedef struct knight_struct {
     struct knight_stats stats;
 } knight_s;
 
-//? Game
-
-typedef struct game_t {
-    knight_s knight;
-    t_para *para;
-} game_t;
-
 void draw_knight(sfRenderWindow *win, knight_s *knight);
 void draw_knight_translate(sfRenderWindow *win, knight_s *knight, int way);
 void move_knight(knight_s *knight, int way);
 void draw_knight_walking(sfRenderWindow *win, knight_s *knight,
 int way, int move);
 void init_knight(knight_s *knight);
+
+//? Mob
+
+typedef struct mob_t {
+    int state;
+    sfIntRect rect_i;
+    sfIntRect rect_a;
+    sfVector2f position;
+    sfSprite *sprite;
+    sfClock *clock;
+    struct mob_t *next;
+} mob_s;
+
+void init_mob(mob_s **mob);
+void draw_mob(sfRenderWindow *win, mob_s *mob);
+
+//? Game
+
+typedef struct game_t {
+    knight_s knight;
+    mob_s *mob;
+    t_para *para;
+} game_t;
 
 #endif /* ENTITY_H_ */
