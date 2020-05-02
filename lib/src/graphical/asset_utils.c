@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 #include <unistd.h>
-#include "../../include/asset_loader.h"
+#include "../../include/graphlib.h"
 #include "../../include/lib.h"
 
 char *get_asset_fullpath(char *filename)

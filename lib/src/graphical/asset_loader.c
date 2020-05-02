@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 #include <unistd.h>
-#include "../../include/asset_loader.h"
+#include "../../include/graphlib.h"
 #include "../../include/lib.h"
 
 #define PNG (6383219704)
