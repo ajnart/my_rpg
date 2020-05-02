@@ -7,7 +7,7 @@
 
 #include "lib.h"
 #include "rpg.h"
-#include "parallax.h"
+#include "entity.h"
 
 void append_parallax(t_para **para, char *pic, int speed)
 {
@@ -41,7 +41,8 @@ t_para *set_parallax(void)
     return (para);
 }
 
-void direction_parallax(t_para *para, int move_right, int move_left)
+void direction_parallax(t_para *para, mob_s *mob,
+int move_right, int move_left)
 {
     if (move_right == 1) {
         if (para->rect.left >= settings->WW) {
@@ -51,6 +52,7 @@ void direction_parallax(t_para *para, int move_right, int move_left)
             para->rect.left += para->speed;
             sfSprite_setTextureRect(para->sprite, para->rect);
         }
+        move_mob(mob, -1);
     }
     if (move_left == 1) {
         if (para->rect.left <= 0) {
@@ -60,19 +62,21 @@ void direction_parallax(t_para *para, int move_right, int move_left)
             para->rect.left -= para->speed;
             sfSprite_setTextureRect(para->sprite, para->rect);
         }
+        move_mob(mob, 1);
     }
 }
 
-void draw_parallax(sfRenderWindow *win, t_para *para, event_st *state,
+void draw_parallax(sfRenderWindow *win, game_t *game, event_st *state,
 sfVector2f pos)
 {
     int move_right = state->data && my_strcmp(state->data, "right")
     && pos.x >= settings->WW / 6 * 5;
     int move_left = state->data && my_strcmp(state->data, "left")
     && pos.x <= settings->WW / 6;
+    t_para *para = game->para;
 
     while (para) {
-        direction_parallax(para, move_right, move_left);
+        direction_parallax(para, game->mob, move_right, move_left);
         sfRenderWindow_drawSprite(win, para->sprite, NULL);
         para = para->next;
     }

@@ -9,7 +9,6 @@
 #ifndef ENTITY_H_
 #define ENTITY_H_
 
-#include "parallax.h"
 #include "rpg.h"
 
 //? Knight
@@ -61,6 +60,17 @@ typedef struct mob_t {
 
 void init_mob(mob_s **mob);
 void draw_mob(sfRenderWindow *win, mob_s *mob);
+void move_mob(mob_s *mob, int way);
+
+//? Parallax
+
+typedef struct parallax {
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfIntRect rect;
+    int speed;
+    struct parallax *next;
+} t_para;
 
 //? Game
 
@@ -69,5 +79,9 @@ typedef struct game_t {
     mob_s *mob;
     t_para *para;
 } game_t;
+
+t_para *set_parallax(void);
+void draw_parallax(sfRenderWindow *win, game_t *game, event_st *state,
+sfVector2f pos);
 
 #endif /* ENTITY_H_ */

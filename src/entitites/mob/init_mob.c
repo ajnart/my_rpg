@@ -24,8 +24,8 @@ void append_mob(mob_s **mob)
 
     element->sprite = sfSprite_create();
     element->position =
-        (sfVector2f){settings->WW * 0.3, settings->WH * 0.92};
-    element->state = 2;
+        (sfVector2f){settings->WW + 10, settings->WH * 0.92};
+    element->state = 1;
     element->rect_i = (sfIntRect){1440, 0, 80, 80};
     element->rect_a = (sfIntRect){0, 0, 80, 80};
     element->next = NULL;
