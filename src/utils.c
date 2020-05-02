@@ -14,3 +14,10 @@ float get_elapsed_time(sfClock *clock)
 
     return (seconds);
 }
+
+int get_abs(int nb)
+{
+    if (nb < 0)
+        return (-nb);
+    return (nb);
+}

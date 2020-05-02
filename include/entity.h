@@ -44,6 +44,7 @@ typedef struct mob_t {
     int state;
     sfIntRect rect_i;
     sfIntRect rect_a;
+    sfIntRect rect_w;
     sfVector2f position;
     sfSprite *sprite;
     sfClock *clock;
@@ -51,8 +52,9 @@ typedef struct mob_t {
 } mob_s;
 
 void init_mob(mob_s **mob);
-void draw_mob(sfRenderWindow *win, mob_s *mob);
+void draw_mob(sfRenderWindow *win, mob_s *mob, int k_pos);
 void move_mob(mob_s *mob, int way);
+void mob_aggro(mob_s *mob, int k_pos);
 
 //? Parallax
 
