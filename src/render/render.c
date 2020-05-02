@@ -23,7 +23,6 @@ void set_button_hover(sfRenderWindow *win)
         sfRectangleShape_setFillColor(btn->render, color);
     }
 }
-// TODO :         color.a = ~(color.r);
 
 void set_btn_color(sfRenderWindow *win)
 {

@@ -56,13 +56,15 @@ void buttons_settings(sfRenderWindow *win, int WW, int WH)
     sfTexture *tx = find_asset_byname("button.png")->asset_store.texture;
 
     settings->paused ? add_button(&g_buttons, "backg", mkf_rect((sfFloatRect)
-        {WW*0.85, WH*0.9, WW*0.15, WH*0.1}, tx, sfRed), "Back to game") : 0;
+        {WW*0.85, WH*0.9, WW*0.15, WH*0.1}, tx, sfRed), "Back to game"):0;
+    settings->paused ? add_button(&g_buttons, "exitg", mkf_rect((sfFloatRect)
+        {WW*0.85, WH*0.8, WW*0.15, WH*0.1}, tx, sfGreen), "Save and quit"):0;
     add_button(&g_buttons, "backm", mkf_rect((sfFloatRect)
         {0, WH*0.9, WW*0.15, WH*0.1}, tx, sfRed), "Back to main menu");
     add_button(&g_buttons, "vol_minus", mkf_rect((sfFloatRect)
-        {WW*0.075, WH*0.7, WW*0.075, WH*0.1}, tx, sfBlue), "Vol +");
+        {WW*0.075, WH*0.7, WW*0.075, WH*0.1}, tx, sfBlue), "vol -");
     add_button(&g_buttons, "vol_plus", mkf_rect((sfFloatRect)
-        {0, WH*0.7, WW*0.075, WH*0.1}, tx, sfRed), "Vol -");
+        {0, WH*0.7, WW*0.075, WH*0.1}, tx, sfRed), "vol +");
     add_button(&g_buttons, "emitter", mkf_rect((sfFloatRect)
         {0, WH*0.8, WW*0.15, WH*0.1}, tx,
         settings->emitter == 0 ? sfRed : sfGreen), "particles on/off");

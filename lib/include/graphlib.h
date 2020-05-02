@@ -67,6 +67,7 @@ void asset_type_define(asset_store_t *new, const char *ext, char *filename);
 void load_asset_fromfile(struct dirent *toload, asset_store_t **store);
 asset_store_t *load_assets(void);
 asset_store_t *find_asset_byname(char const *name);
+float get_elapsed_time(sfClock *clock);
 /* asset_utils.c */
 char *get_asset_fullpath(char *filename);
 /* mult_free.c */
