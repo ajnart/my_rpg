@@ -11,11 +11,8 @@
 #include "buttons.h"
 #include "scenes.h"
 
-void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
+void if_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 {
-    play_music(win, "music.ogg");
-    print_message("Knight of boulogne !", win, 2,
-        (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
     if (state->type == sfEvtMouseButtonPressed && state->data) {
         if (my_strcmp(state->data, "play"))
             send_notifs(win, "Release to play the game !", "", 20);
@@ -33,6 +30,15 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
         if (my_strcmp(state->data, "quit"))
             sfRenderWindow_close(win);
     }
+}
+
+void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
+{
+    sfRenderWindow_clear(win, (sfColor){0, 0, 0, 255});
+    play_music(win, "music.ogg");
+    print_message("Knight of boulogne !", win, 2,
+        (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
+    if_menu(win, state, loop);
 }
 
 void buttons_menu(sfRenderWindow *win, int WW, int WH)

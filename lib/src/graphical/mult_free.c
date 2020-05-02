@@ -7,6 +7,7 @@
 
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 void mult_free(int how_much, ...)
 {
