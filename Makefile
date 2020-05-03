@@ -42,6 +42,7 @@ debug: all
 $(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.c
 	@$(call rich_echo,"CC","$@")
 	@mkdir -p $(@D)
+	@mkdir -p saves
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 message:
