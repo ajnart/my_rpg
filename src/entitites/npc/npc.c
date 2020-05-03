@@ -15,20 +15,9 @@ void move_npc(npc_t *npc, int way)
         npc->position.x -= 1;
 }
 
-void case_npc(sfRenderWindow *win, npc_t *npc)
-{
-    switch (npc->state) {
-    case 1:
-        draw_npc_idle(win, npc);
-        break;
-    default:
-        break;
-    }
-}
-
 void draw_npc(sfRenderWindow *win, npc_t *npc)
 {
-    case_npc(win, npc);
+    draw_npc_idle(win, npc);
     sfSprite_setPosition(npc->sprite, npc->position);
     sfRenderWindow_drawSprite(win, npc->sprite, NULL);
 }
