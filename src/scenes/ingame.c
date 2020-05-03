@@ -42,6 +42,7 @@ game_t *init_game(void)
 
     init_knight(&(game->knight));
     init_mob(&(game->mob));
+    init_npc(&(game->npc));
     game->para = set_parallax();
     settings->game_defined = 1;
     return (game);
@@ -55,6 +56,7 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
         game = init_game();
     set_movement(state, &(game->knight));
     draw_parallax(win, game, state, game->knight.render.position);
+    draw_npc(win, &(game->npc));
     draw_mob(win, game->mob, game->knight.render.position.x);
     draw_knight(win, &(game->knight), game);
     update_notifs(win, 0);

@@ -65,6 +65,22 @@ void draw_mob_walking(sfRenderWindow *win, mob_s *mob, int k_pos);
 void draw_mob_attacking(sfRenderWindow *win, mob_s *mob);
 void draw_mob_dead(sfRenderWindow *win, mob_s *mob);
 
+//? NPC
+
+typedef struct npc_t {
+    int state;
+    sfIntRect rect_i;
+    sfVector2f position;
+    sfSprite *sprite;
+    sfClock *clock;
+    int game_finished;
+} npc_t;
+
+void draw_npc_idle(sfRenderWindow *win, npc_t *npc);
+void init_npc(npc_t *npc);
+void draw_npc(sfRenderWindow *win, npc_t *npc);
+void move_npc(npc_t *npc, int way);
+
 //? Parallax
 
 typedef struct parallax {
@@ -79,6 +95,7 @@ typedef struct parallax {
 
 typedef struct game_t {
     knight_s knight;
+    npc_t npc;
     mob_s *mob;
     t_para *para;
 } game_t;

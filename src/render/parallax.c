@@ -53,6 +53,7 @@ int move_right, int move_left)
             sfSprite_setTextureRect(para->sprite, para->rect);
         }
         move_mob(game->mob, -1);
+        move_npc(&(game->npc), -1);
     }
     if (move_left == 1 && check_collision_move(game, -1)) {
         if (para->rect.left <= 0) {
@@ -63,6 +64,7 @@ int move_right, int move_left)
             sfSprite_setTextureRect(para->sprite, para->rect);
         }
         move_mob(game->mob, 1);
+        move_npc(&(game->npc), 1);
     }
 }
 
