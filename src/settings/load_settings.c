@@ -33,7 +33,6 @@ sfKeys_t *load_keys(void)
     close(fd);
     return ret;
 }
-// ! TODO : Free stuff here
 
 settings_t *init_settings(settings_t *ret)
 {

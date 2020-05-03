@@ -146,5 +146,6 @@ void draw_boss(sfRenderWindow *win, mob_s *mob, game_t *game);
 
 void render_health_bar(sfRenderWindow *win, mob_s *mob);
 game_t *init_game(void);
+void dead_knight(sfRenderWindow *win);
 
 #endif /* ENTITY_H_ */
