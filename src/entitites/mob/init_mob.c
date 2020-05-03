@@ -57,4 +57,6 @@ void init_mob(mob_s **mob)
     (sfVector2f){(float)5, (float)0.3}, sfWhite);
     append_mob(mob, (sfVector2f){settings->WW / 4, settings->WH * 0.94},
     (sfVector2f){(float)5, (float)0.3}, sfWhite);
+    append_mob(mob, (sfVector2f){settings->WW * 1.5, settings->WH * 0.94},
+    (sfVector2f){(float)5, (float)0.3}, sfMagenta);
 }

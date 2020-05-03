@@ -43,6 +43,7 @@ game_t *init_game(void)
     init_knight(&(game->knight));
     init_mob(&(game->mob));
     init_npc(&(game->npc));
+    init_boss(&(game->boss));
     game->para = set_parallax();
     settings->game_defined = 1;
     game->view = sfView_create();
@@ -61,6 +62,7 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
     draw_npc(win, &(game->npc), state, game);
     draw_mob(win, game->mob, game->knight.render.position.x, game);
     draw_knight(win, &(game->knight), game);
+    draw_boss(win, &(game->boss), game);
     if (state->type == 10 && state->data) {
         if (my_strcmp(state->data, "paused")) {
             *loop = &loop_settings;

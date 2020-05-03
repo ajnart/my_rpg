@@ -43,7 +43,7 @@ void draw_quest_text(sfRenderWindow *win, npc_t *npc)
     int WH = settings->WH;
     char *s = "Hey ! My name is Rocco. I've been stuck here for 2 years, \n"
     "and I need your help ! Do you see those scary mobs ? \n"
-    "Go defeat them and you will be able to buy the princess !"
+    "Go defeat them and I will offer you a reward !"
     "\n\n(click again to continue)";
     char *s1 = "What are you doing ?!!\n"
     "Go defeat these mobs NOW!\n";

@@ -51,9 +51,9 @@ int move_right, int move_left)
         } else {
             para->rect.left += para->speed;
             sfSprite_setTextureRect(para->sprite, para->rect);
-        }
-        move_mob(game->mob, -1);
+        } move_mob(game->mob, -1);
         move_npc(&(game->npc), -1);
+        move_boss(&(game->boss), -1);
     } if (move_left == 1 && check_collision_move(game, -1)) {
         if (para->rect.left <= 0) {
             para->rect.left = 1280;
@@ -61,9 +61,9 @@ int move_right, int move_left)
         } else {
             para->rect.left -= para->speed;
             sfSprite_setTextureRect(para->sprite, para->rect);
-        }
-        move_mob(game->mob, 1);
+        } move_mob(game->mob, 1);
         move_npc(&(game->npc), 1);
+        move_boss(&(game->boss), 1);
     }
 }
 

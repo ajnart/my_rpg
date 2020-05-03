@@ -85,6 +85,7 @@ typedef struct game_t {
     knight_s knight;
     npc_t npc;
     mob_s *mob;
+    mob_s boss;
     t_para *para;
     sfView *view;
 } game_t;
@@ -129,5 +130,13 @@ void draw_mob_walking(sfRenderWindow *win, mob_s *mob, int k_pos);
 void draw_mob_attacking(sfRenderWindow *win, mob_s *mob, knight_s *knight);
 void draw_mob_dead(sfRenderWindow *win, mob_s *mob, game_t *game);
 void get_damage(knight_s *knight, mob_s *mob);
+
+//? Boss
+
+void move_boss(mob_s *mob, int way);
+
+void init_boss(mob_s *mob);
+void draw_boss_idle(sfRenderWindow *win, mob_s *mob);
+void draw_boss(sfRenderWindow *win, mob_s *mob, game_t *game);
 
 #endif /* ENTITY_H_ */
