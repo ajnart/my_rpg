@@ -21,8 +21,8 @@ void save_and_quit(sfRenderWindow *win, game_t *game)
     if (fd < 0)
         my_printf("File could not be written.\n");
     char *buffer = my_sprintf("%d:%d:%d:%d:%d:%d\nsavedata\n",
-        game->knight.stats.gold,
         game->knight.stats.health,
+        game->knight.stats.gold,
         game->knight.stats.maxhealth,
         game->knight.stats.strength,
         game->knight.stats.luck,

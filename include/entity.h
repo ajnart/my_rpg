@@ -146,5 +146,8 @@ void draw_boss(sfRenderWindow *win, mob_s *mob, game_t *game);
 
 void render_health_bar(sfRenderWindow *win, mob_s *mob);
 game_t *init_game(void);
+void save_and_quit(sfRenderWindow *win, game_t *game);
+void buy_perks(sfRenderWindow *win, game_t *game, event_st *state);
+void draw_inventory(sfRenderWindow *win, game_t *game);
 
 #endif /* ENTITY_H_ */
