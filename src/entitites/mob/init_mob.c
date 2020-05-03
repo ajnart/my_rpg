@@ -49,14 +49,22 @@ void append_mob(mob_s **mob, sfVector2f pos, sfVector2f dmg_s, sfColor color)
 void init_mob(mob_s **mob)
 {
     *mob = NULL;
-    append_mob(mob, (sfVector2f){settings->WW / 3, settings->WH * 0.92},
-    (sfVector2f){(float)5, (float)0.6}, sfBlack);
-    append_mob(mob, (sfVector2f){settings->WW / 2, settings->WH * 0.89},
-    (sfVector2f){(float)15, (float)0.1}, sfRed);
-    append_mob(mob, (sfVector2f){settings->WW + 50, settings->WH * 0.94},
-    (sfVector2f){(float)5, (float)0.3}, sfWhite);
-    append_mob(mob, (sfVector2f){settings->WW / 4, settings->WH * 0.94},
-    (sfVector2f){(float)5, (float)0.3}, sfWhite);
+    append_mob(mob, (sfVector2f){settings->WW, settings->WH * 0.92},
+    (sfVector2f){(float)5, (float)0.1}, sfWhite);
+    append_mob(mob, (sfVector2f){settings->WW * 1.2, settings->WH * 0.92},
+    (sfVector2f){(float)5, (float)0.1}, sfWhite);
+    append_mob(mob, (sfVector2f){settings->WW * 1.3, settings->WH * 0.89},
+    (sfVector2f){(float)10, (float)0.3}, sfBlue);
     append_mob(mob, (sfVector2f){settings->WW * 1.5, settings->WH * 0.94},
-    (sfVector2f){(float)5, (float)0.3}, sfMagenta);
+    (sfVector2f){(float)10, (float)0.3}, sfBlue);
+    append_mob(mob, (sfVector2f){settings->WW * 1.7, settings->WH * 0.87},
+    (sfVector2f){(float)20, (float)0.1}, sfRed);
+    append_mob(mob, (sfVector2f){settings->WW * 1.8, settings->WH * 0.94},
+    (sfVector2f){(float)5, (float)0.1}, sfWhite);
+    append_mob(mob, (sfVector2f){settings->WW * 2.1, settings->WH * 0.90},
+    (sfVector2f){(float)15, (float)0.5}, sfMagenta);
+    append_mob(mob, (sfVector2f){settings->WW * 2.5, settings->WH * 0.88},
+    (sfVector2f){(float)15, (float)0.5}, sfMagenta);
+    append_mob(mob, (sfVector2f){settings->WW * 2.9, settings->WH * 0.94},
+    (sfVector2f){(float)15, (float)0.5}, sfMagenta);
 }
