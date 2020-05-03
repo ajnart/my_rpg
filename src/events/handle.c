@@ -28,7 +28,6 @@ void hdl_key(sfEvent evt, sfRenderWindow *win, event_st *state)
         evt.key.code == sfKeyEscape)
         state->data = "paused";
 }
-// TODO : Possible cheat codes with CTRL + KEYS
 
 void hdl_close(sfEvent evt, sfRenderWindow *win, event_st *state)
 {

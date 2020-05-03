@@ -39,7 +39,8 @@ void add_buttons_paused(int WW, int WH)
     add_button(&g_buttons, "exitg", mkf_rect((sfFloatRect)
         {WW*0.85, WH*0.8, WW*0.15, WH*0.1}, tx, sfRed), "Save and quit");
     add_button(&g_buttons, "buy_s", mkf_rect((sfFloatRect)
-        {WW*0.15, WH*0.25, WW*0.15, WH*0.1}, 0, sfRed), "Strenght upgrade(50g)");
+        {WW*0.15, WH*0.25, WW*0.15,
+            WH*0.1}, 0, sfRed), "Strenght upgrade(50g)");
     add_button(&g_buttons, "buy_r", mkf_rect((sfFloatRect)
         {WW*0.30, WH*0.25, WW*0.15, WH*0.1}, 0, sfRed), "Speed upgrade(50g)");
     add_button(&g_buttons, "buy_l", mkf_rect((sfFloatRect)

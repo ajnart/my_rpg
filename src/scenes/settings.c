@@ -72,7 +72,6 @@ void messages_settings(sfRenderWindow *win, int WW, int WH, game_t *game)
         sfRectangleShape_destroy(render);
     }
 }
-// TODO : Fix not real values
 
 void loop_settings(sfRenderWindow *win, event_st *state,
     void (**loop)(), game_t *game)
