@@ -8,3 +8,4 @@ valgrind*
 log*
 saves
 *.csv
+*.sav
