@@ -60,7 +60,7 @@ void draw_quest_text(sfRenderWindow *win, npc_t *npc)
         npc->position.y - (double)settings->WH / 4.8, 0});
 }
 
-void draw_npc(sfRenderWindow *win, npc_t *npc, event_st *state)
+void draw_npc(sfRenderWindow *win, npc_t *npc, event_st *state, game_t *game)
 {
     draw_npc_idle(win, npc);
     check_interact(win, npc, state);

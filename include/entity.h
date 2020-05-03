@@ -86,13 +86,14 @@ typedef struct game_t {
     npc_t npc;
     mob_s *mob;
     t_para *para;
+    sfView *view;
 } game_t;
 
 //? NPC
 
 void init_npc(npc_t *npc);
 void move_npc(npc_t *npc, int way);
-void draw_npc(sfRenderWindow *win, npc_t *npc, event_st *state);
+void draw_npc(sfRenderWindow *win, npc_t *npc, event_st *state, game_t *game);
 void draw_npc_idle(sfRenderWindow *win, npc_t *npc);
 
 // ? Knight
