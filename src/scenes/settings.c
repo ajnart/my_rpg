@@ -64,8 +64,8 @@ void messages_settings(sfRenderWindow *win, int WW, int WH, game_t *game)
         render = mkf_rect((sfFloatRect){0, 0, WW, WH* 0.25},
             find_asset_byname("button.png")->asset_store.texture, sfBlack);
         info = (rect_text){render, text, my_sprintf("Your stats:\
-        strenght:%d, speed: %d, luck: %d, maxhp:%d", 
-        game->knight.stats.strength, game->knight.stats.mobility, 
+        strenght:%d, speed: %d, luck: %d, maxhp:%d",
+        game->knight.stats.strength, game->knight.stats.mobility,
         game->knight.stats.luck, game->knight.stats.maxhealth), sfWhite, 3};
         add_rect_text(win, &info);
         sfText_destroy(text);

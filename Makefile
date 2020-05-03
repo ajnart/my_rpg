@@ -73,7 +73,6 @@ fclean:		clean
 re:	fclean all
 
 assets:
-	@rm assets.tar
 	@tar -cf assets.tar assets
 	@$(call rich_echo,"AS","Assets compiled!")
 

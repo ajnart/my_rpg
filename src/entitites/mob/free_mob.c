@@ -6,6 +6,7 @@
 */
 
 #include "entity.h"
+#include "lib.h"
 
 void free_mob(mob_s *mob)
 {
