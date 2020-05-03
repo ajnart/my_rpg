@@ -68,11 +68,13 @@ fclean:		clean
 	@$(MAKE) -C lib/ fclean -s
 	@rm -f $(NAME)*
 	@rm -f libmy.a
-	@tar -cf assets.tar assets
 	@$(call rich_echo,"AA","Assets compressed")
 	@$(call rich_echo,"MK","FClean done")
 
 re:	fclean all
+
+assets:
+	@tar -cf assets.tar assets
 
 protos: $(NAME)
 	@cproto $(SOURCE) -Iinclude
