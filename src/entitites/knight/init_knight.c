@@ -20,7 +20,7 @@ void init_knight_fromfile(char *playername, knight_s *pl)
     if (__DEBUG__)
         my_printf("[D]\t ./saves/%s.sav ... fd : %d\n", playername, fd);
     if (fd < 0)
-        pl->stats = (struct knight_stats){100, 0, 100, 1, 1, 1};
+        pl->stats = (struct knight_stats){100, 0, 100, 30, 1, 1};
     else {
         read(fd, buffer, 32);
         tab = my_str_to_wordtab(buffer, ':');
@@ -45,8 +45,6 @@ void init_knight(knight_s *knight)
     knight->render.rect_w = (sfIntRect){0, 0, 64, 64};
     knight->render.rect_a = (sfIntRect){0, 0, 64, 64};
     knight->render.is_attacking = 0;
-    knight->stats.strength = 30;
-    knight->stats.health = 100;
     knight->render.clock = sfClock_create();
     sfSprite_setOrigin(knight->render.sprite, (sfVector2f){32, 32});
     sfSprite_setTexture(knight->render.sprite,

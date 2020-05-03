@@ -25,7 +25,10 @@ RIGHT\nPress space to swing your sword and slay enemies",
     (sfVector3f){WW*0.5, WH*0.1, 0});
 }
 
-void if_settings(event_st *state, void (**loop)(), sfRenderWindow *win)
+void save_and_quit(sfRenderWindow *win, game_t *game);
+
+void if_settings(event_st *state, void (**loop)(),
+    sfRenderWindow *win, game_t *game)
 {
     if (state->type == sfEvtMouseButtonPressed && state->data) {
         if (my_strcmp(state->data, "backm")) {
@@ -39,7 +42,7 @@ void if_settings(event_st *state, void (**loop)(), sfRenderWindow *win)
         if (my_strcmp(state->data, "vol_minus") && settings->volume >= 10)
             settings->volume -= 10;
         if (my_strcmp(state->data, "exitg"))
-            play_sound("sword.ogg", win, 10);
+            save_and_quit(win, game);
         if (my_strcmp(state->data, "emitter")) {
             settings->emitter = settings->emitter == 0 ? 1 : 0;
             get_button(g_buttons, "emitter")->normal = get_button(g_buttons,
@@ -75,7 +78,7 @@ void loop_settings(sfRenderWindow *win, event_st *state,
 {
     settings->paused ? 0: sfRenderWindow_clear(win, sfBlack);
     messages_settings(win, settings->WW, settings->WH);
-    if_settings(state, loop, win);
+    if_settings(state, loop, win, game);
     sfMusic_setVolume(find_asset_byname("music.wav")->asset_store.music,
         settings->volume);
     state->data = NULL;
