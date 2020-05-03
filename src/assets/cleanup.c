@@ -28,8 +28,9 @@ void destroy_buttons(button_store_t **store)
 
 void destroy_settings(settings_t *s)
 {
-    mult_free(7, s->keys->down, s->keys->up, s->keys->inv, 
-        s->keys->pause, s->keys->right, s->keys->left, s->name);
+    if (!my_strcmp(settings->name, "noob"))
+        mult_free(7, s->keys->down, s->keys->up, s->keys->inv, 
+            s->keys->pause, s->keys->right, s->keys->left, s->name);
     free(s->keys);
 }
 
