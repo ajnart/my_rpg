@@ -15,8 +15,6 @@
 void buttons_ingame(sfRenderWindow *win, int WW, int WH)
 {
 }
-/*add_button(&g_buttons, "notif", mkf_rect((sfFloatRect)
-        {0, WH * 0.9, WW*0.3, WH*0.1}, NULL, sfRed), "Send notif");*/
 
 void draw_inventory(sfRenderWindow *win, game_t *game)
 {
@@ -91,4 +89,6 @@ void loop_ingame(sfRenderWindow *win, event_st *state,
             settings->paused = 1;
         }
     }
+    if (game->knight.stats.health <= 0)
+        dead_knight(win);
 }

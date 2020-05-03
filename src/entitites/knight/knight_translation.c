@@ -83,10 +83,10 @@ void move_knight(game_t *game, int way)
 {
     if (way == 1 && check_collision_move(game, way)) {
         if (game->knight.render.position.x < (double)settings->WW / 6 * 5)
-            game->knight.render.position.x += settings->WW / 426;
+            game->knight.render.position.x += game->knight.stats.mobility;
     }
     if (way == -1 && check_collision_move(game, way)) {
         if (game->knight.render.position.x > (double)settings->WW / 6)
-            game->knight.render.position.x -= settings->WW / 426;
+            game->knight.render.position.x -= game->knight.stats.mobility;
     }
 }
