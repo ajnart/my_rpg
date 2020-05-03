@@ -16,11 +16,13 @@ typedef struct knight_render {
     int state;
     int state_frame;
     int is_attacking;
+    int inv;
     sfIntRect rect_i;
     sfIntRect rect_w;
     sfIntRect rect_a;
     sfVector2f position;
     sfSprite *sprite;
+    sfSprite *gold;
     sfClock *clock;
 } knight_render;
 
