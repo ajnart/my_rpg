@@ -7,6 +7,34 @@
 
 #include "entity.h"
 
+void free_mob(mob_s *mob)
+{
+    mob->alive = 0;
+    sfSprite_destroy(mob->sprite);
+    sfClock_destroy(mob->clock);
+}
+
+void delete_mob(game_t *game, mob_s *mob)
+{
+    mob_s *tmp = game->mob;
+    mob_s *save = NULL;
+
+    if (game->mob->next == NULL) {
+        free_mob(game->mob);
+        game->mob = NULL;
+        return;
+    }
+    while (tmp->next) {
+        if (tmp->next->position.x == mob->position.x &&
+        tmp->next->life == mob->life) {
+            save = tmp->next;
+            tmp->next = tmp->next->next;
+            free_mob(save);
+        }
+        tmp = tmp->next;
+    }
+}
+
 void set_mob(mob_s *element, sfVector2f pos)
 {
     element->sprite = sfSprite_create();
@@ -17,8 +45,8 @@ void set_mob(mob_s *element, sfVector2f pos)
     element->rect_w = (sfIntRect){2000, 0, 80, 80};
     element->rect_d = (sfIntRect){800, 0, 80, 80};
     element->damage = 1;
-    element->life = 100;
     element->alive = 1;
+    element->life = 100;
     element->next = NULL;
     sfSprite_setTexture(element->sprite,
         find_asset_byname("blob.png")->asset_store.texture, sfTrue);

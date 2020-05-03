@@ -42,9 +42,9 @@ typedef struct knight_struct {
 
 typedef struct mob_t {
     int state;
-    int alive;
     int life;
     int damage;
+    int alive;
     sfIntRect rect_i;
     sfIntRect rect_a;
     sfIntRect rect_w;
@@ -54,16 +54,6 @@ typedef struct mob_t {
     sfClock *clock;
     struct mob_t *next;
 } mob_s;
-
-void init_mob(mob_s **mob);
-void move_mob(mob_s *mob, int way);
-void mob_aggro(mob_s *mob, int k_pos);
-
-void draw_mob(sfRenderWindow *win, mob_s *mob, int k_pos);
-void draw_mob_idle(sfRenderWindow *win, mob_s *mob);
-void draw_mob_walking(sfRenderWindow *win, mob_s *mob, int k_pos);
-void draw_mob_attacking(sfRenderWindow *win, mob_s *mob);
-void draw_mob_dead(sfRenderWindow *win, mob_s *mob);
 
 //? NPC
 
@@ -117,5 +107,18 @@ void draw_knight_attacking(sfRenderWindow *win, knight_s *knight, mob_s *mob);
 t_para *set_parallax(void);
 void draw_parallax(sfRenderWindow *win, game_t *game, event_st *state,
 sfVector2f pos);
+
+//? Mob
+
+void init_mob(mob_s **mob);
+void move_mob(mob_s *mob, int way);
+void mob_aggro(mob_s *mob, int k_pos);
+
+void delete_mob(game_t *game, mob_s *mob);
+void draw_mob(sfRenderWindow *win, mob_s *mob, int k_pos, game_t *game);
+void draw_mob_idle(sfRenderWindow *win, mob_s *mob);
+void draw_mob_walking(sfRenderWindow *win, mob_s *mob, int k_pos);
+void draw_mob_attacking(sfRenderWindow *win, mob_s *mob);
+void draw_mob_dead(sfRenderWindow *win, mob_s *mob, game_t *game);
 
 #endif /* ENTITY_H_ */

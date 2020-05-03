@@ -7,7 +7,7 @@
 
 #include "entity.h"
 
-void case_mob(sfRenderWindow *win, mob_s *mob, int k_pos)
+void case_mob(sfRenderWindow *win, mob_s *mob, int k_pos, game_t *game)
 {
     switch (mob->state) {
     case 1:
@@ -20,23 +20,26 @@ void case_mob(sfRenderWindow *win, mob_s *mob, int k_pos)
         draw_mob_attacking(win, mob);
         break;
     case 4:
-        draw_mob_dead(win, mob);
+        draw_mob_dead(win, mob, game);
     default:
         break;
     }
 }
 
-void draw_mob(sfRenderWindow *win, mob_s *mob, int k_pos)
+void draw_mob(sfRenderWindow *win, mob_s *mob, int k_pos, game_t *game)
 {
+    mob_s *save = NULL;
+
     while (mob) {
-        case_mob(win, mob, k_pos);
+        case_mob(win, mob, k_pos, game);
         mob_aggro(mob, k_pos);
-        if (mob->alive == 1) {
-            sfSprite_setPosition(mob->sprite, mob->position);
-            sfRenderWindow_drawSprite(win, mob->sprite, NULL);
-        }
+        sfSprite_setPosition(mob->sprite, mob->position);
+        sfRenderWindow_drawSprite(win, mob->sprite, NULL);
         if (mob->life <= 0)
             mob->state = 4;
+        save = mob;
         mob = mob->next;
+        if (save->alive == 0)
+            free(save);
     }
 }
