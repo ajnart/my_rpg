@@ -43,28 +43,21 @@ void case_knight(sfRenderWindow *win, knight_s *knight, game_t *game)
 {
     draw_knight_life(win, knight);
     switch (knight->render.state) {
-    case 1:
-        draw_knight_idle(win, knight);
+    case 1: draw_knight_idle(win, knight);
         break;
-    case 2:
-        draw_knight_walking(win, knight, 1);
+    case 2: draw_knight_walking(win, knight, 1);
         move_knight(game, 1);
         break;
-    case 3:
-        draw_knight_attacking(win, knight, game->mob);
+    case 3: draw_knight_attacking(win, knight, game->mob);
         break;
-    case 4:
-        draw_knight_walking(win, knight, -1);
+    case 4: draw_knight_walking(win, knight, -1);
         move_knight(game, -1);
         break;
-    case 5:
-        draw_knight_translate(win, game, knight, 1);
+    case 5: draw_knight_translate(win, game, knight, 1);
         break;
-    case 6:
-        draw_knight_translate(win, game, knight, 2);
+    case 6: draw_knight_translate(win, game, knight, 2);
         break;
-    default:
-        break; }
+    default: break; }
 }
 
 void draw_knight(sfRenderWindow *win, knight_s *knight,
