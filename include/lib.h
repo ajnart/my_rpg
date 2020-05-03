@@ -36,7 +36,6 @@ char *get_next_line(int fd);
 char *get_next_word(int fd);
 /* src/my_getnbr.c */
 int add_nb(int act_nb, int new_nb, int *h_ovf);
-int my_getnbr(char const *str);
 /* src/my_printf.c */
 int check_flag(char c);
 void fct_pointers_create(va_list fp, const char *str, int i);
@@ -75,6 +74,7 @@ char *my_sprintf(char *str, ...);
 char *my_itoa(int value, char *buffer, int base);
 unsigned long my_hash_str(const char *str);
 void mult_free(int how_much, ...);
+int my_atoi(char const *str);
 char *encrypt(char *str);
 
 typedef void (*print_compute_t)(va_list arg);

@@ -33,6 +33,7 @@ sfKeys_t *load_keys(void)
     close(fd);
     return ret;
 }
+//! TODO : Free stuff here
 
 settings_t *load_settings(void)
 {
@@ -45,10 +46,10 @@ settings_t *load_settings(void)
     get_next_line(fd);
     settings = my_str_to_wordtab(get_next_line(fd), ',');
     ret->paused = 0;
-    ret->WH = my_getnbr(settings[0]);
-    ret->WW = my_getnbr(settings[1]);
-    ret->volume = my_getnbr(settings[2]);
-    ret->emitter = my_getnbr(settings[3]);
+    ret->WH = my_atoi(settings[0]);
+    ret->WW = my_atoi(settings[1]);
+    ret->volume = my_atoi(settings[2]);
+    ret->emitter = my_atoi(settings[3]);
     ret->name = settings[4];
     ret->status = "menu";
     ret->keys = load_keys();
