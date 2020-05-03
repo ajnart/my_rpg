@@ -87,6 +87,7 @@ asset_store_t *find_asset_byname(char const *name);
 float get_elapsed_time(sfClock *clock);
 char *get_asset_fullpath(char *filename);
 /* mult_free.c */
+void play_sound(char *sound, sfRenderWindow *win, int vol);
 void mult_free(int how_much, ...);
 /* print_message.c */
 void print_message(char *str, sfRenderWindow *win, float size, sfVector3f info);
