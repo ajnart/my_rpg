@@ -7,3 +7,4 @@ my_rpg
 valgrind*
 log*
 saves
+*.csv
