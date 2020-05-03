@@ -59,11 +59,11 @@ void draw_mob_walking(sfRenderWindow *win, mob_s *mob, int k_pos)
 
 void draw_mob_dead(sfRenderWindow *win, mob_s *mob, game_t *game)
 {
-    if (get_elapsed_time(mob->clock) > 0.15) {
+    if (mob->alive == 1 && get_elapsed_time(mob->clock) > 0.15) {
         if (mob->rect_d.left <= 1359)
             mob->rect_d.left += 80;
         else
-            delete_mob(game, mob);
+            mob->alive = 0;
         sfSprite_setTextureRect(mob->sprite, mob->rect_d);
         sfClock_restart(mob->clock);
     }

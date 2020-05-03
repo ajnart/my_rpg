@@ -114,7 +114,7 @@ void init_mob(mob_s **mob);
 void move_mob(mob_s *mob, int way);
 void mob_aggro(mob_s *mob, int k_pos);
 
-void delete_mob(game_t *game, mob_s *mob);
+mob_s *delete_mob(game_t *game, mob_s *mob);
 void draw_mob(sfRenderWindow *win, mob_s *mob, int k_pos, game_t *game);
 void draw_mob_idle(sfRenderWindow *win, mob_s *mob);
 void draw_mob_walking(sfRenderWindow *win, mob_s *mob, int k_pos);
