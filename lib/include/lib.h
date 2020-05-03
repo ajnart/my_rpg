@@ -35,8 +35,8 @@ char *get_next_line(int fd);
 /* src/get_next_word.c */
 char *get_next_word(int fd);
 /* src/my_getnbr.c */
+int my_atoi(char const *str);
 int add_nb(int act_nb, int new_nb, int *h_ovf);
-int my_getnbr(char const *str);
 /* src/my_printf.c */
 int check_flag(char c);
 void fct_pointers_create(va_list fp, const char *str, int i);
