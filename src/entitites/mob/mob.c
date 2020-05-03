@@ -35,6 +35,8 @@ void draw_mob(sfRenderWindow *win, mob_s *mob, int k_pos)
             sfSprite_setPosition(mob->sprite, mob->position);
             sfRenderWindow_drawSprite(win, mob->sprite, NULL);
         }
+        if (mob->life <= 0)
+            mob->state = 4;
         mob = mob->next;
     }
 }

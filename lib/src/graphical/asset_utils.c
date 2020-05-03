@@ -33,3 +33,10 @@ int get_abs(int nb)
         return (-nb);
     return (nb);
 }
+
+int get_sign(int nb)
+{
+    if (nb < 0)
+        return (-1);
+    return (1);
+}

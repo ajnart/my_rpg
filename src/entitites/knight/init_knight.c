@@ -16,6 +16,7 @@ void init_knight(knight_s *knight)
     knight->render.rect_w = (sfIntRect){0, 0, 64, 64};
     knight->render.rect_a = (sfIntRect){0, 0, 64, 64};
     knight->render.is_attacking = 0;
+    knight->stats.strength = 30;
     knight->render.clock = sfClock_create();
     sfSprite_setOrigin(knight->render.sprite, (sfVector2f){32, 32});
     sfSprite_setTexture(knight->render.sprite,

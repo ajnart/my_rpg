@@ -41,6 +41,7 @@ void explosion(sfRenderWindow *win, char *str);
 
 float get_elapsed_time(sfClock *clock);
 int get_abs(int nb);
+int get_sign(int nb);
 void update_notifs(sfRenderWindow *win, int request);
 void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft);
 

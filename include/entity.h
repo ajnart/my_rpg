@@ -28,7 +28,7 @@ typedef struct knight_stats {
     int health;
     int gold;
     int maxhealth;
-    int strenght;
+    int strength;
     int luck;
     int mobility;
 } knight_stats;
@@ -43,6 +43,8 @@ typedef struct knight_struct {
 typedef struct mob_t {
     int state;
     int alive;
+    int life;
+    int damage;
     sfIntRect rect_i;
     sfIntRect rect_a;
     sfIntRect rect_w;
@@ -88,11 +90,12 @@ void draw_knight_translate(sfRenderWindow *win, game_t *game,
 knight_s *knight, int way);
 void move_knight(game_t *game, int way);
 int check_collision_move(game_t *game, int way);
+void do_damage(mob_s *mob, knight_s *knight, int sign);
 
 void init_knight(knight_s *knight);
 void draw_knight_idle(sfRenderWindow *win, knight_s *knight);
 void draw_knight_walking(sfRenderWindow *win, knight_s *knight, int way);
-void draw_knight_attacking(sfRenderWindow *win, knight_s *knight);
+void draw_knight_attacking(sfRenderWindow *win, knight_s *knight, mob_s *mob);
 
 t_para *set_parallax(void);
 void draw_parallax(sfRenderWindow *win, game_t *game, event_st *state,

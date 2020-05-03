@@ -7,6 +7,21 @@
 
 #include "entity.h"
 
+void do_damage(mob_s *mob, knight_s *knight, int sign)
+{
+    int dist = 0;
+
+    if (knight->render.rect_a.left == 384)  {
+        while (mob) {
+            dist = mob->position.x - knight->render.position.x;
+            if (mob->state == 3 &&
+            ((dist > 0 && sign > 0) || (dist < 0 && sign < 0)))
+                mob->life -= knight->stats.strength;
+            mob = mob->next;
+        }
+    }
+}
+
 void case_knight(sfRenderWindow *win, knight_s *knight, game_t *game)
 {
     switch (knight->render.state) {
@@ -18,7 +33,7 @@ void case_knight(sfRenderWindow *win, knight_s *knight, game_t *game)
         move_knight(game, 1);
         break;
     case 3:
-        draw_knight_attacking(win, knight);
+        draw_knight_attacking(win, knight, game->mob);
         break;
     case 4:
         draw_knight_walking(win, knight, -1);
@@ -34,7 +49,8 @@ void case_knight(sfRenderWindow *win, knight_s *knight, game_t *game)
         break; }
 }
 
-void draw_knight(sfRenderWindow *win, knight_s *knight, game_t *game)
+void draw_knight(sfRenderWindow *win, knight_s *knight,
+game_t *game)
 {
     if (!knight->render.sprite)
         knight->render.sprite = sfSprite_create();
