@@ -18,6 +18,7 @@ void move_boss(mob_s *mob, int way)
 void draw_boss(sfRenderWindow *win, mob_s *mob, game_t *game)
 {
     draw_boss_idle(win, mob);
+    mob_aggro(mob, game->knight.render.position.x);
     sfSprite_setPosition(mob->sprite, mob->position);
     sfRenderWindow_drawSprite(win, mob->sprite, NULL);
 }
