@@ -36,8 +36,9 @@ void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft)
         update_notifs(win, lifeleft);
     }
     else {
-        print_message(string, win, (float)1.2, (sfVector3f){WH*0.6, 0, 5});
-        print_message(substring, win, (float)1, (sfVector3f){WH*0.6, 0, 5});
+        print_message(string, win, (float)1.2, (sfVector3f){WW*0.5, 0, 0});
+        print_message(substring, win, (float)1,
+            (sfVector3f){WW*0.5, WH*0.05, 0});
     }
     if (lifeleft == 0)
         sfSound_destroy(s);

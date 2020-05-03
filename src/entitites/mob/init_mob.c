@@ -19,7 +19,7 @@ void set_mob(mob_s *element, sfVector2f pos, sfVector2f(stat), sfColor color)
     element->damage = stat.x;
     element->speed = stat.y;
     element->alive = 1;
-    element->life = 100;
+    element->life = (stat.x + stat.y) * 20;
     element->next = NULL;
     sfSprite_setTexture(element->sprite,
         find_asset_byname("blob.png")->asset_store.texture, sfTrue);
@@ -54,7 +54,7 @@ void init_mob(mob_s **mob)
     append_mob(mob, (sfVector2f){settings->WW / 2, settings->WH * 0.89},
     (sfVector2f){(float)15, (float)0.1}, sfRed);
     append_mob(mob, (sfVector2f){settings->WW + 50, settings->WH * 0.94},
-    (sfVector2f){(float)1, (float)0.3}, sfWhite);
+    (sfVector2f){(float)5, (float)0.3}, sfWhite);
     append_mob(mob, (sfVector2f){settings->WW / 4, settings->WH * 0.94},
-    (sfVector2f){(float)1, (float)0.3}, sfWhite);
+    (sfVector2f){(float)5, (float)0.3}, sfWhite);
 }
