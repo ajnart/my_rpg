@@ -55,5 +55,3 @@ void init_knight(knight_s *knight)
     sfSprite_setScale(knight->render.sprite,
     (sfVector2f){(double)settings->WW / 400, (double)settings->WH / 400});
 }
-// TODO : Load from settings depending on the player's name.
-// TODO : Maybe encrypt settings via HASH function.

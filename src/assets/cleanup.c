@@ -42,7 +42,7 @@ void cleanup(sfRenderWindow *w, asset_store_t *a, settings_t *s, emitter_t *e)
     emitter_cleanup(e);
     destroy_buttons(&g_buttons);
     my_printf("%c[1;33m",27);
-    my_printf("Fin du my_rpg. Merci d'avoir joué 💗\n");
+    my_printf("End of my_rpg. Thanks for playing 💗\n");
     my_printf("%c[0;33m",27);
     free(settings);
     free(g_buttons);
