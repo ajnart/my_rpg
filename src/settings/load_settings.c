@@ -38,8 +38,6 @@ sfKeys_t *load_keys(void)
 settings_t *init_settings(settings_t *ret)
 {
     sfKeys_t *keys = malloc(sizeof(sfKeys_t));
-    if (__DEBUG__)
-        my_printf("Settings.csv not found, using default values...\n");
     keys->up    = "Z";
     keys->left  = "Q";
     keys->down  = "S";
@@ -57,6 +55,7 @@ settings_t *init_settings(settings_t *ret)
     if (__DEBUG__)
         my_printf("[D]:\nU: %s\tL: %s\nD: %s\tR: %s\nP: %s\tInv:%s\n",
         keys->up, keys->left, keys->down, keys->right, keys->pause, keys->inv);
+        my_printf("Settings.csv not found, using default values...\n");
     return (ret);
 }
 
