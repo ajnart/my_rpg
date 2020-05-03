@@ -52,18 +52,25 @@ typedef struct settings_struct
     int volume;
     int emitter;
     char *name;
-    char *status;
     sfKeys_t *keys;
     int game_defined;
     int paused;
 } settings_t;
 
+typedef struct rect_text {
+    sfRectangleShape *render;
+    sfText *text;
+    char *str;
+    sfColor fill;
+    int size;
+} rect_text;
 
 asset_store_t *g_assets;
 settings_t *settings;
 
 /* asset_loader.c */
 void destroy_assets(asset_store_t *store);
+void add_rect_text(sfRenderWindow *win, rect_text *info);
 
 // * Precalculated hases :
 //  ".png" = 6383219704

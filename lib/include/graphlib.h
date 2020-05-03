@@ -52,11 +52,18 @@ typedef struct settings_struct
     int volume;
     int emitter;
     char *name;
-    char *status;
     sfKeys_t *keys;
     int game_defined;
     int paused;
 } settings_t;
+
+typedef struct rect_text {
+    sfRectangleShape *render;
+    sfText *text;
+    char *str;
+    sfColor fill;
+    int size;
+} rect_text;
 
 extern asset_store_t *g_assets;
 extern settings_t *settings;
@@ -72,6 +79,7 @@ float get_elapsed_time(sfClock *clock);
 char *get_asset_fullpath(char *filename);
 /* mult_free.c */
 void mult_free(int how_much, ...);
+void add_rect_text(sfRenderWindow *win, rect_text *info);
 /* print_message.c */
 void print_message(char *str, sfRenderWindow *win, int size, sfVector3f info);
 #endif
