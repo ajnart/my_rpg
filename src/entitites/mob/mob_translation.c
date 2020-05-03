@@ -11,6 +11,7 @@ void mob_aggro(mob_s *mob, int k_pos)
 {
     int d = 0;
     int off = settings->WW / 20;
+    int nb = 0;
 
     while (mob) {
         d = mob->position.x - k_pos;
@@ -20,12 +21,13 @@ void mob_aggro(mob_s *mob, int k_pos)
         if (mob->state == 2 && get_abs(d) >= 400)
             mob->state = 1;
         if (mob->state == 2 && d > 0 && get_abs(d) > off)
-            mob->position.x -= 1;
+            mob->position.x -= mob->speed;
         else if (mob->state == 2 && get_abs(d) > off)
-            mob->position.x += 1;
+            mob->position.x += mob->speed;
         if (mob->state == 2 && get_abs(d) <= off)
             mob->state = 3;
         mob = mob->next;
+        nb++;
     }
 }
 

@@ -7,7 +7,7 @@
 
 #include "entity.h"
 
-void set_mob(mob_s *element, sfVector2f pos)
+void set_mob(mob_s *element, sfVector2f pos, int dmg, float speed)
 {
     element->sprite = sfSprite_create();
     element->position = pos;
@@ -16,7 +16,8 @@ void set_mob(mob_s *element, sfVector2f pos)
     element->rect_a = (sfIntRect){0, 0, 80, 80};
     element->rect_w = (sfIntRect){2000, 0, 80, 80};
     element->rect_d = (sfIntRect){800, 0, 80, 80};
-    element->damage = 1;
+    element->damage = dmg;
+    element->speed = speed;
     element->alive = 1;
     element->life = 100;
     element->next = NULL;
@@ -29,12 +30,12 @@ void set_mob(mob_s *element, sfVector2f pos)
     element->clock = sfClock_create();
 }
 
-void append_mob(mob_s **mob, sfVector2f pos)
+void append_mob(mob_s **mob, sfVector2f pos, int dmg, float speed)
 {
     mob_s *tmp = *mob;
     mob_s *element = malloc(sizeof(mob_s));
 
-    set_mob(element, pos);
+    set_mob(element, pos, dmg, speed);
     if (tmp == NULL)
         *mob = element;
     else {
@@ -47,6 +48,12 @@ void append_mob(mob_s **mob, sfVector2f pos)
 void init_mob(mob_s **mob)
 {
     *mob = NULL;
-    append_mob(mob, (sfVector2f){settings->WW / 3, settings->WH * 0.92});
-    append_mob(mob, (sfVector2f){settings->WW / 2, settings->WH * 0.92});
+    append_mob(mob, (sfVector2f){settings->WW / 3, settings->WH * 0.92}, 1,
+    0.3);
+    append_mob(mob, (sfVector2f){settings->WW / 2, settings->WH * 0.89}, 1,
+    0.3);
+    append_mob(mob, (sfVector2f){settings->WW + 50, settings->WH * 0.94}, 1,
+    0.3);
+    append_mob(mob, (sfVector2f){settings->WW / 4, settings->WH * 0.94}, 1,
+    0.3);
 }
