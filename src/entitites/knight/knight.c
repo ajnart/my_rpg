@@ -7,6 +7,22 @@
 
 #include "entity.h"
 
+void draw_knight_life(sfRenderWindow *win, knight_s *knight)
+{
+    int WW = settings->WW;
+    int WH = settings->WH;
+    sfText *text = sfText_create();
+    rect_text info;
+    sfRectangleShape *render;
+    render = mkf_rect((sfFloatRect){0, 
+        WH*0.05, knight->stats.health * WW*0.2 / 100, WH* 0.2},
+        find_asset_byname("button.png")->asset_store.texture, sfRed);
+    info = (rect_text){render, text, "", sfWhite, 8};
+    add_rect_text(win, &info);
+    sfText_destroy(text);
+    sfRectangleShape_destroy(render);
+}
+
 void do_damage(mob_s *mob, knight_s *knight, int sign)
 {
     int dist = 0;
@@ -25,6 +41,7 @@ void do_damage(mob_s *mob, knight_s *knight, int sign)
 
 void case_knight(sfRenderWindow *win, knight_s *knight, game_t *game)
 {
+    draw_knight_life(win, knight);
     switch (knight->render.state) {
     case 1:
         draw_knight_idle(win, knight);

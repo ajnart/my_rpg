@@ -52,7 +52,6 @@ settings_t *init_settings(settings_t *ret)
     ret->volume = 50;
     ret->emitter = 1;
     ret->name = my_strdup("noob");
-    ret->status = "menu";
     ret->keys = keys;
     ret->game_defined = 0;
     if (__DEBUG__)
@@ -78,7 +77,6 @@ settings_t *load_settings(void)
     ret->volume = my_atoi(settings[2]);
     ret->emitter = my_atoi(settings[3]);
     ret->name = settings[4];
-    ret->status = "menu";
     ret->keys = load_keys();
     ret->game_defined = 0;
     close(fd);
