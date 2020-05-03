@@ -42,7 +42,6 @@ debug: all
 $(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.c
 	@$(call rich_echo,"CC","$@")
 	@mkdir -p $(@D)
-	@mkdir -p saves
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 message:
@@ -53,7 +52,7 @@ message:
 
 $(NAME):	$(OBJ)
 	@tar -xf assets.tar
-	@$(call rich_echo,"AC","Assets compiled")
+	@$(call rich_echo,"AC","Assets uncompressed")
 	@$(MAKE) -C lib/
 	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LD_FLAGS)
 
@@ -74,7 +73,9 @@ fclean:		clean
 re:	fclean all
 
 assets:
+	@rm assets.tar
 	@tar -cf assets.tar assets
+	@$(call rich_echo,"AS","Assets compiled!")
 
 protos: $(NAME)
 	@cproto $(SOURCE) -Iinclude
