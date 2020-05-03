@@ -15,8 +15,9 @@ void do_damage(mob_s *mob, knight_s *knight, int sign)
         while (mob) {
             dist = mob->position.x - knight->render.position.x;
             if (mob->state == 3 &&
-            ((dist > 0 && sign > 0) || (dist < 0 && sign < 0)))
+            ((dist > 0 && sign > 0) || (dist < 0 && sign < 0))) {
                 mob->life -= knight->stats.strength;
+            }
             mob = mob->next;
         }
     }

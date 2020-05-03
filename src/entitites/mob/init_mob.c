@@ -7,34 +7,6 @@
 
 #include "entity.h"
 
-void free_mob(mob_s *mob)
-{
-    mob->alive = 0;
-    sfSprite_destroy(mob->sprite);
-    sfClock_destroy(mob->clock);
-}
-
-void delete_mob(game_t *game, mob_s *mob)
-{
-    mob_s *tmp = game->mob;
-    mob_s *save = NULL;
-
-    if (game->mob->next == NULL) {
-        free_mob(game->mob);
-        game->mob = NULL;
-        return;
-    }
-    while (tmp->next) {
-        if (tmp->next->position.x == mob->position.x &&
-        tmp->next->life == mob->life) {
-            save = tmp->next;
-            tmp->next = tmp->next->next;
-            free_mob(save);
-        }
-        tmp = tmp->next;
-    }
-}
-
 void set_mob(mob_s *element, sfVector2f pos)
 {
     element->sprite = sfSprite_create();
@@ -76,4 +48,5 @@ void init_mob(mob_s **mob)
 {
     *mob = NULL;
     append_mob(mob, (sfVector2f){settings->WW / 3, settings->WH * 0.92});
+    append_mob(mob, (sfVector2f){settings->WW / 2, settings->WH * 0.92});
 }
