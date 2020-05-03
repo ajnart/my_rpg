@@ -33,13 +33,11 @@ sfKeys_t *load_keys(void)
     close(fd);
     return ret;
 }
-//! TODO : Free stuff here
+// ! TODO : Free stuff here
 
 settings_t *init_settings(settings_t *ret)
 {
     sfKeys_t *keys = malloc(sizeof(sfKeys_t));
-    if (__DEBUG__)
-        my_printf("Settings.csv not found, using default values...\n");
     keys->up    = "Z";
     keys->left  = "Q";
     keys->down  = "S";
@@ -54,9 +52,10 @@ settings_t *init_settings(settings_t *ret)
     ret->name = my_strdup("noob");
     ret->keys = keys;
     ret->game_defined = 0;
-    if (__DEBUG__)
+    if (__DEBUG__) {
+        my_printf("Settings.csv not found, using default values...\n");
         my_printf("[D]:\nU: %s\tL: %s\nD: %s\tR: %s\nP: %s\tInv:%s\n",
-        keys->up, keys->left, keys->down, keys->right, keys->pause, keys->inv);
+        keys->up, keys->left, keys->down, keys->right, keys->pause, keys->inv);}
     return (ret);
 }
 

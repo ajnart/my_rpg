@@ -17,11 +17,11 @@ void if_menu(sfRenderWindow *win, event_st *state, void (**loop)())
 {
     if (state->type == sfEvtMouseButtonPressed && state->data) {
         if (my_strcmp(state->data, "play"))
-            send_notifs(win, "Release to play the game !", "", 20);
+            send_notifs(win, "Release to play the game !", "", 40);
         if (my_strcmp(state->data, "settings"))
-            send_notifs(win, "Release to go to the settings..", "", 20);
+            send_notifs(win, "Release to go to the settings..", "", 40);
         if (my_strcmp(state->data, "quit"))
-            send_notifs(win, "gonna cry ?", "", 20);
+            send_notifs(win, "gonna cry ?", "", 40);
         state->data = "none";
     }
     if (state->type == sfEvtMouseButtonReleased && state->data) {

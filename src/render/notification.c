@@ -31,14 +31,14 @@ void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft)
         substring = substr;
         s = sfSound_create();
         sfSound_setBuffer(s,
-            find_asset_byname("notification.ogg")->asset_store.sound);
+            find_asset_byname("button.ogg")->asset_store.sound);
         sfSound_play(s);
         update_notifs(win, lifeleft);
     }
     else {
-        print_message(string, win, (float)1.2, (sfVector3f){WW*0.5, 0, 0});
+        print_message(string, win, (float)1.2, (sfVector3f){WW*0.4, 0, 1});
         print_message(substring, win, (float)1,
-            (sfVector3f){WW*0.5, WH*0.05, 0});
+            (sfVector3f){WW*0.4, WH*0.05, 1});
     }
     if (lifeleft == 0)
         sfSound_destroy(s);

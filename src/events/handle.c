@@ -12,7 +12,7 @@
 
 void hdl_key(sfEvent evt, sfRenderWindow *win, event_st *state)
 {
-    if (evt.key.code == sfKeyM && evt.key.control)
+    if (evt.key.code == sfKeyM)
         settings->emitter = settings->emitter == 0 ? 1 : 0;
     if ((char)evt.text.unicode + 65 == settings->keys->up[0])
         state->data = "up";
@@ -24,9 +24,11 @@ void hdl_key(sfEvent evt, sfRenderWindow *win, event_st *state)
         state->data = "right";
     if ((char)evt.text.unicode + 65 == settings->keys->inv[0])
         state->data = "inv";
-    if ((char)evt.text.unicode + 65 == settings->keys->pause[0])
+    if ((char)evt.text.unicode + 65 == settings->keys->pause[0] ||
+        evt.key.code == sfKeyEscape)
         state->data = "paused";
 }
+// TODO : Possible cheat codes with CTRL + KEYS
 
 void hdl_close(sfEvent evt, sfRenderWindow *win, event_st *state)
 {

@@ -11,21 +11,30 @@
 #include "lib.h"
 #include "scenes.h"
 
+void messages_howtoplay(sfRenderWindow *win)
+{
+    int WW = settings->WW;
+    int WH = settings->WH;
+
+    print_message(my_sprintf("Hello %s ! In this game the aim so to gather enough\ngold to buy the princess. The Bois De Boulogne is infested by the unborn offsprings of past clients", settings->name),
+        win, (float)1.2, (sfVector3f){WW*0.5, WH*0.1, 0});
+}
+
 void if_settings(event_st *state, void (**loop)())
 {
     if (state->type == sfEvtMouseButtonPressed && state->data) {
         if (my_strcmp(state->data, "backm")) {
             *loop = &loop_menu;
-            settings->paused = 0;
-        }
+            settings->paused = 0; }
         if (my_strcmp(state->data, "backg")) {
             settings->paused = 0;
-            *loop = &loop_ingame;
-        }
+            *loop = &loop_ingame; }
         if (my_strcmp(state->data, "vol_plus") && settings->volume <= 90)
             settings->volume += 10;
         if (my_strcmp(state->data, "vol_minus") && settings->volume >= 10)
             settings->volume -= 10;
+        if (my_strcmp(state->data, "exitg"))
+            0;
         if (my_strcmp(state->data, "emitter")) {
             settings->emitter = settings->emitter == 0 ? 1 : 0;
             get_button(g_buttons, "emitter")->normal = get_button(g_buttons,
@@ -34,14 +43,31 @@ void if_settings(event_st *state, void (**loop)())
     }
 }
 
+// save_and_quit(); // TODO : Do it...
+
 void messages_settings(sfRenderWindow *win, int WW, int WH)
 {
     if (settings->paused == 0)
-        print_message(my_sprintf("VOLUME : %d", settings->volume),
-            win, (float)1.2, (sfVector3f){WW*0, WH*0.6, 1});
+        messages_howtoplay(win);
+    else
+    {
+        sfText *text = sfText_create();
+        rect_text info;
+        sfRectangleShape *render;
+        render = mkf_rect((sfFloatRect){0, 0, WW, WH* 0.25},
+            find_asset_byname("button.png")->asset_store.texture, sfBlack);
+        info = (rect_text){render, text, my_sprintf("Your stats:\
+        strenght:%d, speed: %d, luck: %d, maxhp:%d", 50, 50, 50, 50),
+            sfWhite, 3};
+        add_rect_text(win, &info);
+        sfText_destroy(text);
+        sfRectangleShape_destroy(render);
+    }
 }
+// TODO : Fix not real values
 
-void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
+void loop_settings(sfRenderWindow *win, event_st *state,
+    void (**loop)())
 {
     settings->paused ? 0: sfRenderWindow_clear(win, sfBlack);
     messages_settings(win, settings->WW, settings->WH);
