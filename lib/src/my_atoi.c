@@ -15,7 +15,7 @@ int add_nb(int act_nb, int new_nb, int *h_ovf)
     return (act_nb);
 }
 
-int my_getnbr(char const *str)
+int my_atoi(char const *str)
 {
     int final_nb = 0;
     int has_nb = 0;

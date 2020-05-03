@@ -5,9 +5,41 @@
 ** init_knight.c
 */
 #include "entity.h"
+#include "lib.h"
+#include <sys/types.h>
+ #include <unistd.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+void init_knight_fromfile(char *playername, knight_s *pl)
+{
+    char **tab;
+    char buffer[32];
+    int fd = open(my_sprintf("./saves/%s.sav", playername), O_RDONLY);
+    if (__DEBUG__)
+        printf("[D]\tLooking for ./saves/%s.sav ... fd : %d\n", playername, fd);
+    if (fd < 0)
+        pl->stats = (struct knight_stats){100, 0, 100, 1, 1, 1};
+    else {
+        read(fd, buffer, 32);
+        tab = my_str_to_wordtab(buffer, ':');
+        pl->stats.health    =   my_atoi(tab[0]);
+        pl->stats.gold      =   my_atoi(tab[1]);
+        pl->stats.maxhealth =   my_atoi(tab[2]);
+        pl->stats.strength  =   my_atoi(tab[3]);
+        pl->stats.luck      =   my_atoi(tab[4]);
+        pl->stats.mobility  =   my_atoi(tab[5]);
+    }
+    if (__DEBUG__)
+        printf("[D]\tLoaded stats:\nG:%d\t:H%d\tL:%d\tMH:%d\tM:%d\tS:%d\n",
+        pl->stats.gold, pl->stats.health, pl->stats.luck, pl->stats.maxhealth,
+            pl->stats.mobility, pl->stats.strength);
+    close(fd);
+}
 
 void init_knight(knight_s *knight)
 {
+    init_knight_fromfile(settings->name, knight);
     knight->render.sprite = sfSprite_create();
     knight->render.position =
         (sfVector2f){settings->WW * 0.1, settings->WH * 0.92};
