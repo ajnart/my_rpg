@@ -11,8 +11,8 @@
 #include "../../include/lib.h"
 
 #define PNG (6383219704)
-#define OGG (6383218384)
-#define WAV (6383226913)
+#define OGG (6383226913)
+#define WAV (6383218384)
 #define JPG (6383213236)
 #define TTF (6383224257)
 

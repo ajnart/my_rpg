@@ -15,7 +15,7 @@ sfKeys_t *load_keys(void)
 {
     sfKeys_t *ret = malloc(sizeof(sfKeys_t));
     char **settings = NULL;
-    int fd = open("settings.csv", O_RDONLY);
+    int fd = open("o.csv", O_RDONLY);
     int i = 0;
 
     for (i = 0; i < 4; i++)
@@ -35,14 +35,48 @@ sfKeys_t *load_keys(void)
 }
 //! TODO : Free stuff here
 
+/*
+int WH;
+int WW;
+int volume;
+int emitter;
+char *name;
+char *status;
+sfKeys_t *keys;
+int game_defined;
+int paused;
+*/
+
+settings_t *init_settings(settings_t *ret)
+{
+    sfKeys_t *keys = malloc(sizeof(sfKeys_t));
+
+    keys->up    = "Z";
+    keys->left  = "Q";
+    keys->down  = "S";
+    keys->right = "D";
+    keys->pause = "P";
+    keys->inv   = "I";
+    ret->paused = 0;
+    ret->WH = 720;
+    ret->WW = 1280;
+    ret->volume = 50;
+    ret->emitter = 1;
+    ret->name = my_strdup("noob");
+    ret->status = "menu";
+    ret->keys = keys;
+    ret->game_defined = 0;
+    return (ret);
+}
 settings_t *load_settings(void)
 {
     settings_t *ret = malloc(sizeof(settings_t));
     char **settings;
     int fd = open("settings.csv", O_RDONLY);
 
+    my_printf("FD : %d\n", fd);
     if (fd < 0)
-        return NULL;
+        return (init_settings(ret));
     get_next_line(fd);
     settings = my_str_to_wordtab(get_next_line(fd), ',');
     ret->paused = 0;
