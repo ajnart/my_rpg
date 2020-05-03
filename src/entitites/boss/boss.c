@@ -51,4 +51,4 @@ void draw_boss(sfRenderWindow *win, mob_s *mob, game_t *game)
         game->npc.state = 3;
     else
         sfRenderWindow_drawSprite(win, mob->sprite, NULL);
-}   
+}
