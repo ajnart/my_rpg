@@ -81,5 +81,5 @@ char *get_asset_fullpath(char *filename);
 void mult_free(int how_much, ...);
 void add_rect_text(sfRenderWindow *win, rect_text *info);
 /* print_message.c */
-void print_message(char *str, sfRenderWindow *win, int size, sfVector3f info);
+void print_message(char *str, sfRenderWindow *win, float size, sfVector3f info);
 #endif

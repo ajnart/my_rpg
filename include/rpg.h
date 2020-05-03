@@ -32,7 +32,7 @@ void play_music(sfRenderWindow *window, char *song);
 void perform_loops(sfRenderWindow *window, void (**loop)(),
     void (**loop_old)(), event_st *state, emitter_t *emitter);
 void handle_events(sfEvent evt, sfRenderWindow *win, event_st *state);
-void print_message(char *str, sfRenderWindow *win, int size,
+void print_message(char *str, sfRenderWindow *win, float size,
     sfVector3f info);
 sfRectangleShape *mkf_rect(sfFloatRect pos,
     sfTexture *tx, sfColor fill);

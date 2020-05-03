@@ -30,7 +30,7 @@ void add_rect_text(sfRenderWindow *win, rect_text *info)
     sfRenderWindow_drawText(win, info->text, NULL);
 }
 
-void print_message(char *str, sfRenderWindow *win, int size,
+void print_message(char *str, sfRenderWindow *win, float size,
     sfVector3f info)
 {
     sfFloatRect bounds;

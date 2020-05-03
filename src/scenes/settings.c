@@ -38,7 +38,7 @@ void messages_settings(sfRenderWindow *win, int WW, int WH)
 {
     if (settings->paused == 0)
         print_message(my_sprintf("VOLUME : %d", settings->volume),
-            win, 1.2, (sfVector3f){WW*0, WH*0.6, 1});
+            win, (float)1.2, (sfVector3f){WW*0, WH*0.6, 1});
 }
 
 void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())

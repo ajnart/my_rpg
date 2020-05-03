@@ -27,7 +27,7 @@ void while_intro(sfRenderWindow *window, sfSprite *sprite, sfIntRect rect)
                 i = 264;
         sfRenderWindow_clear(window, sfBlack);
         print_message("Press left click to skip", window,
-            1, (sfVector3f){settings->WW/2, settings->WH*0.9, 1});
+            (float)1, (sfVector3f){settings->WW/2, settings->WH*0.9, 1});
         sfSprite_setTextureRect(sprite, rect);
         sfRenderWindow_drawSprite(window, sprite, NULL);
         intro_particles(window, settings->WW/2, settings->WH*0.95, emitter);
