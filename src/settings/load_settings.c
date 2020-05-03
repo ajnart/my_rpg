@@ -15,7 +15,7 @@ sfKeys_t *load_keys(void)
 {
     sfKeys_t *ret = malloc(sizeof(sfKeys_t));
     char **settings = NULL;
-    int fd = open("o.csv", O_RDONLY);
+    int fd = open("settings.csv", O_RDONLY);
     int i = 0;
 
     for (i = 0; i < 4; i++)
@@ -28,29 +28,18 @@ sfKeys_t *load_keys(void)
     ret->pause = settings[4];
     ret->inv   = settings[5];
     if (__DEBUG__)
-        my_printf("[D]:\nU: %s\tL: %s\nD: %s\tR: %s\nP: %sInv:%s\n",
+        my_printf("[D]:\nU: %s\tL: %s\nD: %s\tR: %s\nP: %s\tInv:%s\n",
         ret->up, ret->left, ret->down, ret->right, ret->pause, ret->inv);
     close(fd);
     return ret;
 }
 //! TODO : Free stuff here
 
-/*
-int WH;
-int WW;
-int volume;
-int emitter;
-char *name;
-char *status;
-sfKeys_t *keys;
-int game_defined;
-int paused;
-*/
-
 settings_t *init_settings(settings_t *ret)
 {
     sfKeys_t *keys = malloc(sizeof(sfKeys_t));
-
+    if (__DEBUG__)
+        my_printf("Settings.csv not found, using default values...\n");
     keys->up    = "Z";
     keys->left  = "Q";
     keys->down  = "S";
@@ -66,8 +55,12 @@ settings_t *init_settings(settings_t *ret)
     ret->status = "menu";
     ret->keys = keys;
     ret->game_defined = 0;
+    if (__DEBUG__)
+        my_printf("[D]:\nU: %s\tL: %s\nD: %s\tR: %s\nP: %s\tInv:%s\n",
+        keys->up, keys->left, keys->down, keys->right, keys->pause, keys->inv);
     return (ret);
 }
+
 settings_t *load_settings(void)
 {
     settings_t *ret = malloc(sizeof(settings_t));
