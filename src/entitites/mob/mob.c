@@ -7,6 +7,13 @@
 
 #include "entity.h"
 
+void get_damage(knight_s *knight, mob_s *mob)
+{
+    if (mob->rect_a.left == 640) {
+        knight->stats.health -= mob->damage;
+    }
+}
+
 void case_mob(sfRenderWindow *win, mob_s *mob, int k_pos, game_t *game)
 {
     switch (mob->state) {
@@ -17,7 +24,7 @@ void case_mob(sfRenderWindow *win, mob_s *mob, int k_pos, game_t *game)
         draw_mob_walking(win, mob, k_pos);
         break;
     case 3:
-        draw_mob_attacking(win, mob);
+        draw_mob_attacking(win, mob, &(game->knight));
         break;
     case 4:
         draw_mob_dead(win, mob, game);
@@ -30,7 +37,7 @@ void draw_mob(sfRenderWindow *win, mob_s *mob, int k_pos, game_t *game)
 {
     while (mob) {
         case_mob(win, mob, k_pos, game);
-        mob_aggro(mob, k_pos);
+        mob_aggro(game->mob, k_pos);
         sfSprite_setPosition(mob->sprite, mob->position);
         sfRenderWindow_drawSprite(win, mob->sprite, NULL);
         if (mob->life <= 0)

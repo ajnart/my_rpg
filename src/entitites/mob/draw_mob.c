@@ -22,13 +22,14 @@ void draw_mob_idle(sfRenderWindow *win, mob_s *mob)
     mob->rect_d.left = 800;
 }
 
-void draw_mob_attacking(sfRenderWindow *win, mob_s *mob)
+void draw_mob_attacking(sfRenderWindow *win, mob_s *mob, knight_s *knight)
 {
     if (get_elapsed_time(mob->clock) > 0.15) {
-        if (mob->rect_a.left <= 721)
+        if (mob->rect_a.left != 720)
             mob->rect_a.left += 80;
         else
             mob->rect_a.left = 0;
+        get_damage(knight, mob);
         sfSprite_setTextureRect(mob->sprite, mob->rect_a);
         sfClock_restart(mob->clock);
     }

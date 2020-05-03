@@ -44,6 +44,7 @@ typedef struct mob_t {
     int state;
     int life;
     int damage;
+    float speed;
     int alive;
     sfIntRect rect_i;
     sfIntRect rect_a;
@@ -66,11 +67,6 @@ typedef struct npc_t {
     int game_finished;
 } npc_t;
 
-void draw_npc_idle(sfRenderWindow *win, npc_t *npc);
-void init_npc(npc_t *npc);
-void draw_npc(sfRenderWindow *win, npc_t *npc);
-void move_npc(npc_t *npc, int way);
-
 //? Parallax
 
 typedef struct parallax {
@@ -90,19 +86,28 @@ typedef struct game_t {
     t_para *para;
 } game_t;
 
+//? NPC
+
+void init_npc(npc_t *npc);
+void move_npc(npc_t *npc, int way);
+void draw_npc(sfRenderWindow *win, npc_t *npc);
+void draw_npc_idle(sfRenderWindow *win, npc_t *npc);
+
 // ? Knight
 
-void draw_knight(sfRenderWindow *win, knight_s *knight, game_t *game);
-void draw_knight_translate(sfRenderWindow *win, game_t *game,
-knight_s *knight, int way);
-void move_knight(game_t *game, int way);
 int check_collision_move(game_t *game, int way);
 void do_damage(mob_s *mob, knight_s *knight, int sign);
 
 void init_knight(knight_s *knight);
+void move_knight(game_t *game, int way);
+void draw_knight(sfRenderWindow *win, knight_s *knight, game_t *game);
 void draw_knight_idle(sfRenderWindow *win, knight_s *knight);
 void draw_knight_walking(sfRenderWindow *win, knight_s *knight, int way);
 void draw_knight_attacking(sfRenderWindow *win, knight_s *knight, mob_s *mob);
+void draw_knight_translate(sfRenderWindow *win, game_t *game,
+knight_s *knight, int way);
+
+// ? Parallax
 
 t_para *set_parallax(void);
 void draw_parallax(sfRenderWindow *win, game_t *game, event_st *state,
@@ -111,14 +116,15 @@ sfVector2f pos);
 //? Mob
 
 void init_mob(mob_s **mob);
-void move_mob(mob_s *mob, int way);
 void mob_aggro(mob_s *mob, int k_pos);
-
 mob_s *delete_mob(game_t *game, mob_s *mob);
+
+void move_mob(mob_s *mob, int way);
 void draw_mob(sfRenderWindow *win, mob_s *mob, int k_pos, game_t *game);
 void draw_mob_idle(sfRenderWindow *win, mob_s *mob);
 void draw_mob_walking(sfRenderWindow *win, mob_s *mob, int k_pos);
-void draw_mob_attacking(sfRenderWindow *win, mob_s *mob);
+void draw_mob_attacking(sfRenderWindow *win, mob_s *mob, knight_s *knight);
 void draw_mob_dead(sfRenderWindow *win, mob_s *mob, game_t *game);
+void get_damage(knight_s *knight, mob_s *mob);
 
 #endif /* ENTITY_H_ */
