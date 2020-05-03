@@ -45,6 +45,8 @@ game_t *init_game(void)
     init_npc(&(game->npc));
     game->para = set_parallax();
     settings->game_defined = 1;
+    game->view = sfView_create();
+    sfView_setSize(game->view, (sfVector2f){400, 400});
     return (game);
 }
 
@@ -56,7 +58,7 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
         game = init_game();
     set_movement(state, &(game->knight));
     draw_parallax(win, game, state, game->knight.render.position);
-    draw_npc(win, &(game->npc), state);
+    draw_npc(win, &(game->npc), state, game);
     draw_mob(win, game->mob, game->knight.render.position.x, game);
     draw_knight(win, &(game->knight), game);
     if (state->type == 10 && state->data) {
