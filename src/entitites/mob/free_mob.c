@@ -48,7 +48,7 @@ mob_s *check_in(game_t *game, mob_s *mob)
 mob_s *delete_mob(sfRenderWindow *win, game_t *game, mob_s *mob)
 {
     mob_s *result = NULL;
-    int gold = rand() % 50;
+    int gold = rand() % (20 + rand() % (game->knight.stats.luck * 4));
 
     send_notifs(win, "You have found", my_sprintf("%d gold!", gold), 20);
     game->knight.stats.gold += gold;

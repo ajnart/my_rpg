@@ -20,9 +20,11 @@ void buttons_ingame(sfRenderWindow *win, int WW, int WH)
 
 void draw_inventory(sfRenderWindow *win, game_t *game)
 {
+    int WW = settings->WW;
+    int WH = settings->WH;
     sfVector2f scale = {0.04, 0.04};
     sfVector2f origin = {995, 1000};
-    sfVector2f pos = {settings->WW - 200, 50};
+    sfVector2f pos = {settings->WW*0.9, WW*0.2};
 
     if (game->knight.render.inv == 1) {
         sfSprite_setTexture(game->knight.render.gold,

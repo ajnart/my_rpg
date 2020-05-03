@@ -16,7 +16,6 @@ void messages_howtoplay(sfRenderWindow *win)
 {
     int WW = settings->WW;
     int WH = settings->WH;
-
     print_message(my_sprintf("Hello %s !\nThe Bois De Boulogne is infested by \
 the unholy unborns of past clients\nYour job is to get rid of them.\n\
 the keys you will use to move are the folling:\n%s:UP\t%s:LEFT\t%s:DOWN\t%s:\
@@ -26,12 +25,11 @@ RIGHT\nPress space to swing your sword and slay enemies",
     (sfVector3f){WW*0.5, WH*0.1, 0});
 }
 
-void save_and_quit(sfRenderWindow *win, game_t *game);
-
 void if_settings(event_st *state, void (**loop)(),
     sfRenderWindow *win, game_t *game)
 {
     if (state->type == sfEvtMouseButtonPressed && state->data) {
+        buy_perks(win, game, state);
         if (my_strcmp(state->data, "backm")) {
             *loop = &loop_menu;
             settings->paused = 0; }
@@ -54,8 +52,9 @@ void if_settings(event_st *state, void (**loop)(),
 
 void messages_settings(sfRenderWindow *win, int WW, int WH, game_t *game)
 {
-    if (settings->paused == 0)
+    if (settings->paused == 0) {
         messages_howtoplay(win);
+    }
     else
     {
         sfText *text = sfText_create();
@@ -64,9 +63,10 @@ void messages_settings(sfRenderWindow *win, int WW, int WH, game_t *game)
         render = mkf_rect((sfFloatRect){0, 0, WW, WH* 0.25},
             find_asset_byname("button.png")->asset_store.texture, sfBlack);
         info = (rect_text){render, text, my_sprintf("Your stats:\
-        strenght:%d, speed: %d, luck: %d, maxhp:%d",
+        strenght:%d, speed: %d, luck: %d, maxhp:%d\n\nYour gold coins:%d",
         game->knight.stats.strength, game->knight.stats.mobility,
-        game->knight.stats.luck, game->knight.stats.maxhealth), sfWhite, 3};
+        game->knight.stats.luck, game->knight.stats.maxhealth,
+        game->knight.stats.gold), sfWhite, 3};
         add_rect_text(win, &info);
         sfText_destroy(text);
         sfRectangleShape_destroy(render);
@@ -89,10 +89,8 @@ void buttons_settings(sfRenderWindow *win, int WW, int WH)
 {
     sfTexture *tx = find_asset_byname("button.png")->asset_store.texture;
 
-    settings->paused ? add_button(&g_buttons, "backg", mkf_rect((sfFloatRect)
-        {WW*0.85, WH*0.9, WW*0.15, WH*0.1}, tx, sfRed), "Back to game"):0;
-    settings->paused ? add_button(&g_buttons, "exitg", mkf_rect((sfFloatRect)
-        {WW*0.85, WH*0.8, WW*0.15, WH*0.1}, tx, sfGreen), "Save and quit"):0;
+    if (settings->paused)
+        add_buttons_paused(WW, WH);
     add_button(&g_buttons, "backm", mkf_rect((sfFloatRect)
         {0, WH*0.9, WW*0.15, WH*0.1}, tx, sfRed), "Back to main menu");
     add_button(&g_buttons, "vol_minus", mkf_rect((sfFloatRect)
