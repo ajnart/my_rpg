@@ -18,7 +18,7 @@ void render_health_bar(sfRenderWindow *win, mob_s *mob)
     sfText *text = sfText_create();
     rect_text info;
     sfRectangleShape *render;
-    render = mkf_rect((sfFloatRect){mob->position.x - 40, 
+    render = mkf_rect((sfFloatRect){mob->position.x - 40,
         mob->position.y - WH*0.1, mob->life * WW*0.07 / 100, WH* 0.015},
         find_asset_byname("button.png")->asset_store.texture, sfRed);
     info = (rect_text){render, text, "", sfWhite, 8};

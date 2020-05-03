@@ -14,7 +14,7 @@ void draw_knight_life(sfRenderWindow *win, knight_s *knight)
     sfText *text = sfText_create();
     rect_text info;
     sfRectangleShape *render;
-    render = mkf_rect((sfFloatRect){0, 
+    render = mkf_rect((sfFloatRect){0,
         WH*0.05, knight->stats.health * WW*0.2 / 100, WH* 0.2},
         find_asset_byname("button.png")->asset_store.texture, sfRed);
     info = (rect_text){render, text, "", sfWhite, 8};
