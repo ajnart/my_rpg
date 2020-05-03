@@ -10,9 +10,10 @@
 void init_boss(mob_s *mob)
 {
     mob->sprite = sfSprite_create();
-    mob->position = (sfVector2f){settings->WW * 2, settings->WH * 0.78};
+    mob->position = (sfVector2f){settings->WW / 2, settings->WH * 0.78};
     mob->state = 1;
     mob->rect_i = (sfIntRect){0, 0, 160, 144};
+    mob->rect_a = (sfIntRect){0, 0, 160, 144};
     mob->damage = 10;
     mob->speed = 2;
     mob->alive = 1;

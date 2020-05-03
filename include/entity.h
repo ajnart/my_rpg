@@ -139,8 +139,10 @@ void get_damage_boss(knight_s *knight, mob_s *mob);
 
 void init_boss(mob_s *mob);
 void draw_boss_idle(sfRenderWindow *win, mob_s *mob, knight_s *knight);
+void draw_boss_attacking(sfRenderWindow *win, mob_s *mob, knight_s *knight);
 void draw_boss(sfRenderWindow *win, mob_s *mob, game_t *game);
 
+void render_health_bar(sfRenderWindow *win, mob_s *mob);
 game_t *init_game(void);
 
 #endif /* ENTITY_H_ */
