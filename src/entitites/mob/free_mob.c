@@ -44,10 +44,11 @@ mob_s *check_in(game_t *game, mob_s *mob)
     return (NULL);
 }
 
-mob_s *delete_mob(game_t *game, mob_s *mob)
+mob_s *delete_mob(sfRenderWindow *win, game_t *game, mob_s *mob)
 {
     mob_s *result = NULL;
 
+    send_notifs(win, "You have found", "40 Gold!", 20);
     if (game->mob->next == NULL) {
         free_mob(game->mob);
         free(game->mob);
