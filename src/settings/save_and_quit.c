@@ -15,8 +15,9 @@
 
 void save_and_quit(sfRenderWindow *win, game_t *game)
 {
-    int fd = open(my_sprintf("./saves/%s.sav", settings->name),
-        O_CREAT | O_RDWR);
+    int w = 0;
+    int fd = open(my_sprintf("%s.sav", settings->name), O_CREAT |
+        O_WRONLY | O_TRUNC, 777);
     if (fd < 0)
         my_printf("File could not be written.\n");
     char *buffer = my_sprintf("%d:%d:%d:%d:%d:%d\nsavedata\n",
@@ -28,9 +29,7 @@ void save_and_quit(sfRenderWindow *win, game_t *game)
         game->knight.stats.mobility);
     if (__DEBUG__)
         my_printf("[D] Saving info :\n%s\n", buffer);
-    int w = write(fd, buffer, 500);
-    close(fd);
-    my_printf("%d\n", w);
+    w = write(fd, buffer, my_strlen(buffer));
     close(fd);
     sfRenderWindow_close(win);
 }

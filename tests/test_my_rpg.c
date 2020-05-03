@@ -12,10 +12,7 @@
 
 int my_rpg(int ac, char **av);
 
-const char *av[1] = 
-{
-    "./my_rpg",
-};
+const char *av[1] = { "./my_rpg", };
 
 Test(world, world)
 {

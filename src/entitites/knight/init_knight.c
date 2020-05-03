@@ -15,10 +15,10 @@ void init_knight_fromfile(char *playername, knight_s *pl)
 {
     char **tab;
     char buffer[32];
-    int fd = open(my_sprintf("./saves/%s.sav", playername), O_RDONLY);
+    int fd = open(my_sprintf("%s.sav", playername), O_RDONLY);
 
     if (__DEBUG__)
-        my_printf("[D]\t ./saves/%s.sav ... fd : %d\n", playername, fd);
+        my_printf("[D]\t %s.sav ... fd : %d\n", playername, fd);
     if (fd < 0)
         pl->stats = (struct knight_stats){100, 0, 100, 30, 1, 1};
     else {

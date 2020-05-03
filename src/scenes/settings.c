@@ -10,6 +10,7 @@
 #include "buttons.h"
 #include "lib.h"
 #include "scenes.h"
+#include "entity.h"
 
 void messages_howtoplay(sfRenderWindow *win)
 {
@@ -50,9 +51,8 @@ void if_settings(event_st *state, void (**loop)(),
         }
     }
 }
-// TODO : save_and_quit();
 
-void messages_settings(sfRenderWindow *win, int WW, int WH)
+void messages_settings(sfRenderWindow *win, int WW, int WH, game_t *game)
 {
     if (settings->paused == 0)
         messages_howtoplay(win);
@@ -64,8 +64,9 @@ void messages_settings(sfRenderWindow *win, int WW, int WH)
         render = mkf_rect((sfFloatRect){0, 0, WW, WH* 0.25},
             find_asset_byname("button.png")->asset_store.texture, sfBlack);
         info = (rect_text){render, text, my_sprintf("Your stats:\
-        strenght:%d, speed: %d, luck: %d, maxhp:%d", 50, 50, 50, 50),
-            sfWhite, 3};
+        strenght:%d, speed: %d, luck: %d, maxhp:%d", 
+        game->knight.stats.strength, game->knight.stats.mobility, 
+        game->knight.stats.luck, game->knight.stats.maxhealth), sfWhite, 3};
         add_rect_text(win, &info);
         sfText_destroy(text);
         sfRectangleShape_destroy(render);
@@ -77,7 +78,7 @@ void loop_settings(sfRenderWindow *win, event_st *state,
     void (**loop)(), game_t *game)
 {
     settings->paused ? 0: sfRenderWindow_clear(win, sfBlack);
-    messages_settings(win, settings->WW, settings->WH);
+    messages_settings(win, settings->WW, settings->WH, game);
     if_settings(state, loop, win, game);
     sfMusic_setVolume(find_asset_byname("music.wav")->asset_store.music,
         settings->volume);
