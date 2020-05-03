@@ -45,7 +45,7 @@ void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
             find_asset_byname("button.png")->asset_store.texture, sfBlue);
     info = (rect_text){render, text, "Knight of boulogne !", sfWhite, 9};
     sfRenderWindow_clear(win, (sfColor){0, 0, 0, 255});
-    play_music(win, "music.ogg");
+    play_music(win, "music.wav");
     if_menu(win, state, loop);
     add_rect_text(win, &info);
     sfText_destroy(text);

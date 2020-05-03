@@ -46,7 +46,7 @@ void loop_settings(sfRenderWindow *win, event_st *state, void (**loop)())
     settings->paused ? 0: sfRenderWindow_clear(win, sfBlack);
     messages_settings(win, settings->WW, settings->WH);
     if_settings(state, loop);
-    sfMusic_setVolume(find_asset_byname("music.ogg")->asset_store.music,
+    sfMusic_setVolume(find_asset_byname("music.wav")->asset_store.music,
         settings->volume);
     state->data = NULL;
 }
