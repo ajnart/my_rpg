@@ -14,6 +14,8 @@ void draw_knight_idle(sfRenderWindow *win, knight_s *knight)
             knight->render.rect_i.left += 64;
         else
             knight->render.rect_i.left = 0;
+        if (rand() % 50 > 30 && knight->stats.health < knight->stats.maxhealth)
+            knight->stats.health += knight->stats.maxhealth / 100;
         sfSprite_setTexture(knight->render.sprite,
             find_asset_byname("Idle.png")->asset_store.texture, sfTrue);
         sfSprite_setTextureRect(knight->render.sprite, knight->render.rect_i);
