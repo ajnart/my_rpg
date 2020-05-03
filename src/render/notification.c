@@ -30,7 +30,7 @@ void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft)
         string = str;
         substring = substr;
         s = sfSound_create();
-        sfSound_setBuffer(s, 
+        sfSound_setBuffer(s,
             find_asset_byname("notification.ogg")->asset_store.sound);
         sfSound_play(s);
         update_notifs(win, lifeleft);
