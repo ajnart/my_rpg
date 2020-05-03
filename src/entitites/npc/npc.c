@@ -37,6 +37,16 @@ void check_interact(sfRenderWindow *win, npc_t *npc, event_st *state)
     }
 }
 
+void draw_quest_finished(sfRenderWindow *win, npc_t *npc)
+{
+    char *s = "You did it ! I always knew you were awesome!\n"
+    "You have enough coins to buy the princess, congrats !";
+
+    print_message(s, win, (float)0.8,
+        (sfVector3f){npc->position.x,
+        npc->position.y - (double)settings->WH / 4.8, 0});
+}
+
 void draw_quest_text(sfRenderWindow *win, npc_t *npc)
 {
     int WW = settings->WW;
@@ -58,6 +68,8 @@ void draw_quest_text(sfRenderWindow *win, npc_t *npc)
         print_message(s1, win, (float)0.8,
         (sfVector3f){npc->position.x,
         npc->position.y - (double)settings->WH / 4.8, 0});
+    else
+        draw_quest_finished(win, npc);
 }
 
 void draw_npc(sfRenderWindow *win, npc_t *npc, event_st *state, game_t *game)

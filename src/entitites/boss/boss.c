@@ -47,5 +47,8 @@ void draw_boss(sfRenderWindow *win, mob_s *mob, game_t *game)
     case_boss(win, mob, game);
     mob_aggro(mob, game->knight.render.position.x);
     sfSprite_setPosition(mob->sprite, mob->position);
-    sfRenderWindow_drawSprite(win, mob->sprite, NULL);
-}
+    if (mob->life <= 0)
+        game->npc.state = 3;
+    else
+        sfRenderWindow_drawSprite(win, mob->sprite, NULL);
+}   
