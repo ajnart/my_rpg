@@ -16,8 +16,13 @@ void messages_howtoplay(sfRenderWindow *win)
     int WW = settings->WW;
     int WH = settings->WH;
 
-    print_message(my_sprintf("Hello %s ! In this game the aim so to gather enough\ngold to buy the princess. The Bois De Boulogne is infested by the unborn offsprings of past clients", settings->name),
-        win, (float)1.2, (sfVector3f){WW*0.5, WH*0.1, 0});
+    print_message(my_sprintf("Hello %s !\nThe Bois De Boulogne is infested by \
+the unholy unborns of past clients\nYour job is to get rid of them.\n\
+the keys you will use to move are the folling:\n%s:UP\t%s:LEFT\t%s:DOWN\t%s:\
+RIGHT\nPress space to swing your sword and slay enemies",
+    settings->name, settings->keys->up, settings->keys->left,
+    settings->keys->down, settings->keys->right), win, (float)1,
+    (sfVector3f){WW*0.5, WH*0.1, 0});
 }
 
 void if_settings(event_st *state, void (**loop)())

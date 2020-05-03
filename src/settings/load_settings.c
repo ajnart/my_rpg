@@ -52,8 +52,8 @@ settings_t *init_settings(settings_t *ret)
     ret->name = my_strdup("noob");
     ret->keys = keys;
     ret->game_defined = 0;
+    my_printf("Settings.csv not found, using default values...(ZQSD)\n");
     if (__DEBUG__) {
-        my_printf("Settings.csv not found, using default values...\n");
         my_printf("[D]:\nU: %s\tL: %s\nD: %s\tR: %s\nP: %s\tInv:%s\n",
         keys->up, keys->left, keys->down, keys->right, keys->pause, keys->inv);}
     return (ret);
@@ -65,7 +65,6 @@ settings_t *load_settings(void)
     char **settings;
     int fd = open("settings.csv", O_RDONLY);
 
-    my_printf("FD : %d\n", fd);
     if (fd < 0)
         return (init_settings(ret));
     get_next_line(fd);
