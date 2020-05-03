@@ -48,7 +48,7 @@ void case_knight(sfRenderWindow *win, knight_s *knight, game_t *game)
     case 2: draw_knight_walking(win, knight, 1);
         move_knight(game, 1);
         break;
-    case 3: draw_knight_attacking(win, knight, game->mob);
+    case 3: draw_knight_attacking(win, knight, game->mob, &(game->boss));
         break;
     case 4: draw_knight_walking(win, knight, -1);
         move_knight(game, -1);

@@ -107,7 +107,8 @@ void move_knight(game_t *game, int way);
 void draw_knight(sfRenderWindow *win, knight_s *knight, game_t *game);
 void draw_knight_idle(sfRenderWindow *win, knight_s *knight);
 void draw_knight_walking(sfRenderWindow *win, knight_s *knight, int way);
-void draw_knight_attacking(sfRenderWindow *win, knight_s *knight, mob_s *mob);
+void draw_knight_attacking(sfRenderWindow *win, knight_s *knight,
+mob_s *mob, mob_s *boss);
 void draw_knight_translate(sfRenderWindow *win, game_t *game,
 knight_s *knight, int way);
 

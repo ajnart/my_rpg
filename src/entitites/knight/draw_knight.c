@@ -43,7 +43,8 @@ void draw_knight_walking(sfRenderWindow *win, knight_s *knight, int way)
     knight->render.rect_i.left = 0;
 }
 
-void draw_knight_attacking(sfRenderWindow *win, knight_s *knight, mob_s *mob)
+void draw_knight_attacking(sfRenderWindow *win, knight_s *knight,
+mob_s *mob, mob_s *boss)
 {
     sfVector2f scale = {sfSprite_getScale(knight->render.sprite).x,
     (double)settings->WH / 400};
@@ -54,6 +55,7 @@ void draw_knight_attacking(sfRenderWindow *win, knight_s *knight, mob_s *mob)
         else
             knight->render.is_attacking = 0;
         do_damage(mob, knight, get_sign(scale.x));
+        do_damage(boss, knight, get_sign(scale.x));
         sfSprite_setTexture(knight->render.sprite,
             find_asset_byname("Attack.png")->asset_store.texture, sfTrue);
         sfSprite_setTextureRect(knight->render.sprite, knight->render.rect_a);
