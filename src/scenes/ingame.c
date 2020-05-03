@@ -56,7 +56,7 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
         game = init_game();
     set_movement(state, &(game->knight));
     draw_parallax(win, game, state, game->knight.render.position);
-    draw_npc(win, &(game->npc));
+    draw_npc(win, &(game->npc), state);
     draw_mob(win, game->mob, game->knight.render.position.x, game);
     draw_knight(win, &(game->knight), game);
     if (state->type == 10 && state->data) {

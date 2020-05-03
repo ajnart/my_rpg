@@ -60,10 +60,12 @@ typedef struct mob_t {
 
 typedef struct npc_t {
     int state;
+    int text;
     sfIntRect rect_i;
     sfVector2f position;
     sfSprite *sprite;
     sfClock *clock;
+    sfClock *clicked;
     int game_finished;
 } npc_t;
 
@@ -90,7 +92,7 @@ typedef struct game_t {
 
 void init_npc(npc_t *npc);
 void move_npc(npc_t *npc, int way);
-void draw_npc(sfRenderWindow *win, npc_t *npc);
+void draw_npc(sfRenderWindow *win, npc_t *npc, event_st *state);
 void draw_npc_idle(sfRenderWindow *win, npc_t *npc);
 
 // ? Knight
