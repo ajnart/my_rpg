@@ -42,8 +42,10 @@ void draw_mob(sfRenderWindow *win, mob_s *mob, int k_pos, game_t *game)
         sfRenderWindow_drawSprite(win, mob->sprite, NULL);
         if (mob->life <= 0)
             mob->state = 4;
-        if (mob->alive == 0)
+        if (mob->alive == 0) {
             mob = delete_mob(game, mob);
+            send_notifs(win, "You have found", "40 Gold!", 20);
+        }
         else
             mob = mob->next;
     }

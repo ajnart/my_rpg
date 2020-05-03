@@ -26,11 +26,12 @@ void send_notifs(sfRenderWindow *win, char *str, char *substr, int lifeleft)
     static char *string;
     static char *substring;
 
-    if (str && substr) {
+    if (str && substr || !s) {
         string = str;
         substring = substr;
         s = sfSound_create();
-        sfSound_setBuffer(s, find_asset_byname("notification.ogg")->asset_store.sound);
+        sfSound_setBuffer(s, 
+            find_asset_byname("notification.ogg")->asset_store.sound);
         sfSound_play(s);
         update_notifs(win, lifeleft);
     }
