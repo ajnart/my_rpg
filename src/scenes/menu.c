@@ -34,7 +34,8 @@ void if_menu(sfRenderWindow *win, event_st *state, void (**loop)())
     }
 }
 
-void loop_menu(sfRenderWindow *win, event_st *state, void (**loop)())
+void loop_menu(sfRenderWindow *win, event_st *state,
+    void (**loop)(), game_t *game)
 {
     int WW = settings->WW;
     int WH = settings->WH;

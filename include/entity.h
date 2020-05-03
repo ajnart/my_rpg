@@ -139,4 +139,6 @@ void init_boss(mob_s *mob);
 void draw_boss_idle(sfRenderWindow *win, mob_s *mob);
 void draw_boss(sfRenderWindow *win, mob_s *mob, game_t *game);
 
+game_t *init_game(void);
+
 #endif /* ENTITY_H_ */

@@ -51,12 +51,9 @@ game_t *init_game(void)
     return (game);
 }
 
-void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
+void loop_ingame(sfRenderWindow *win, event_st *state,
+    void (**loop)(), game_t *game)
 {
-    static game_t *game;
-
-    if (!settings->game_defined)
-        game = init_game();
     set_movement(state, &(game->knight));
     draw_parallax(win, game, state, game->knight.render.position);
     draw_npc(win, &(game->npc), state, game);

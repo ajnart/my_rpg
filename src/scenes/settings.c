@@ -72,7 +72,7 @@ void messages_settings(sfRenderWindow *win, int WW, int WH)
 // TODO : Fix not real values
 
 void loop_settings(sfRenderWindow *win, event_st *state,
-    void (**loop)())
+    void (**loop)(), game_t *game)
 {
     settings->paused ? 0: sfRenderWindow_clear(win, sfBlack);
     messages_settings(win, settings->WW, settings->WH);

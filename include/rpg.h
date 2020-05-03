@@ -18,6 +18,8 @@
 
 #include "main.h"
 #include "emitter.h"
+#include "entity.h"
+
 // * Referenced bellow are the functions used for the rpg. gotten via ctags.
 
 // Number : Number of particules
@@ -31,7 +33,8 @@ void play_music(sfRenderWindow *window, char *song);
 // Loops: loop_menu // loop_ingame // loop_settings
 void perform_loops(sfRenderWindow *window, void (**loop)(),
     void (**loop_old)(), event_st *state, emitter_t *emitter);
-void handle_events(sfEvent evt, sfRenderWindow *win, event_st *state);
+void handle_events(sfEvent evt, sfRenderWindow *win,
+    event_st *state, void (**loop)());
 void print_message(char *str, sfRenderWindow *win, float size,
     sfVector3f info);
 sfRectangleShape *mkf_rect(sfFloatRect pos,

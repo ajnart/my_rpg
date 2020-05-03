@@ -49,7 +49,8 @@ int my_rpg(int ac, char **av, char **env)
     void (*loop_old)() = NULL;
     event_st *state = malloc(sizeof(event_st));
     sfRenderWindow *window = create_window("Knight Of Boulogne!", 60, settings);
-    void (*loop)(sfRenderWindow *, event_st *, void (**)()) = &loop_menu;
+    void (*loop)(sfRenderWindow *, event_st *, void (**)(), game_t *)
+    = &loop_menu;
     emitter_t *emitter = emitter_setup(200, 4, 20, (sfVector3f){255, -1, 255});
 
     if (!settings || !g_assets || !emitter)
