@@ -48,7 +48,7 @@ mob_s *mob, mob_s *boss)
 {
     sfVector2f scale = {sfSprite_getScale(knight->render.sprite).x,
     (double)settings->WH / 400};
-
+    knight->render.rect_a.left == 64 ? play_sound("swing.ogg", win, 10) : 0;
     if (get_elapsed_time(knight->render.clock) > 0.1) {
         if (knight->render.rect_a.left != 448)
             knight->render.rect_a.left += 64;
