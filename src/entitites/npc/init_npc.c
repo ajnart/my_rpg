@@ -12,7 +12,7 @@ void init_npc(npc_t *npc)
     npc->sprite = sfSprite_create();
     npc->position =
         (sfVector2f){settings->WW * 0.5, settings->WH * 0.8};
-    npc->state = 1;
+    npc->state = 0;
     npc->rect_i = (sfIntRect){0, 0, 80, 80};
     npc->clock = sfClock_create();
     sfSprite_setOrigin(npc->sprite, (sfVector2f){40, 40});

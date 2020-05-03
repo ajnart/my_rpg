@@ -51,9 +51,9 @@ void init_mob(mob_s **mob)
     *mob = NULL;
     append_mob(mob, (sfVector2f){settings->WW / 3, settings->WH * 0.92},
     (sfVector2f){(float)5, (float)0.6}, sfBlack);
-    append_mob(mob, (sfVector2f){settings->WW / 2, settings->WH * 0.89}, 
+    append_mob(mob, (sfVector2f){settings->WW / 2, settings->WH * 0.89},
     (sfVector2f){(float)15, (float)0.1}, sfRed);
-    append_mob(mob, (sfVector2f){settings->WW + 50, settings->WH * 0.94}, 
+    append_mob(mob, (sfVector2f){settings->WW + 50, settings->WH * 0.94},
     (sfVector2f){(float)1, (float)0.3}, sfWhite);
     append_mob(mob, (sfVector2f){settings->WW / 4, settings->WH * 0.94},
     (sfVector2f){(float)1, (float)0.3}, sfWhite);
