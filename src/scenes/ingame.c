@@ -59,7 +59,6 @@ void loop_ingame(sfRenderWindow *win, event_st *state, void (**loop)())
     draw_npc(win, &(game->npc));
     draw_mob(win, game->mob, game->knight.render.position.x, game);
     draw_knight(win, &(game->knight), game);
-    update_notifs(win, 0);
     settings->status = "Game";
     print_message(settings->status, win, 1,
         (sfVector3f){settings->WW * 0.5, settings->WH * 0.1, 0});
