@@ -90,5 +90,5 @@ void loop_ingame(sfRenderWindow *win, event_st *state,
         }
     }
     if (game->knight.stats.health <= 0)
-        dead_knight(win);
+        end_game(win, sfRed, "YOU LOSE!");
 }

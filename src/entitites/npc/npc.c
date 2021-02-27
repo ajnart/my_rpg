@@ -6,6 +6,7 @@
 */
 
 #include "entity.h"
+#include <SFML/System/Time.h>
 
 void move_npc(npc_t *npc, int way)
 {
@@ -41,10 +42,15 @@ void draw_quest_finished(sfRenderWindow *win, npc_t *npc)
 {
     char *s = "You did it ! I always knew you were awesome!\n"
     "You have enough coins to buy the princess, congrats !";
+    sfTime time;
 
     print_message(s, win, (float)0.8,
         (sfVector3f){npc->position.x,
         npc->position.y - (double)settings->WH / 4.8, 0});
+    time.microseconds = 4000000;
+    sfRenderWindow_display(win);
+    sfSleep(time);
+    end_game(win, sfGreen, "YOU WIN!");
 }
 
 void draw_quest_text(sfRenderWindow *win, npc_t *npc)

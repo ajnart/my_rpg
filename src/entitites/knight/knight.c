@@ -7,7 +7,7 @@
 
 #include "entity.h"
 
-void dead_knight(sfRenderWindow *win)
+void end_game(sfRenderWindow *win, sfColor color, char *message)
 {
     int WW = settings->WW;
     int WH = settings->WH;
@@ -18,8 +18,8 @@ void dead_knight(sfRenderWindow *win)
 
     render = mkf_rect((sfFloatRect){0,
         0, WW, WH},
-        find_asset_byname("button.png")->asset_store.texture, sfRed);
-    info = (rect_text){render, text, "YOU LOSE", sfWhite, 8};
+        find_asset_byname("button.png")->asset_store.texture, color);
+    info = (rect_text){render, text, message, sfWhite, 8};
     add_rect_text(win, &info);
     sfText_destroy(text);
     sfRectangleShape_destroy(render);

@@ -149,6 +149,6 @@ game_t *init_game(void);
 void save_and_quit(sfRenderWindow *win, game_t *game);
 void buy_perks(sfRenderWindow *win, game_t *game, event_st *state);
 void draw_inventory(sfRenderWindow *win, game_t *game);
-void dead_knight(sfRenderWindow *win);
+void end_game(sfRenderWindow *win, sfColor color, char *message);
 
 #endif /* ENTITY_H_ */
