@@ -72,6 +72,9 @@ fclean:		clean
 
 re:	fclean all
 
+test:
+	@echo "testing stuff"
+
 assets:
 	@tar -cf assets.tar assets
 	@$(call rich_echo,"AS","Assets compiled!")
